@@ -1,5 +1,5 @@
 {
-  "name": "vitepress-auto-sidebar",
+  "name": "vitepres-auto-sidebar-plugin",
   "type": "module",
   "version": "0.0.0",
   "packageManager": "pnpm@8.15.3",
@@ -11,14 +11,14 @@
   },
   "license": "MIT",
   "funding": "https://github.com/sponsors/Ares-Chang",
-  "homepage": "https://github.com/Ares-Chang/vitepress-auto-sidebar#readme",
+  "homepage": "https://github.com/Ares-Chang/vitepres-auto-sidebar-plugin#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ares-Chang/vitepress-auto-sidebar.git"
+    "url": "git+https://github.com/Ares-Chang/vitepres-auto-sidebar-plugin.git"
   },
-  "bugs": "https://github.com/Ares-Chang/vitepress-auto-sidebar/issues",
+  "bugs": "https://github.com/Ares-Chang/vitepres-auto-sidebar-plugin/issues",
   "keywords": [
-    "vitepress-auto-sidebar",
+    "vitepres-auto-sidebar",
     "vitepress",
     "sidebar",
     "auto sidebar",
