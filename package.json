@@ -60,6 +60,13 @@
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks"
   },
+  "peerDependencies": {
+    "vite": "^5.1.4",
+    "vitepress": "1.0.0-rc.45"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.2"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
     "@antfu/ni": "^0.21.12",
@@ -68,7 +75,6 @@
     "bumpp": "^9.3.0",
     "eslint": "^8.56.0",
     "esno": "^4.0.0",
-    "fast-glob": "^3.3.2",
     "lint-staged": "^15.2.2",
     "pnpm": "^8.15.3",
     "rimraf": "^5.0.5",
