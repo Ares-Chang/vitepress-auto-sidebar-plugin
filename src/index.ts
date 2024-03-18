@@ -4,11 +4,13 @@ import glob from 'fast-glob'
 import type { Plugin } from 'vite'
 import type { Options, SidebarItem, UserConfig } from './types'
 
+import { start, warn } from './utils'
+
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
     name: 'vitepress-auto-sidebar-plugin',
     config: async (config) => {
-      console.warn('The Auto Sidebar is being generated...')
+      start('The Auto Sidebar is being generated...')
 
       const { vitepress: { userConfig } } = config as UserConfig
 
@@ -35,7 +37,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
   }
 }
 
-export function generateSidebar(paths: string[]): Record<string, SidebarItem[]> {
+export async function generateSidebar(paths: string[]): Promise<Record<string, SidebarItem[]>> {
   const sidebar: Record<string, SidebarItem[]> = {}
 
   paths.forEach((path) => {
@@ -63,5 +65,6 @@ export function generateSidebar(paths: string[]): Record<string, SidebarItem[]> 
     })
   })
 
+  warn(sidebar)
   return sidebar
 }

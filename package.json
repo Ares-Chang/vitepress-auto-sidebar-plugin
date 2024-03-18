@@ -65,6 +65,7 @@
     "vitepress": "1.0.0-rc.45"
   },
   "dependencies": {
+    "consola": "^3.2.3",
     "fast-glob": "^3.3.2"
   },
   "devDependencies": {
