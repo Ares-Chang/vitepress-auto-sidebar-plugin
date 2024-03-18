@@ -1,8 +1,8 @@
-import { normalize, sep } from 'node:path'
+import { normalize } from 'node:path'
 import glob from 'fast-glob'
 
 import type { Plugin } from 'vite'
-import type { Options, UserConfig } from './types'
+import type { Options, SidebarItem, UserConfig } from './types'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -30,72 +30,38 @@ export default function autoSidebarPlugin(options: Options): Plugin {
       ).map(path => normalize(path))
 
       const sidebar = generateSidebar(paths)
-      ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
+        ; (config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
     },
   }
 }
 
-// [
-//   'web/index.md',
-//   'web/js.md',
-//   'web/css/background.md',
-//   'web/css/index.md'
-// ]
-
-// {
-//   '/web/': [
-//     {
-//       text: 'Web',
-//       items: [
-//         {
-//           text: 'index',
-//           link: '/web/index',
-//         },
-//         {
-//           text: 'js',
-//           link: '/web/js',
-//         },
-//         {
-//           text: 'css',
-//           items: [
-//             {
-//               text: 'background',
-//               link: '/web/css/background',
-//             },
-//           ]
-//         },
-//       ],
-//     },
-//   ],
-// }
-
-interface Item {
-  text: string
-  link?: string
-  items?: Item[]
-}
-
-function generateSidebar(paths: string[]) {
-  const root: Record<string, Item[]> = {}
+export function generateSidebar(paths: string[]): Record<string, SidebarItem[]> {
+  const sidebar: Record<string, SidebarItem[]> = {}
 
   paths.forEach((path) => {
-    const isMD = path.endsWith('.md')
-    // 去除 .md 后缀
-    if (isMD)
+    if (path.endsWith('.md'))
       path = path.slice(0, -3)
 
-    const dirList = path.split(sep)
+    const pathParts = path.split('/')
 
-    dirList.forEach((dir, index) => {
-      const pre = dirList.slice(0, index).join(sep)
+    if (!sidebar[`/${pathParts[0]}/`])
+      sidebar[`/${pathParts[0]}/`] = []
+    const obj = sidebar[`/${pathParts[0]}/`]
 
-      if (!pre)
-        root[dir] = root[dir] || []
+    pathParts.forEach((part) => {
+      const _obj = obj.find(item => item.text === part)
+      if (!_obj) {
+        obj.push({
+          text: part,
+          link: `/${pathParts.slice(0, pathParts.indexOf(part) + 1).join('/')}`,
+        })
+        return
+      }
 
-      // const dirPath = dirList.slice(0, index + 1).join(sep)
-
-      // root[dirPath] = root[dirPath] || []
-      // console.log(dir, dirPath)
+      if (pathParts.length - 1 === pathParts.indexOf(part))
+        _obj.link = `/${pathParts.slice(0, pathParts.indexOf(part) + 1).join('/')}`
     })
   })
+
+  return sidebar
 }
