@@ -1,10 +1,11 @@
-import { normalize } from 'node:path'
+import { join, normalize, sep } from 'node:path'
 import glob from 'fast-glob'
 
 import type { Plugin } from 'vite'
-import type { Options, SidebarItem, UserConfig } from './types'
+import type { DefaultTheme } from 'vitepress'
+import type { Options, UserConfig } from './types'
 
-import { start, warn } from './utils'
+import { start, success } from './utils'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -32,39 +33,55 @@ export default function autoSidebarPlugin(options: Options): Plugin {
       ).map(path => normalize(path))
 
       const sidebar = generateSidebar(paths)
-        ; (config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
+      ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
+
+      success('The Auto Sidebar has been generated successfully!')
+
+      return config
     },
   }
 }
 
-export async function generateSidebar(paths: string[]): Promise<Record<string, SidebarItem[]>> {
-  const sidebar: Record<string, SidebarItem[]> = {}
+export function generateSidebar(paths: string[]): DefaultTheme.Sidebar[] {
+  const root: DefaultTheme.SidebarItem[] = []
 
   paths.forEach((path) => {
+    let currentNode = root
+    let link = '/'
+
     if (path.endsWith('.md'))
       path = path.slice(0, -3)
 
-    const pathParts = path.split('/')
+    const pathParts = path.split(sep)
 
-    if (!sidebar[`/${pathParts[0]}/`])
-      sidebar[`/${pathParts[0]}/`] = []
-    const obj = sidebar[`/${pathParts[0]}/`]
+    pathParts.forEach((text, index) => {
+      link = join(link, text)
 
-    pathParts.forEach((part) => {
-      const _obj = obj.find(item => item.text === part)
-      if (!_obj) {
-        obj.push({
-          text: part,
-          link: `/${pathParts.slice(0, pathParts.indexOf(part) + 1).join('/')}`,
-        })
-        return
+      let childNode = currentNode.find(node => node.text === text)
+
+      // 若未处理过，整理数据并添加到数组
+      if (!childNode) {
+        childNode = {
+          text,
+          link,
+          items: [],
+        }
+
+        // 移除多余字符配置
+        const isEnd = index + 1 === pathParts.length
+        if (!isEnd)
+          delete childNode.link
+        else delete childNode.items
+
+        currentNode.push(childNode)
       }
 
-      if (pathParts.length - 1 === pathParts.indexOf(part))
-        _obj.link = `/${pathParts.slice(0, pathParts.indexOf(part) + 1).join('/')}`
+      currentNode = childNode.items!
     })
   })
 
-  warn(sidebar)
-  return sidebar
+  return root.reduce((acc, item) => {
+    (acc as unknown as Record<string, DefaultTheme.Sidebar[]>)[`/${item.text}/`] = [item] as DefaultTheme.Sidebar[]
+    return acc
+  }, {}) as DefaultTheme.Sidebar[]
 }

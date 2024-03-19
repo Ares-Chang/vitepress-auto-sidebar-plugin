@@ -26,9 +26,3 @@ export interface Options {
 export interface UserConfig {
   vitepress: SiteConfig
 }
-
-export interface SidebarItem {
-  text: string
-  link?: string
-  items?: SidebarItem[]
-}
