@@ -5,13 +5,13 @@ import type { Plugin } from 'vite'
 import type { DefaultTheme } from 'vitepress'
 import type { Options, UserConfig } from './types'
 
-import { start, success } from './utils'
+import { log } from './log'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
     name: 'vitepress-auto-sidebar-plugin',
     config: async (config) => {
-      start('The Auto Sidebar is being generated...')
+      log.start('The Auto Sidebar is being generated...')
 
       const { vitepress: { userConfig } } = config as UserConfig
 
@@ -35,7 +35,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
       const sidebar = generateSidebar(paths)
       ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
-      success('The Auto Sidebar has been generated successfully!')
+      log.success('The Auto Sidebar has been generated successfully!')
 
       return config
     },
