@@ -1,4 +1,4 @@
-import { join, normalize, sep } from 'node:path'
+import { join, sep } from 'pathe'
 import glob from 'fast-glob'
 
 import type { Plugin } from 'vite'
@@ -30,7 +30,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
             ...ignoreList,
           ],
         })
-      ).map(path => normalize(path))
+      )
 
       const sidebar = generateSidebar(paths)
       ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
