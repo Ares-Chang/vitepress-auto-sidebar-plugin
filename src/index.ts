@@ -1,4 +1,4 @@
-import { join, sep } from 'pathe'
+import { join, normalize, sep } from 'pathe'
 import glob from 'fast-glob'
 import { debounce } from 'throttle-debounce'
 
@@ -20,7 +20,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
       const cwd = options.srcDir || userConfig.srcDir || './'
       const ignoreList = options.ignoreList || userConfig.srcExclude || []
 
-      // 读取目录下文件
+      // 读取目录下文件，并统一路由格式
       const paths = (
         await glob(pattern, {
           cwd,
@@ -31,7 +31,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
             ...ignoreList,
           ],
         })
-      )
+      ).map(path => normalize(path))
 
       const sidebar = generateSidebar(paths)
       ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
@@ -64,6 +64,11 @@ export default function autoSidebarPlugin(options: Options): Plugin {
   }
 }
 
+/**
+ * 生成侧边栏
+ * @param paths 文件路径
+ * @returns 侧边栏数据
+ */
 export function generateSidebar(paths: string[]): DefaultTheme.Sidebar[] {
   const root: DefaultTheme.SidebarItem[] = []
 
@@ -71,9 +76,11 @@ export function generateSidebar(paths: string[]): DefaultTheme.Sidebar[] {
     let currentNode = root
     let link = '/'
 
+    // 移除文件后缀
     if (path.endsWith('.md'))
       path = path.slice(0, -3)
 
+    // 获取路径中名称数组
     const pathParts = path.split(sep)
 
     pathParts.forEach((text, index) => {
