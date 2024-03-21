@@ -1,7 +1,7 @@
 import { join, sep } from 'pathe'
 import glob from 'fast-glob'
 
-import type { Plugin } from 'vite'
+import type { Plugin, ViteDevServer } from 'vite'
 import type { DefaultTheme } from 'vitepress'
 import type { Options, UserConfig } from './types'
 
@@ -38,6 +38,26 @@ export default function autoSidebarPlugin(options: Options): Plugin {
       log.success('The Auto Sidebar has been generated successfully!')
 
       return config
+    },
+    configureServer({
+      watcher,
+      restart,
+    }: ViteDevServer) {
+      /**
+       * 监听 md 文件变动
+       * 排除修改操作，进行服务重启
+       */
+      watcher.add('*.md').on('all', async (type) => {
+        if (type !== 'change') {
+          try {
+            await restart()
+            log.info('Update the sidebar...')
+          }
+          catch {
+            log.error('Failed to update sidebar')
+          }
+        }
+      })
     },
   }
 }
