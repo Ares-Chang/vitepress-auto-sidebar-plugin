@@ -1,6 +1,6 @@
 import { join, normalize, sep } from 'pathe'
 import glob from 'fast-glob'
-import { debounce } from 'throttle-debounce'
+import { debounce } from 'perfect-debounce'
 
 import type { Plugin, ViteDevServer } from 'vite'
 import type { DefaultTheme } from 'vitepress'
@@ -49,7 +49,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
        * 排除修改操作，进行服务重启
        * 800ms 防抖处理，防止大量更新频繁触发重启
        */
-      watcher.add('*.md').on('all', debounce(800, async (type: 'add' | 'addDir' | 'change' | 'unlink' | 'unlinkDir') => {
+      watcher.add('*.md').on('all', debounce(async (type: 'add' | 'addDir' | 'change' | 'unlink' | 'unlinkDir') => {
         if (type !== 'change') {
           try {
             await restart()
@@ -59,7 +59,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
             log.error('Failed to update sidebar')
           }
         }
-      }))
+      }, 800))
     },
   }
 }

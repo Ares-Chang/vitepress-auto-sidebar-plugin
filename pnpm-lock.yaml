@@ -17,6 +17,9 @@ importers:
       pathe:
         specifier: ^1.1.2
         version: 1.1.2
+      perfect-debounce:
+        specifier: ^1.0.0
+        version: 1.0.0
       throttle-debounce:
         specifier: ^5.0.0
         version: 5.0.0
@@ -33,9 +36,6 @@ importers:
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
-      '@types/throttle-debounce':
-        specifier: ^5.0.2
-        version: 5.0.2
       bumpp:
         specifier: ^9.3.0
         version: 9.3.0
@@ -1467,10 +1467,6 @@ packages:
 
   /@types/semver@7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
-    dev: true
-
-  /@types/throttle-debounce@5.0.2:
-    resolution: {integrity: sha512-pDzSNulqooSKvSNcksnV72nk8p7gRqN8As71Sp28nov1IgmPKWbOEIwAWvBME5pPTtaXJAvG3O4oc76HlQ4kqQ==}
     dev: true
 
   /@types/unist@2.0.6:
@@ -4072,7 +4068,6 @@ packages:
 
   /perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
-    dev: true
 
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
