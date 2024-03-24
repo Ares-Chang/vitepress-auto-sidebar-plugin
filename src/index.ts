@@ -34,7 +34,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
         })
       ).map(path => normalize(path))
 
-      const sidebar = await generateSidebar(cwd, paths, options)
+      const sidebar = generateSidebar(cwd, paths, options)
       ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
       log.success('The Auto Sidebar has been generated successfully!')
@@ -71,11 +71,11 @@ export default function autoSidebarPlugin(options: Options): Plugin {
  * @param paths 文件路径
  * @returns 侧边栏数据
  */
-export async function generateSidebar(
+export function generateSidebar(
   cwd: string,
   paths: string[],
   { useH1Title = true }: Options,
-): Promise<DefaultTheme.Sidebar[]> {
+): DefaultTheme.Sidebar[] {
   const root: DefaultTheme.SidebarItem[] = []
 
   for (const path of paths) {
@@ -98,7 +98,7 @@ export async function generateSidebar(
 
       // 获取文件数据，须绝对路径
       if (isFile) {
-        const data = await getArticleData(resolve(cwd, path))
+        const data = getArticleData(resolve(cwd, path))
 
         text = data.title || (useH1Title ? data.h1 : text) || text
       }

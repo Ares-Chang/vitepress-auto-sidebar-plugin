@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { generateSidebar } from '../src'
 
 describe('生成侧边栏', () => {
-  it('返回侧边栏组', async () => {
+  it('返回侧边栏组', () => {
     const paths = [
       'web/index.md',
       'web/js.md',
@@ -11,7 +11,7 @@ describe('生成侧边栏', () => {
       'linux/index.md',
       'linux/wsl.md',
     ]
-    expect(await generateSidebar('./playground', paths, {})).toMatchInlineSnapshot(`
+    expect(generateSidebar('./playground', paths, {})).toMatchInlineSnapshot(`
       {
         "/linux/": [
           {

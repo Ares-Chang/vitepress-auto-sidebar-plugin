@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises'
+import { readFileSync } from 'node:fs'
 import matter from 'gray-matter'
 import type { ArticleOptions } from './types'
 
@@ -7,8 +7,8 @@ import type { ArticleOptions } from './types'
  * @param path 文件绝对路径
  * @return 文件数据
  */
-export async function getArticleData(path: string): Promise<ArticleOptions> {
-  const file = await readFile(path, 'utf-8')
+export function getArticleData(path: string): ArticleOptions {
+  const file = readFileSync(path, 'utf-8')
 
   const { content, data } = matter(file)
 
