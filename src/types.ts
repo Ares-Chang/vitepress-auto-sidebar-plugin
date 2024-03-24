@@ -33,6 +33,10 @@ export interface Options {
 
 export interface ArticleOptions {
   /**
+   * 文章是否隐藏
+   */
+  hide?: boolean
+  /**
    * 文章 Title
    */
   title?: string

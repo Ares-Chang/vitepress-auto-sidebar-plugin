@@ -42,10 +42,6 @@ describe('生成侧边栏', () => {
               {
                 "items": [
                   {
-                    "link": "/web/css/index",
-                    "text": "css",
-                  },
-                  {
                     "link": "/web/css/background",
                     "text": "background",
                   },

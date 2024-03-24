@@ -101,6 +101,9 @@ export function generateSidebar(
         const data = getArticleData(resolve(cwd, path))
 
         text = data.title || (useH1Title ? data.h1 : text) || text
+
+        if (data.hide)
+          continue
       }
 
       let childNode = currentNode.find(node => node.text === text)
