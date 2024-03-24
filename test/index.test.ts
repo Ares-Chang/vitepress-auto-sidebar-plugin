@@ -11,7 +11,7 @@ describe('生成侧边栏', () => {
       'linux/index.md',
       'linux/wsl.md',
     ]
-    expect(generateSidebar(paths)).toEqual({
+    expect(generateSidebar('./playground', paths)).toEqual({
       '/web/': [
         {
           text: 'web',

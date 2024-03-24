@@ -1,4 +1,4 @@
-import { join, normalize, sep } from 'pathe'
+import { join, normalize, resolve, sep } from 'pathe'
 import glob from 'fast-glob'
 import { debounce } from 'perfect-debounce'
 
@@ -7,6 +7,7 @@ import type { DefaultTheme } from 'vitepress'
 import type { Options, UserConfig } from './types'
 
 import { log } from './log'
+import { getArticleData } from './utils'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -33,7 +34,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
         })
       ).map(path => normalize(path))
 
-      const sidebar = generateSidebar(paths)
+      const sidebar = generateSidebar(cwd, paths)
       ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
       log.success('The Auto Sidebar has been generated successfully!')
@@ -66,25 +67,34 @@ export default function autoSidebarPlugin(options: Options): Plugin {
 
 /**
  * 生成侧边栏
+ * @param cwd cwd 路径
  * @param paths 文件路径
  * @returns 侧边栏数据
  */
-export function generateSidebar(paths: string[]): DefaultTheme.Sidebar[] {
+export function generateSidebar(cwd: string, paths: string[]): DefaultTheme.Sidebar[] {
   const root: DefaultTheme.SidebarItem[] = []
 
   paths.forEach((path) => {
     let currentNode = root
     let link = '/'
 
-    // 移除文件后缀
-    if (path.endsWith('.md'))
-      path = path.slice(0, -3)
-
     // 获取路径中名称数组
     const pathParts = path.split(sep)
 
-    pathParts.forEach((text, index) => {
+    pathParts.forEach((text) => {
+      let isFile = false
+
+      // 移除文件后缀
+      if (text.endsWith('.md')) {
+        text = text.slice(0, -3)
+        isFile = true
+      }
+
       link = join(link, text)
+
+      // 获取文件数据，须绝对路径
+      if (isFile)
+        getArticleData(resolve(cwd, path))
 
       let childNode = currentNode.find(node => node.text === text)
 
@@ -92,16 +102,12 @@ export function generateSidebar(paths: string[]): DefaultTheme.Sidebar[] {
       if (!childNode) {
         childNode = {
           text,
-          link,
-          items: [],
+          ...(
+            isFile
+              ? { link }
+              : { items: [] }
+          ),
         }
-
-        // 移除多余字符配置
-        const isEnd = index + 1 === pathParts.length
-        if (!isEnd)
-          delete childNode.link
-        else delete childNode.items
-
         currentNode.push(childNode)
       }
 
