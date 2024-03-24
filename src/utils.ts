@@ -1,19 +1,21 @@
 import { readFile } from 'node:fs/promises'
 import matter from 'gray-matter'
+import type { ArticleOptions } from './types'
 
 /**
  * 获取文件数据
  * @param path 文件绝对路径
  * @return 文件数据
  */
-export async function getArticleData(path: string) {
+export async function getArticleData(path: string): Promise<ArticleOptions> {
   const file = await readFile(path, 'utf-8')
 
   const { content, data } = matter(file)
 
-  data.h1 = getArticleTitle(content)
-
-  return data
+  return {
+    ...data,
+    h1: getArticleTitle(content) || '',
+  }
 }
 
 /**
@@ -23,5 +25,5 @@ export async function getArticleData(path: string) {
  */
 export function getArticleTitle(content: string) {
   const match = content.match(/^#\s*(.+)/m)
-  return match?.[1].trim() || ''
+  return match?.[1].trim()
 }

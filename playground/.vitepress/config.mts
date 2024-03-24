@@ -30,6 +30,7 @@ export default defineConfig({
   vite: {
     plugins: [
       AutoSidebarPlugin({
+        useH1Title: false,
       }),
     ],
   },

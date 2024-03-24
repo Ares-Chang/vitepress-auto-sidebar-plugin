@@ -1,5 +1,9 @@
 import type { SiteConfig } from 'vitepress'
 
+export interface UserConfig {
+  vitepress: SiteConfig
+}
+
 export interface Options {
   /**
    * glob 匹配表达式
@@ -21,8 +25,19 @@ export interface Options {
    * default: vitepress.srcExclude || []
    */
   ignoreList?: string[]
+  /**
+   * 是否使用一级标题代替 title, (级别低于 title)
+   */
+  useH1Title?: boolean
 }
 
-export interface UserConfig {
-  vitepress: SiteConfig
+export interface ArticleOptions {
+  /**
+   * 文章 Title
+   */
+  title?: string
+  /**
+   * 文章的 h1 标题(自动提取，如无设置 title 备选)
+   */
+  h1: string
 }

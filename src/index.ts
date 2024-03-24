@@ -34,7 +34,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
         })
       ).map(path => normalize(path))
 
-      const sidebar = generateSidebar(cwd, paths)
+      const sidebar = await generateSidebar(cwd, paths, options)
       ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
       log.success('The Auto Sidebar has been generated successfully!')
@@ -71,17 +71,21 @@ export default function autoSidebarPlugin(options: Options): Plugin {
  * @param paths 文件路径
  * @returns 侧边栏数据
  */
-export function generateSidebar(cwd: string, paths: string[]): DefaultTheme.Sidebar[] {
+export async function generateSidebar(
+  cwd: string,
+  paths: string[],
+  { useH1Title = true }: Options,
+): Promise<DefaultTheme.Sidebar[]> {
   const root: DefaultTheme.SidebarItem[] = []
 
-  paths.forEach((path) => {
+  for (const path of paths) {
     let currentNode = root
     let link = '/'
 
     // 获取路径中名称数组
     const pathParts = path.split(sep)
 
-    pathParts.forEach((text) => {
+    for (let text of pathParts) {
       let isFile = false
 
       // 移除文件后缀
@@ -93,8 +97,11 @@ export function generateSidebar(cwd: string, paths: string[]): DefaultTheme.Side
       link = join(link, text)
 
       // 获取文件数据，须绝对路径
-      if (isFile)
-        getArticleData(resolve(cwd, path))
+      if (isFile) {
+        const data = await getArticleData(resolve(cwd, path))
+
+        text = data.title || (useH1Title ? data.h1 : text) || text
+      }
 
       let childNode = currentNode.find(node => node.text === text)
 
@@ -112,8 +119,8 @@ export function generateSidebar(cwd: string, paths: string[]): DefaultTheme.Side
       }
 
       currentNode = childNode.items!
-    })
-  })
+    }
+  }
 
   return root.reduce((acc, item) => {
     (acc as unknown as Record<string, DefaultTheme.Sidebar[]>)[`/${item.text}/`] = [item] as DefaultTheme.Sidebar[]

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { generateSidebar } from '../src'
 
 describe('生成侧边栏', () => {
-  it('返回侧边栏组', () => {
+  it('返回侧边栏组', async () => {
     const paths = [
       'web/index.md',
       'web/js.md',
@@ -11,50 +11,52 @@ describe('生成侧边栏', () => {
       'linux/index.md',
       'linux/wsl.md',
     ]
-    expect(generateSidebar('./playground', paths)).toEqual({
-      '/web/': [
-        {
-          text: 'web',
-          items: [
-            {
-              text: 'index',
-              link: '/web/index',
-            },
-            {
-              text: 'js',
-              link: '/web/js',
-            },
-            {
-              text: 'css',
-              items: [
-                {
-                  text: 'index',
-                  link: '/web/css/index',
-                },
-                {
-                  text: 'background',
-                  link: '/web/css/background',
-                },
-              ],
-            },
-          ],
-        },
-      ],
-      '/linux/': [
-        {
-          text: 'linux',
-          items: [
-            {
-              text: 'index',
-              link: '/linux/index',
-            },
-            {
-              text: 'wsl',
-              link: '/linux/wsl',
-            },
-          ],
-        },
-      ],
-    })
+    expect(await generateSidebar('./playground', paths, {})).toMatchInlineSnapshot(`
+      {
+        "/linux/": [
+          {
+            "items": [
+              {
+                "link": "/linux/index",
+                "text": "Linux",
+              },
+              {
+                "link": "/linux/wsl",
+                "text": "WSL",
+              },
+            ],
+            "text": "linux",
+          },
+        ],
+        "/web/": [
+          {
+            "items": [
+              {
+                "link": "/web/index",
+                "text": "Web Title",
+              },
+              {
+                "link": "/web/js",
+                "text": "js",
+              },
+              {
+                "items": [
+                  {
+                    "link": "/web/css/index",
+                    "text": "css",
+                  },
+                  {
+                    "link": "/web/css/background",
+                    "text": "background",
+                  },
+                ],
+                "text": "css",
+              },
+            ],
+            "text": "web",
+          },
+        ],
+      }
+    `)
   })
 })
