@@ -29,7 +29,26 @@ export interface Options {
    * 是否使用一级标题代替 title, (级别低于 title)
    */
   useH1Title?: boolean
+  title?: {
+    /**
+     * 标题模式
+     *
+     * default: 'default'
+     */
+    mode?: TitleMode
+    /**
+     * 标题映射
+     *
+     * 例:
+     * { "/web/js/": "🎉JavaScript🎉" }
+     *
+     * default: {}
+     */
+    map?: Record<string, string>
+  }
 }
+
+export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase'
 
 export interface ArticleOptions {
   /**
