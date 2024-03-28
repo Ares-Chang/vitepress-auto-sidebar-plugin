@@ -1,13 +1,12 @@
-import { join, normalize, resolve, sep } from 'pathe'
+import { normalize } from 'pathe'
 import glob from 'fast-glob'
 import { debounce } from 'perfect-debounce'
 
 import type { Plugin, ViteDevServer } from 'vite'
 import type { DefaultTheme } from 'vitepress'
-import type { Options, UserConfig } from './types'
+import type { Item, Options, UserConfig } from './types'
 
 import { log } from './log'
-import { getArticleData } from './utils'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -34,8 +33,9 @@ export default function autoSidebarPlugin(options: Options): Plugin {
         })
       ).map(path => normalize(path))
 
-      const sidebar = generateSidebar(cwd, paths, options)
-      ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
+      setDataFormat(cwd, paths, options)
+      // const sidebar = setDataFormat(cwd, paths, options)
+      // ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
       log.success('The Auto Sidebar has been generated successfully!')
 
@@ -66,67 +66,63 @@ export default function autoSidebarPlugin(options: Options): Plugin {
 }
 
 /**
- * 生成侧边栏
+ * 设置数据格式
  * @param cwd cwd 路径
  * @param paths 文件路径
  * @returns 侧边栏数据
  */
-export function generateSidebar(
-  cwd: string,
-  paths: string[],
-  { useH1Title = true }: Options,
-): DefaultTheme.Sidebar[] {
-  const root: DefaultTheme.SidebarItem[] = []
+export function setDataFormat(
+// cwd: string,
+// paths: string[],
+// {
+//   useH1Title = true,
+// }: Options,
+): Item[] {
+  const root: Item[] = []
 
-  for (const path of paths) {
-    let currentNode = root
-    let link = '/'
+  // paths.forEach((path) => {
+  //   const list = path.split(sep)
+  // })
 
-    // 获取路径中名称数组
-    const pathParts = path.split(sep)
+  return root
+}
 
-    for (let text of pathParts) {
-      let isFile = false
+// export function setItemList(list: string[]): Item[] {
+export function setItemList(): Item[] {
+  // const root = []
+  // list.forEach((path) => {
+  // const list = path.split(sep)
+  // console.log(JSON.stringify(setItem(root, list), null, 2))
+  // })
+  return []
+}
 
-      // 移除文件后缀
-      if (text.endsWith('.md')) {
-        text = text.slice(0, -3)
-        isFile = true
-      }
+export function setItem(root: Item, list: string[]): Item | undefined {
+  if (!list.length)
+    return
+  // console.log(root, list)
 
-      link = join(link, text)
+  // const text = list.shift()!
+  // const node = root.find((node: Item) => node.text === text)
 
-      // 获取文件数据，须绝对路径
-      if (isFile) {
-        const data = getArticleData(resolve(cwd, path))
+  // const obj = {
+  //   text,
+  //   isFile: Boolean(extname(text)),
+  //   children: [setItem(node, list)].filter(Boolean),
+  // }
 
-        text = data.title || (useH1Title ? data.h1 : text) || text
+  // if (!node)
+  //   root.push(obj)
+  // else node.children?.push(obj)
 
-        if (data.hide)
-          continue
-      }
+  // console.log(obj)
 
-      let childNode = currentNode.find(node => node.text === text)
+  return root
+}
 
-      // 若未处理过，整理数据并添加到数组
-      if (!childNode) {
-        childNode = {
-          text,
-          ...(
-            isFile
-              ? { link }
-              : { items: [] }
-          ),
-        }
-        currentNode.push(childNode)
-      }
-
-      currentNode = childNode.items!
-    }
-  }
-
-  return root.reduce((acc, item) => {
-    (acc as unknown as Record<string, DefaultTheme.Sidebar[]>)[`/${item.text}/`] = [item] as DefaultTheme.Sidebar[]
-    return acc
-  }, {}) as DefaultTheme.Sidebar[]
+/**
+ * 生成侧边栏
+ */
+export function generateSidebar(): DefaultTheme.Sidebar[] {
+  return []
 }
