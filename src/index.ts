@@ -1,13 +1,12 @@
-import { join, normalize, resolve, sep } from 'pathe'
+import { extname, normalize, sep } from 'pathe'
 import glob from 'fast-glob'
 import { debounce } from 'perfect-debounce'
 
 import type { Plugin, ViteDevServer } from 'vite'
 import type { DefaultTheme } from 'vitepress'
-import type { Options, UserConfig } from './types'
+import type { Item, Options, UserConfig } from './types'
 
 import { log } from './log'
-import { getArticleData } from './utils'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -34,7 +33,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
         })
       ).map(path => normalize(path))
 
-      const sidebar = generateSidebar(cwd, paths, options)
+      const sidebar = setDataFormat(cwd, paths, options)
       ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
       log.success('The Auto Sidebar has been generated successfully!')
@@ -65,68 +64,67 @@ export default function autoSidebarPlugin(options: Options): Plugin {
   }
 }
 
+export function setItem(list: string[]): Item | undefined {
+  if (!list.length)
+    return undefined
+
+  let text = list.shift()!
+
+  // 判断是否为文件
+  const isFile = Boolean(extname(text))
+
+  // 移除文件后缀
+  if (isFile)
+    text = text.replace(extname(text), '')
+
+  return {
+    text,
+    isFile,
+    children: [setItem(list)].filter(Boolean) as Item[],
+  }
+}
+
 /**
- * 生成侧边栏
+ * 设置数据格式
  * @param cwd cwd 路径
  * @param paths 文件路径
  * @returns 侧边栏数据
  */
-export function generateSidebar(
+export function setDataFormat(
   cwd: string,
   paths: string[],
-  { useH1Title = true }: Options,
-): DefaultTheme.Sidebar[] {
-  const root: DefaultTheme.SidebarItem[] = []
+  {
+    // eslint-disable-next-line unused-imports/no-unused-vars
+    useH1Title = true,
+  }: Options,
+): Item[] {
+  const root: Item[] = []
 
-  for (const path of paths) {
-    let currentNode = root
-    let link = '/'
+  paths.forEach((path) => {
+    const list = path.split(sep)
+    const obj = setItem(list)!
+    deep(root, obj)
+  })
 
-    // 获取路径中名称数组
-    const pathParts = path.split(sep)
-
-    for (let text of pathParts) {
-      let isFile = false
-
-      // 移除文件后缀
-      if (text.endsWith('.md')) {
-        text = text.slice(0, -3)
-        isFile = true
-      }
-
-      link = join(link, text)
-
-      // 获取文件数据，须绝对路径
-      if (isFile) {
-        const data = getArticleData(resolve(cwd, path))
-
-        text = data.title || (useH1Title ? data.h1 : text) || text
-
-        if (data.hide)
-          continue
-      }
-
-      let childNode = currentNode.find(node => node.text === text)
-
-      // 若未处理过，整理数据并添加到数组
-      if (!childNode) {
-        childNode = {
-          text,
-          ...(
-            isFile
-              ? { link }
-              : { items: [] }
-          ),
-        }
-        currentNode.push(childNode)
-      }
-
-      currentNode = childNode.items!
+  // 递归处理每一项
+  function deep(list: Item[], obj: Item) {
+    const node = list.find(node => node.text === obj.text)
+    if (node) {
+      obj.children.forEach((child) => {
+        node.children = deep(node.children, child)
+      })
     }
+    else { list.push(obj) }
+
+    return list
   }
 
-  return root.reduce((acc, item) => {
-    (acc as unknown as Record<string, DefaultTheme.Sidebar[]>)[`/${item.text}/`] = [item] as DefaultTheme.Sidebar[]
-    return acc
-  }, {}) as DefaultTheme.Sidebar[]
+  return root
+}
+
+/**
+ * 生成侧边栏
+ */
+export function generateSidebar(): DefaultTheme.Sidebar[] {
+  return []
 }

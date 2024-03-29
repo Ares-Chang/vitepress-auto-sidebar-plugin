@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
-import { generateSidebar } from '../src'
+import { generateSidebar, setDataFormat, setItem } from '../src'
 
-describe('生成侧边栏', () => {
+describe('处理文件数据', () => {
+  const cwd = './playground'
   const paths = [
     'web/index.md',
     'web/js.md',
@@ -11,95 +12,97 @@ describe('生成侧边栏', () => {
     'linux/wsl.md',
   ]
 
-  it('生成默认配置', () => {
-    expect(generateSidebar('./playground', paths, {})).toMatchInlineSnapshot(`
-      {
-        "/linux/": [
-          {
-            "items": [
-              {
-                "link": "/linux/index",
-                "text": "Linux",
-              },
-              {
-                "link": "/linux/wsl",
-                "text": "WSL",
-              },
-            ],
-            "text": "linux",
-          },
-        ],
-        "/web/": [
-          {
-            "items": [
-              {
-                "link": "/web/index",
-                "text": "Web Title",
-              },
-              {
-                "link": "/web/js",
-                "text": "js",
-              },
-              {
-                "items": [
-                  {
-                    "link": "/web/css/background",
-                    "text": "background",
-                  },
-                ],
-                "text": "css",
-              },
-            ],
-            "text": "web",
-          },
-        ],
-      }
-    `)
+  it('设置数据体', () => {
+    expect(setItem('web/css/background.md'.split('/')))
+      .toMatchInlineSnapshot(`
+        {
+          "children": [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "isFile": true,
+                  "text": "background",
+                },
+              ],
+              "isFile": false,
+              "text": "css",
+            },
+          ],
+          "isFile": false,
+          "text": "web",
+        }
+      `)
   })
 
-  it('使用文件 H1 标题', () => {
-    expect(generateSidebar('./playground', paths, { useH1Title: true })).toMatchInlineSnapshot(`
-      {
-        "/linux/": [
+  it('设置数据体列表', () => {
+    expect(setDataFormat(cwd, paths, {}))
+      .toMatchInlineSnapshot(`
+        [
           {
-            "items": [
+            "children": [
               {
-                "link": "/linux/index",
-                "text": "Linux",
+                "children": [],
+                "isFile": true,
+                "text": "index",
               },
               {
-                "link": "/linux/wsl",
-                "text": "WSL",
-              },
-            ],
-            "text": "linux",
-          },
-        ],
-        "/web/": [
-          {
-            "items": [
-              {
-                "link": "/web/index",
-                "text": "Web Title",
-              },
-              {
-                "link": "/web/js",
+                "children": [],
+                "isFile": true,
                 "text": "js",
               },
               {
-                "items": [
+                "children": [
                   {
-                    "link": "/web/css/background",
+                    "children": [],
+                    "isFile": true,
+                    "text": "index",
+                  },
+                  {
+                    "children": [],
+                    "isFile": true,
                     "text": "background",
                   },
                 ],
+                "isFile": false,
                 "text": "css",
               },
             ],
+            "isFile": false,
             "text": "web",
           },
-        ],
-      }
-    `)
+          {
+            "children": [
+              {
+                "children": [],
+                "isFile": true,
+                "text": "index",
+              },
+              {
+                "children": [],
+                "isFile": true,
+                "text": "wsl",
+              },
+            ],
+            "isFile": false,
+            "text": "linux",
+          },
+        ]
+      `)
+  })
+
+  it.todo('使用文件 H1 标题', () => {
+    expect(setDataFormat(cwd, paths, { useH1Title: true }))
+      .toMatchInlineSnapshot()
+  })
+})
+
+describe.todo('整理边栏返回体', () => {
+
+})
+
+describe.todo('生成侧边栏', () => {
+  it('生成默认配置', () => {
+    expect(generateSidebar()).toMatchInlineSnapshot()
   })
 })

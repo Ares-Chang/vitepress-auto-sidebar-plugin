@@ -50,6 +50,12 @@ export interface Options {
 
 export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase'
 
+export interface Item {
+  text: string
+  isFile: boolean
+  children: Item[]
+}
+
 export interface ArticleOptions {
   /**
    * 文章是否隐藏
