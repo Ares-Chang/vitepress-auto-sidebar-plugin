@@ -35,7 +35,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
       ).map(path => normalize(path))
 
       const sidebar = setDataFormat(cwd, paths, options)
-      ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
+        ; (config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
       log.success('The Auto Sidebar has been generated successfully!')
 
@@ -86,7 +86,11 @@ export function setItem(
   // 移除文件后缀
   if (isFile) {
     text = text.replace(extname(text), '')
+
     fileOptions = getArticleData(resolve(cwd, link))
+
+    // 设置 title , 优先级：配置 title > 文内 h1 > 文件名
+    fileOptions.title = fileOptions.title || (options.useH1Title ? fileOptions.h1 : text) || text
   }
 
   return {
