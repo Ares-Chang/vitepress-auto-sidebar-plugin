@@ -1,12 +1,13 @@
-import { extname, normalize, sep } from 'pathe'
+import { extname, join, normalize, resolve, sep } from 'pathe'
 import glob from 'fast-glob'
 import { debounce } from 'perfect-debounce'
 
 import type { Plugin, ViteDevServer } from 'vite'
 import type { DefaultTheme } from 'vitepress'
-import type { Item, Options, UserConfig } from './types'
+import type { ArticleOptions, Item, Options, UserConfig } from './types'
 
 import { log } from './log'
+import { getArticleData } from './utils'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -64,23 +65,36 @@ export default function autoSidebarPlugin(options: Options): Plugin {
   }
 }
 
-export function setItem(list: string[]): Item | undefined {
+export function setItem(
+  cwd: string,
+  list: string[],
+  options: Options,
+  link = '',
+): Item | undefined {
   if (!list.length)
     return undefined
 
   let text = list.shift()!
 
+  // 合成 link
+  link = join(link, text)
+
   // 判断是否为文件
   const isFile = Boolean(extname(text))
 
+  let fileOptions = {} as ArticleOptions
   // 移除文件后缀
-  if (isFile)
+  if (isFile) {
     text = text.replace(extname(text), '')
+    fileOptions = getArticleData(resolve(cwd, link))
+  }
 
   return {
     text,
+    link,
     isFile,
-    children: [setItem(list)].filter(Boolean) as Item[],
+    children: [setItem(cwd, list, options, link)].filter(Boolean) as Item[],
+    ...fileOptions,
   }
 }
 
@@ -88,21 +102,19 @@ export function setItem(list: string[]): Item | undefined {
  * 设置数据格式
  * @param cwd cwd 路径
  * @param paths 文件路径
+ * @param options 配置
  * @returns 侧边栏数据
  */
 export function setDataFormat(
   cwd: string,
   paths: string[],
-  {
-    // eslint-disable-next-line unused-imports/no-unused-vars
-    useH1Title = true,
-  }: Options,
+  options: Options,
 ): Item[] {
   const root: Item[] = []
 
   paths.forEach((path) => {
     const list = path.split(sep)
-    const obj = setItem(list)!
+    const obj = setItem(cwd, list, options)!
     deep(root, obj)
   })
 

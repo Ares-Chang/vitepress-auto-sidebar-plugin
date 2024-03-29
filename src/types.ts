@@ -52,6 +52,7 @@ export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | '
 
 export interface Item {
   text: string
+  link: string
   isFile: boolean
   children: Item[]
 }
