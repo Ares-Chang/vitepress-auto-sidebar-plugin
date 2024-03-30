@@ -50,7 +50,7 @@ export interface Options {
   }
 }
 
-export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase'
+export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase' | ((text: string) => string)
 
 export interface Item {
   /**

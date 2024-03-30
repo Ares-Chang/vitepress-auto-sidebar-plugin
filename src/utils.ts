@@ -35,6 +35,9 @@ export function getArticleTitle(content: string) {
  * @returns 格式化后的标题
  */
 export function useTextFormat(text: string, mode: TitleMode) {
+  if (typeof mode === 'function')
+    return mode(text)
+
   switch (mode) {
     case 'lowercase':
       return text.toLowerCase()

@@ -81,4 +81,8 @@ describe('格式化标题', () => {
       expect(useTextFormat('Web-A', 'default')).toBe('Web-A')
     })
   })
+
+  it('自定义函数', () => {
+    expect(useTextFormat('WebA', text => text.toUpperCase())).toBe('WEBA')
+  })
 })
