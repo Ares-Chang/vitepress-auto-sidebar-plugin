@@ -42,7 +42,7 @@ export interface Options {
      * 标题映射
      *
      * 例:
-     * { "/web/js/": "🎉JavaScript🎉" }
+     * { "web/js/": "🎉JavaScript🎉" }
      *
      * default: {}
      */

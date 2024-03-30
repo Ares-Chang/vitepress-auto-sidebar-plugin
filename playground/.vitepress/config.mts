@@ -31,6 +31,9 @@ export default defineConfig({
     plugins: [
       AutoSidebarPlugin({
         useH1Title: false,
+        title: {
+          mode: 'uppercase',
+        },
       }),
     ],
   },

@@ -124,92 +124,83 @@ describe('处理文件数据', () => {
       `)
   })
 
-  it('使用文件 H1 标题', () => {
-    expect(setDataFormat(cwd, paths, { useH1Title: true }))
-      .toMatchInlineSnapshot(`
-        [
-          {
-            "children": [
-              {
-                "children": [],
-                "h1": "web",
-                "isFile": true,
-                "link": "web/index.md",
-                "name": "index",
-                "text": "Web Title",
-                "title": "Web Title",
-              },
-              {
-                "children": [],
-                "h1": "js",
-                "isFile": true,
-                "link": "web/js.md",
-                "name": "js",
-                "text": "js",
-              },
-              {
-                "children": [
-                  {
-                    "children": [],
-                    "h1": "css",
-                    "hide": true,
-                    "isFile": true,
-                    "link": "web/css/index.md",
-                    "name": "index",
-                    "text": "css",
-                  },
-                  {
-                    "children": [],
-                    "h1": "background",
-                    "isFile": true,
-                    "link": "web/css/background.md",
-                    "name": "background",
-                    "text": "background",
-                  },
-                ],
-                "isFile": false,
-                "link": "web/css",
-                "name": "css",
-                "text": "css",
-              },
-            ],
-            "isFile": false,
-            "link": "web",
-            "name": "web",
-            "text": "web",
-          },
-          {
-            "children": [
-              {
-                "children": [],
-                "h1": "Linux",
-                "isFile": true,
-                "link": "linux/index.md",
-                "name": "index",
-                "text": "Linux",
-              },
-              {
-                "children": [],
-                "h1": "WSL",
-                "isFile": true,
-                "link": "linux/wsl.md",
-                "name": "wsl",
-                "text": "WSL",
-              },
-            ],
-            "isFile": false,
-            "link": "linux",
-            "name": "linux",
-            "text": "linux",
-          },
-        ]
-      `)
+  describe('参与用户配置', () => {
+    const list = paths.slice(0, 2)
+
+    it('使用文件 H1 标题', () => {
+      expect(setDataFormat(cwd, list, { useH1Title: true }))
+        .toMatchInlineSnapshot(`
+          [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "h1": "web",
+                  "isFile": true,
+                  "link": "web/index.md",
+                  "name": "index",
+                  "text": "Web Title",
+                  "title": "Web Title",
+                },
+                {
+                  "children": [],
+                  "h1": "js",
+                  "isFile": true,
+                  "link": "web/js.md",
+                  "name": "js",
+                  "text": "js",
+                },
+              ],
+              "isFile": false,
+              "link": "web",
+              "name": "web",
+              "text": "web",
+            },
+          ]
+        `)
+    })
+
+    it('设置 Title Mode', () => {
+      expect(setDataFormat(cwd, list, { title: { mode: 'titlecase' } }))
+        .toMatchInlineSnapshot(`
+          [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "h1": "web",
+                  "isFile": true,
+                  "link": "web/index.md",
+                  "name": "index",
+                  "text": "Web Title",
+                  "title": "Web Title",
+                },
+                {
+                  "children": [],
+                  "h1": "js",
+                  "isFile": true,
+                  "link": "web/js.md",
+                  "name": "js",
+                  "text": "js",
+                },
+              ],
+              "isFile": false,
+              "link": "web",
+              "name": "web",
+              "text": "Web",
+            },
+          ]
+        `)
+    })
   })
 })
 
 describe('生成侧边栏', () => {
   it('生成默认配置', () => {
-    expect(generateSidebar(setDataFormat(cwd, paths, { useH1Title: true })))
+    expect(generateSidebar(setDataFormat(cwd, paths, {
+      useH1Title: true,
+      title: { mode: 'uppercase' },
+    })))
       .toMatchInlineSnapshot(`
         {
           "/linux/": {
@@ -247,7 +238,7 @@ describe('生成侧边栏', () => {
                     "text": "background",
                   },
                 ],
-                "text": "css",
+                "text": "CSS",
               },
             ],
           },

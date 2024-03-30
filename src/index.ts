@@ -7,7 +7,7 @@ import type { DefaultTheme } from 'vitepress'
 import type { ArticleOptions, Item, Options, UserConfig } from './types'
 
 import { log } from './log'
-import { getArticleData } from './utils'
+import { getArticleData, useTextFormat } from './utils'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -93,6 +93,11 @@ export function setItem(
 
     // 设置显示 title , 优先级：配置 title > 文内 h1 > 文件名
     text = fileOptions.title || (options.useH1Title ? fileOptions.h1 : name) || name
+  }
+  else {
+    // 设置 title 格式化
+    if (options?.title?.mode)
+      text = useTextFormat(text, options.title.mode)
   }
 
   return {
