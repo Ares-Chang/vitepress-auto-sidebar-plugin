@@ -1,7 +1,7 @@
 {
   "name": "vitepress-auto-sidebar-plugin",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "packageManager": "pnpm@8.15.3",
   "description": "Automatically generates the sidebar configuration based on the file structure",
   "author": {
@@ -54,7 +54,7 @@
     "lint": "eslint .",
     "play": "npm -C playground run dev",
     "prepublishOnly": "nr build",
-    "release": "bumpp && npm publish",
+    "release": "bumpp --no-push && npm publish",
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
