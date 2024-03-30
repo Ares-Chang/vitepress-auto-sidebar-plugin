@@ -34,8 +34,9 @@ export default function autoSidebarPlugin(options: Options): Plugin {
         })
       ).map(path => normalize(path))
 
-      const sidebar = setDataFormat(cwd, paths, options)
-        ; (config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
+      const list = setDataFormat(cwd, paths, options)
+      const sidebar = generateSidebar(list)
+      ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
       log.success('The Auto Sidebar has been generated successfully!')
 
@@ -141,6 +142,33 @@ export function setDataFormat(
 /**
  * 生成侧边栏
  */
-export function generateSidebar(): DefaultTheme.Sidebar[] {
-  return []
+export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
+  const root = list.reduce((acc, cur) => {
+    acc[`/${cur.link}/`] = {
+      base: '',
+      items: deep(cur.children),
+    }
+    return acc
+  }, {} as DefaultTheme.SidebarMulti)
+
+  function deep(list: Item[]): DefaultTheme.SidebarItem[] {
+    return list.map((
+      { text, link, isFile, children },
+    ): DefaultTheme.SidebarItem => {
+      if (isFile) {
+        return {
+          text,
+          link,
+        }
+      }
+      else {
+        return {
+          text,
+          items: deep(children),
+        }
+      }
+    })
+  }
+
+  return root
 }

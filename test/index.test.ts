@@ -1,17 +1,17 @@
 import { describe, expect, it } from 'vitest'
 import { generateSidebar, setDataFormat, setItem } from '../src'
 
-describe('处理文件数据', () => {
-  const cwd = './playground'
-  const paths = [
-    'web/index.md',
-    'web/js.md',
-    'web/css/index.md',
-    'web/css/background.md',
-    'linux/index.md',
-    'linux/wsl.md',
-  ]
+const cwd = './playground'
+const paths = [
+  'web/index.md',
+  'web/js.md',
+  'web/css/index.md',
+  'web/css/background.md',
+  'linux/index.md',
+  'linux/wsl.md',
+]
 
+describe('处理文件数据', () => {
   it('设置数据体', () => {
     expect(setItem(cwd, 'web/css/background.md'.split('/'), {}))
       .toMatchInlineSnapshot(`
@@ -197,12 +197,51 @@ describe('处理文件数据', () => {
   })
 })
 
-describe.todo('整理边栏返回体', () => {
-
-})
-
-describe.todo('生成侧边栏', () => {
+describe('生成侧边栏', () => {
   it('生成默认配置', () => {
-    expect(generateSidebar()).toMatchInlineSnapshot()
+    expect(generateSidebar(setDataFormat(cwd, paths, { useH1Title: true })))
+      .toMatchInlineSnapshot(`
+        {
+          "/linux/": {
+            "base": "",
+            "items": [
+              {
+                "link": "linux/index.md",
+                "text": "index",
+              },
+              {
+                "link": "linux/wsl.md",
+                "text": "wsl",
+              },
+            ],
+          },
+          "/web/": {
+            "base": "",
+            "items": [
+              {
+                "link": "web/index.md",
+                "text": "index",
+              },
+              {
+                "link": "web/js.md",
+                "text": "js",
+              },
+              {
+                "items": [
+                  {
+                    "link": "web/css/index.md",
+                    "text": "index",
+                  },
+                  {
+                    "link": "web/css/background.md",
+                    "text": "background",
+                  },
+                ],
+                "text": "css",
+              },
+            ],
+          },
+        }
+      `)
   })
 })
