@@ -53,9 +53,25 @@ export interface Options {
 export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase'
 
 export interface Item {
+  /**
+   * 文件名称
+   */
+  name: string
+  /**
+   * 最终显示名称 优先级：配置 title > 文内 h1 > 文件名
+   */
   text: string
+  /**
+   * 地址链接
+   */
   link: string
+  /**
+   * 是否为文件
+   */
   isFile: boolean
+  /**
+   * 子级
+   */
   children: Item[]
 }
 
@@ -71,5 +87,5 @@ export interface ArticleOptions {
   /**
    * 文章的 h1 标题(自动提取，如无设置 title 备选)
    */
-  h1: string
+  h1?: string
 }

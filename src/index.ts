@@ -75,26 +75,28 @@ export function setItem(
   if (!list.length)
     return undefined
 
-  let text = list.shift()!
+  let name = list.shift()!
 
   // 合成 link
-  link = join(link, text)
+  link = join(link, name)
 
   // 判断是否为文件
-  const isFile = Boolean(extname(text))
+  const isFile = Boolean(extname(name))
 
+  let text = name
   let fileOptions = {} as ArticleOptions
   // 移除文件后缀
   if (isFile) {
-    text = text.replace(extname(text), '')
+    name = name.replace(extname(name), '')
 
     fileOptions = getArticleData(resolve(cwd, link))
 
-    // 设置 title , 优先级：配置 title > 文内 h1 > 文件名
-    fileOptions.title = fileOptions.title || (options.useH1Title ? fileOptions.h1 : text) || text
+    // 设置显示 title , 优先级：配置 title > 文内 h1 > 文件名
+    text = fileOptions.title || (options.useH1Title ? fileOptions.h1 : name) || name
   }
 
   return {
+    name,
     text,
     link,
     isFile,
