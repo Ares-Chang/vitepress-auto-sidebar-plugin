@@ -203,45 +203,49 @@ describe('生成侧边栏', () => {
     })))
       .toMatchInlineSnapshot(`
         {
-          "/linux/": {
-            "base": "",
-            "items": [
-              {
-                "link": "linux/index.md",
-                "text": "Linux",
-              },
-              {
-                "link": "linux/wsl.md",
-                "text": "WSL",
-              },
-            ],
-          },
-          "/web/": {
-            "base": "",
-            "items": [
-              {
-                "link": "web/index.md",
-                "text": "Web Title",
-              },
-              {
-                "link": "web/js.md",
-                "text": "js",
-              },
-              {
-                "items": [
-                  {
-                    "link": "web/css/index.md",
-                    "text": "css",
-                  },
-                  {
-                    "link": "web/css/background.md",
-                    "text": "background",
-                  },
-                ],
-                "text": "CSS",
-              },
-            ],
-          },
+          "/linux/": [
+            {
+              "items": [
+                {
+                  "link": "linux/index.md",
+                  "text": "Linux",
+                },
+                {
+                  "link": "linux/wsl.md",
+                  "text": "WSL",
+                },
+              ],
+              "text": "LINUX",
+            },
+          ],
+          "/web/": [
+            {
+              "items": [
+                {
+                  "link": "web/index.md",
+                  "text": "Web Title",
+                },
+                {
+                  "link": "web/js.md",
+                  "text": "js",
+                },
+                {
+                  "items": [
+                    {
+                      "link": "web/css/index.md",
+                      "text": "css",
+                    },
+                    {
+                      "link": "web/css/background.md",
+                      "text": "background",
+                    },
+                  ],
+                  "text": "CSS",
+                },
+              ],
+              "text": "WEB",
+            },
+          ],
         }
       `)
   })

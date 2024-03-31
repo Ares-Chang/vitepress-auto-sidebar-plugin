@@ -150,11 +150,11 @@ export function setDataFormat(
  * 生成侧边栏
  */
 export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
-  const root = list.reduce((acc, cur) => {
-    acc[`/${cur.link}/`] = {
-      base: '',
-      items: deep(cur.children),
-    }
+  const root = list.reduce((acc, { text, link, children }) => {
+    acc[`/${link}/`] = [{
+      text,
+      items: deep(children),
+    }]
     return acc
   }, {} as DefaultTheme.SidebarMulti)
 
