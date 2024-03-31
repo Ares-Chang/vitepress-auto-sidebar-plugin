@@ -119,12 +119,16 @@ export function setItem(
  * @param cwd cwd 路径
  * @param paths 文件路径
  * @param options 配置
+ * @param options.sort 排序方法
  * @returns 侧边栏数据
  */
 export function setDataFormat(
   cwd: string,
   paths: string[],
-  options: Options,
+  {
+    sort = () => 0,
+    ...options
+  }: Options,
 ): Item[] {
   let root: Item[] = []
 
@@ -144,7 +148,8 @@ export function setDataFormat(
     }
     else { list.push(obj) }
 
-    return list
+    // 返回排过序的数据
+    return list.sort(sort)
   }
 
   return root

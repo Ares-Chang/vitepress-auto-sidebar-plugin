@@ -48,6 +48,10 @@ export interface Options {
      */
     map?: Record<string, string>
   }
+  /**
+   * 侧边栏排序
+   */
+  sort?: (a: Item, b: Item) => number
 }
 
 export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase' | ((text: string) => string)

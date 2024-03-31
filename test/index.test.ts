@@ -225,6 +225,39 @@ describe('处理文件数据', () => {
           ]
         `)
     })
+
+    it('设置排序', () => {
+      expect(setDataFormat(cwd, list, { sort: (a, b) => a.text.localeCompare(b.text) }))
+        .toMatchInlineSnapshot(`
+          [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "h1": "js",
+                  "isFile": true,
+                  "link": "web/js.md",
+                  "name": "js",
+                  "text": "js",
+                },
+                {
+                  "children": [],
+                  "h1": "web",
+                  "isFile": true,
+                  "link": "web/index.md",
+                  "name": "index",
+                  "text": "Web Title",
+                  "title": "Web Title",
+                },
+              ],
+              "isFile": false,
+              "link": "web",
+              "name": "web",
+              "text": "web",
+            },
+          ]
+        `)
+    })
   })
 })
 
