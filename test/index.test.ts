@@ -192,6 +192,39 @@ describe('处理文件数据', () => {
           ]
         `)
     })
+
+    it('设置 Title Map', () => {
+      expect(setDataFormat(cwd, ['web/css/index.md'], { title: { map: { 'web/css/': '🎉CSS World🎉' } } }))
+        .toMatchInlineSnapshot(`
+          [
+            {
+              "children": [
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "h1": "css",
+                      "hide": true,
+                      "isFile": true,
+                      "link": "web/css/index.md",
+                      "name": "index",
+                      "text": "index",
+                    },
+                  ],
+                  "isFile": false,
+                  "link": "web/css",
+                  "name": "css",
+                  "text": "🎉CSS World🎉",
+                },
+              ],
+              "isFile": false,
+              "link": "web",
+              "name": "web",
+              "text": "web",
+            },
+          ]
+        `)
+    })
   })
 })
 

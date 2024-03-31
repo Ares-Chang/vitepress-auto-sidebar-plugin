@@ -98,6 +98,10 @@ export function setItem(
     // 设置 title 格式化
     if (options?.title?.mode)
       text = useTextFormat(text, options.title.mode)
+
+    // 设置 title 映射
+    if (options?.title?.map)
+      text = options.title.map[`${link}/`] || text
   }
 
   return {
@@ -122,12 +126,12 @@ export function setDataFormat(
   paths: string[],
   options: Options,
 ): Item[] {
-  const root: Item[] = []
+  let root: Item[] = []
 
   paths.forEach((path) => {
     const list = path.split(sep)
     const obj = setItem(cwd, list, options)!
-    deep(root, obj)
+    root = deep(root, obj)
   })
 
   // 递归处理每一项
