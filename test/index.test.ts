@@ -265,10 +265,6 @@ describe('生成侧边栏', () => {
                 {
                   "items": [
                     {
-                      "link": "web/css/index.md",
-                      "text": "css",
-                    },
-                    {
                       "link": "web/css/background.md",
                       "text": "background",
                     },
@@ -281,5 +277,21 @@ describe('生成侧边栏', () => {
           ],
         }
       `)
+  })
+
+  describe('参与文件配置', () => {
+    it('隐藏文件', () => {
+      expect(generateSidebar(setDataFormat(cwd, ['web/hide.md'], {})))
+        .toMatchInlineSnapshot(`
+          {
+            "/web/": [
+              {
+                "items": [],
+                "text": "web",
+              },
+            ],
+          }
+        `)
+    })
   })
 })

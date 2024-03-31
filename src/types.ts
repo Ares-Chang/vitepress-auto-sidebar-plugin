@@ -52,7 +52,7 @@ export interface Options {
 
 export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase' | ((text: string) => string)
 
-export interface Item {
+export interface Item extends ArticleOptions {
   /**
    * 文件名称
    */

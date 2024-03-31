@@ -157,15 +157,18 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
   const root = list.reduce((acc, { text, link, children }) => {
     acc[`/${link}/`] = [{
       text,
-      items: deep(children),
+      items: deep(children).filter(Boolean) as DefaultTheme.SidebarItem[],
     }]
     return acc
   }, {} as DefaultTheme.SidebarMulti)
 
-  function deep(list: Item[]): DefaultTheme.SidebarItem[] {
+  function deep(list: Item[]): (DefaultTheme.SidebarItem | null)[] {
     return list.map((
-      { text, link, isFile, children },
-    ): DefaultTheme.SidebarItem => {
+      { text, link, isFile, children, hide },
+    ): DefaultTheme.SidebarItem | null => {
+      if (hide)
+        return null
+
       if (isFile) {
         return {
           text,
@@ -175,7 +178,7 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
       else {
         return {
           text,
-          items: deep(children),
+          items: deep(children).filter(Boolean) as DefaultTheme.SidebarItem[],
         }
       }
     })
