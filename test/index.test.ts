@@ -28,12 +28,14 @@ describe('处理文件数据', () => {
                   "text": "background",
                 },
               ],
+              "group": undefined,
               "isFile": false,
               "link": "web/css",
               "name": "css",
               "text": "css",
             },
           ],
+          "group": undefined,
           "isFile": false,
           "link": "web",
           "name": "web",
@@ -85,12 +87,14 @@ describe('处理文件数据', () => {
                     "text": "background",
                   },
                 ],
+                "group": undefined,
                 "isFile": false,
                 "link": "web/css",
                 "name": "css",
                 "text": "css",
               },
             ],
+            "group": undefined,
             "isFile": false,
             "link": "web",
             "name": "web",
@@ -115,6 +119,7 @@ describe('处理文件数据', () => {
                 "text": "wsl",
               },
             ],
+            "group": undefined,
             "isFile": false,
             "link": "linux",
             "name": "linux",
@@ -151,6 +156,7 @@ describe('处理文件数据', () => {
                   "text": "js",
                 },
               ],
+              "group": undefined,
               "isFile": false,
               "link": "web",
               "name": "web",
@@ -184,6 +190,7 @@ describe('处理文件数据', () => {
                   "text": "js",
                 },
               ],
+              "group": undefined,
               "isFile": false,
               "link": "web",
               "name": "web",
@@ -211,12 +218,14 @@ describe('处理文件数据', () => {
                       "text": "index",
                     },
                   ],
+                  "group": undefined,
                   "isFile": false,
                   "link": "web/css",
                   "name": "css",
                   "text": "🎉CSS World🎉",
                 },
               ],
+              "group": undefined,
               "isFile": false,
               "link": "web",
               "name": "web",
@@ -250,10 +259,56 @@ describe('处理文件数据', () => {
                   "title": "Web Title",
                 },
               ],
+              "group": undefined,
               "isFile": false,
               "link": "web",
               "name": "web",
               "text": "web",
+            },
+          ]
+        `)
+    })
+  })
+
+  describe('文章内配置', () => {
+    it('文章分组', () => {
+      expect(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md'], {}))
+        .toMatchInlineSnapshot(`
+          [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "h1": "js",
+                  "isFile": true,
+                  "link": "web/js.md",
+                  "name": "js",
+                  "text": "js",
+                },
+              ],
+              "group": undefined,
+              "isFile": false,
+              "link": "web",
+              "name": "web",
+              "text": "web",
+            },
+            {
+              "children": [
+                {
+                  "children": [],
+                  "group": true,
+                  "h1": "Vue",
+                  "isFile": true,
+                  "link": "web/vue/index.md",
+                  "name": "index",
+                  "text": "index",
+                },
+              ],
+              "group": true,
+              "isFile": false,
+              "link": "web/vue",
+              "name": "vue",
+              "text": "vue",
             },
           ]
         `)
@@ -321,6 +376,34 @@ describe('生成侧边栏', () => {
               {
                 "items": [],
                 "text": "web",
+              },
+            ],
+          }
+        `)
+    })
+
+    it('文章分组', () => {
+      expect(generateSidebar(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md'], {})))
+        .toMatchInlineSnapshot(`
+          {
+            "/web/": [
+              {
+                "items": [
+                  {
+                    "link": "web/js.md",
+                    "text": "js",
+                  },
+                ],
+                "text": "web",
+              },
+              {
+                "items": [
+                  {
+                    "link": "web/vue/index.md",
+                    "text": "index",
+                  },
+                ],
+                "text": "vue",
               },
             ],
           }

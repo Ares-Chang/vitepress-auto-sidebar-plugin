@@ -92,4 +92,8 @@ export interface ArticleOptions {
    * 文章的 h1 标题(自动提取，如无设置 title 备选)
    */
   h1?: string
+  /**
+   * 是否为分组
+   */
+  group?: boolean
 }

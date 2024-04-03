@@ -36,7 +36,7 @@ export default function autoSidebarPlugin(options: Options): Plugin {
 
       const list = setDataFormat(cwd, paths, options)
       const sidebar = generateSidebar(list)
-      ;(config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
+        ; (config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
       log.success('The Auto Sidebar has been generated successfully!')
 
@@ -104,12 +104,24 @@ export function setItem(
       text = options.title.map[`${link}/`] || text
   }
 
+  const children = [setItem(cwd, list, options, link)].filter(Boolean) as Item[]
+
+  let groupConfig = {}
+  if (!isFile) {
+    const { group } = children.find(item => item.text === 'index') || {}
+
+    groupConfig = {
+      group,
+    }
+  }
+
   return {
     name,
     text,
     link,
     isFile,
-    children: [setItem(cwd, list, options, link)].filter(Boolean) as Item[],
+    children,
+    ...groupConfig,
     ...fileOptions,
   }
 }
@@ -135,18 +147,23 @@ export function setDataFormat(
   paths.forEach((path) => {
     const list = path.split(sep)
     const obj = setItem(cwd, list, options)!
-    root = deep(root, obj)
+    root = deep(root, obj, root)
   })
 
   // 递归处理每一项
-  function deep(list: Item[], obj: Item) {
+  function deep(list: Item[], obj: Item, root: Item[]) {
     const node = list.find(node => node.text === obj.text)
     if (node) {
       obj.children.forEach((child) => {
-        node.children = deep(node.children, child)
+        node.children = deep(node.children, child, root)
       })
     }
-    else { list.push(obj) }
+    else {
+      // Group 分组提升至对应顶层
+      if (obj.group && !obj.isFile)
+        root.push(obj)
+      else list.push(obj)
+    }
 
     // 返回排过序的数据
     return list.sort(sort)
@@ -159,13 +176,23 @@ export function setDataFormat(
  * 生成侧边栏
  */
 export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
-  const root = list.reduce((acc, { text, link, children }) => {
-    acc[`/${link}/`] = [{
+  const root = list.reduce((acc, { text, link, children, group }) => {
+    const items = deep(children).filter(Boolean) as DefaultTheme.SidebarItem[]
+    const obj = {
       text,
-      items: deep(children).filter(Boolean) as DefaultTheme.SidebarItem[],
-    }]
+      items,
+    }
+
+    if (group) {
+      const key = link.split(sep)[0]
+      acc[`/${key}/`].push(obj)
+    }
+    else {
+      acc[`/${link}/`] = [obj]
+    }
+
     return acc
-  }, {} as DefaultTheme.SidebarMulti)
+  }, {} as { [key: string]: DefaultTheme.SidebarItem[] })
 
   function deep(list: Item[]): (DefaultTheme.SidebarItem | null)[] {
     return list.map((
