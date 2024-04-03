@@ -152,7 +152,7 @@ export function setDataFormat(
 
   // 递归处理每一项
   function deep(list: Item[], obj: Item, root: Item[]) {
-    const node = list.find(node => node.text === obj.text)
+    const node = [...list, ...root].find(node => node.text === obj.text)
     if (node) {
       obj.children.forEach((child) => {
         node.children = deep(node.children, child, root)
@@ -185,7 +185,7 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
 
     if (group) {
       const key = link.split(sep)[0]
-      ;(acc[`/${key}/`] as DefaultTheme.SidebarItem[]).push(obj)
+        ; (acc[`/${key}/`] as DefaultTheme.SidebarItem[]).push(obj)
     }
     else {
       acc[`/${link}/`] = [obj]

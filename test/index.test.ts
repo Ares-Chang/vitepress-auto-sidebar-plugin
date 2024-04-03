@@ -272,7 +272,7 @@ describe('处理文件数据', () => {
 
   describe('文章内配置', () => {
     it('文章分组', () => {
-      expect(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md'], {}))
+      expect(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md', 'web/vue/v-if.md'], {}))
         .toMatchInlineSnapshot(`
           [
             {
@@ -302,6 +302,14 @@ describe('处理文件数据', () => {
                   "link": "web/vue/index.md",
                   "name": "index",
                   "text": "index",
+                },
+                {
+                  "children": [],
+                  "h1": "v-if",
+                  "isFile": true,
+                  "link": "web/vue/v-if.md",
+                  "name": "v-if",
+                  "text": "v-if",
                 },
               ],
               "group": true,
