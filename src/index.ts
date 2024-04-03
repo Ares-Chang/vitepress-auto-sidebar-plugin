@@ -185,14 +185,14 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
 
     if (group) {
       const key = link.split(sep)[0]
-      acc[`/${key}/`].push(obj)
+      ;(acc[`/${key}/`] as DefaultTheme.SidebarItem[]).push(obj)
     }
     else {
       acc[`/${link}/`] = [obj]
     }
 
     return acc
-  }, {} as { [key: string]: DefaultTheme.SidebarItem[] })
+  }, {} as DefaultTheme.SidebarMulti)
 
   function deep(list: Item[]): (DefaultTheme.SidebarItem | null)[] {
     return list.map((
