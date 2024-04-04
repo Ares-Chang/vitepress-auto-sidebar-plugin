@@ -271,6 +271,31 @@ describe('处理文件数据', () => {
   })
 
   describe('文章内配置', () => {
+    it('隐藏文件', () => {
+      expect(setDataFormat(cwd, ['web/hide.md'], {})).toMatchInlineSnapshot(`
+        [
+          {
+            "children": [
+              {
+                "children": [],
+                "h1": "文章被隐藏",
+                "hide": true,
+                "isFile": true,
+                "link": "web/hide.md",
+                "name": "hide",
+                "text": "hide",
+              },
+            ],
+            "group": undefined,
+            "isFile": false,
+            "link": "web",
+            "name": "web",
+            "text": "web",
+          },
+        ]
+      `)
+    })
+
     it('文章分组', () => {
       expect(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md', 'web/vue/v-if.md'], {}))
         .toMatchInlineSnapshot(`
