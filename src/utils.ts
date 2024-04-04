@@ -59,3 +59,18 @@ export function useTextFormat(text: string, mode: TitleMode) {
       return text
   }
 }
+
+/**
+ * 排序, 优先级：index.md > 其他
+ * @param list 路由列表
+ * @returns 排序后的路由
+ */
+export function useSortIndex(list: string[]) {
+  return list.sort((a, b) => {
+    if (a.includes('index.md') && !b.includes('index.md'))
+      return -1
+    if (!a.includes('index.md') && b.includes('index.md'))
+      return 1
+    return 0
+  })
+}

@@ -9,6 +9,7 @@ describe('处理文件数据', () => {
     expect(await getArticleData(resolve(cwd, 'web/index.md')))
       .toMatchInlineSnapshot(`
         {
+          "collapsed": false,
           "h1": "web",
           "title": "Web Title",
         }

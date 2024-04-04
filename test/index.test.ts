@@ -52,20 +52,13 @@ describe('处理文件数据', () => {
             "children": [
               {
                 "children": [],
+                "collapsed": true,
                 "h1": "web",
                 "isFile": true,
                 "link": "web/index.md",
                 "name": "index",
                 "text": "Web Title",
                 "title": "Web Title",
-              },
-              {
-                "children": [],
-                "h1": "js",
-                "isFile": true,
-                "link": "web/js.md",
-                "name": "js",
-                "text": "js",
               },
               {
                 "children": [
@@ -93,7 +86,16 @@ describe('处理文件数据', () => {
                 "name": "css",
                 "text": "css",
               },
+              {
+                "children": [],
+                "h1": "js",
+                "isFile": true,
+                "link": "web/js.md",
+                "name": "js",
+                "text": "js",
+              },
             ],
+            "collapsed": true,
             "group": undefined,
             "isFile": false,
             "link": "web",
@@ -140,6 +142,7 @@ describe('处理文件数据', () => {
               "children": [
                 {
                   "children": [],
+                  "collapsed": true,
                   "h1": "web",
                   "isFile": true,
                   "link": "web/index.md",
@@ -156,6 +159,7 @@ describe('处理文件数据', () => {
                   "text": "js",
                 },
               ],
+              "collapsed": true,
               "group": undefined,
               "isFile": false,
               "link": "web",
@@ -174,6 +178,7 @@ describe('处理文件数据', () => {
               "children": [
                 {
                   "children": [],
+                  "collapsed": true,
                   "h1": "web",
                   "isFile": true,
                   "link": "web/index.md",
@@ -190,6 +195,7 @@ describe('处理文件数据', () => {
                   "text": "js",
                 },
               ],
+              "collapsed": true,
               "group": undefined,
               "isFile": false,
               "link": "web",
@@ -251,6 +257,7 @@ describe('处理文件数据', () => {
                 },
                 {
                   "children": [],
+                  "collapsed": true,
                   "h1": "web",
                   "isFile": true,
                   "link": "web/index.md",
@@ -259,6 +266,7 @@ describe('处理文件数据', () => {
                   "title": "Web Title",
                 },
               ],
+              "collapsed": true,
               "group": undefined,
               "isFile": false,
               "link": "web",
@@ -303,6 +311,34 @@ describe('处理文件数据', () => {
             {
               "children": [
                 {
+                  "children": [
+                    {
+                      "children": [],
+                      "collapsed": true,
+                      "group": true,
+                      "h1": "Vue",
+                      "isFile": true,
+                      "link": "web/vue/index.md",
+                      "name": "index",
+                      "text": "index",
+                    },
+                    {
+                      "children": [],
+                      "h1": "v-if",
+                      "isFile": true,
+                      "link": "web/vue/v-if.md",
+                      "name": "v-if",
+                      "text": "v-if",
+                    },
+                  ],
+                  "collapsed": true,
+                  "group": true,
+                  "isFile": false,
+                  "link": "web/vue",
+                  "name": "vue",
+                  "text": "vue",
+                },
+                {
                   "children": [],
                   "h1": "js",
                   "isFile": true,
@@ -316,99 +352,102 @@ describe('处理文件数据', () => {
               "link": "web",
               "name": "web",
               "text": "web",
-            },
-            {
-              "children": [
-                {
-                  "children": [],
-                  "collapsed": true,
-                  "group": true,
-                  "h1": "Vue",
-                  "isFile": true,
-                  "link": "web/vue/index.md",
-                  "name": "index",
-                  "text": "index",
-                },
-                {
-                  "children": [],
-                  "h1": "v-if",
-                  "isFile": true,
-                  "link": "web/vue/v-if.md",
-                  "name": "v-if",
-                  "text": "v-if",
-                },
-              ],
-              "collapsed": true,
-              "group": true,
-              "isFile": false,
-              "link": "web/vue",
-              "name": "vue",
-              "text": "vue",
             },
           ]
         `)
     })
 
-    it('可折叠侧边栏组', () => {
-      expect(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md', 'web/css/background.md'], {}))
-        .toMatchInlineSnapshot(`
-          [
-            {
-              "children": [
+    describe('可折叠侧边栏组', () => {
+      describe('一级分组可折叠', () => {
+        it('一级分组可折叠', () => {
+          expect(setDataFormat(cwd, ['web/index.md', 'web/vue/index.md'], {}))
+            .toMatchInlineSnapshot(`
+              [
                 {
-                  "children": [],
-                  "h1": "js",
-                  "isFile": true,
-                  "link": "web/js.md",
-                  "name": "js",
-                  "text": "js",
+                  "children": [
+                    {
+                      "children": [],
+                      "collapsed": true,
+                      "h1": "web",
+                      "isFile": true,
+                      "link": "web/index.md",
+                      "name": "index",
+                      "text": "Web Title",
+                      "title": "Web Title",
+                    },
+                  ],
+                  "collapsed": true,
+                  "group": undefined,
+                  "isFile": false,
+                  "link": "web",
+                  "name": "web",
+                  "text": "web",
                 },
                 {
                   "children": [
                     {
                       "children": [],
-                      "h1": "background",
+                      "collapsed": true,
+                      "group": true,
+                      "h1": "Vue",
                       "isFile": true,
-                      "link": "web/css/background.md",
-                      "name": "background",
-                      "text": "background",
+                      "link": "web/vue/index.md",
+                      "name": "index",
+                      "text": "index",
                     },
                   ],
-                  "group": undefined,
-                  "isFile": false,
-                  "link": "web/css",
-                  "name": "css",
-                  "text": "css",
-                },
-              ],
-              "group": undefined,
-              "isFile": false,
-              "link": "web",
-              "name": "web",
-              "text": "web",
-            },
-            {
-              "children": [
-                {
-                  "children": [],
                   "collapsed": true,
                   "group": true,
-                  "h1": "Vue",
-                  "isFile": true,
-                  "link": "web/vue/index.md",
-                  "name": "index",
-                  "text": "index",
+                  "isFile": false,
+                  "link": "web/vue",
+                  "name": "vue",
+                  "text": "vue",
                 },
-              ],
-              "collapsed": true,
-              "group": true,
-              "isFile": false,
-              "link": "web/vue",
-              "name": "vue",
-              "text": "vue",
-            },
-          ]
-        `)
+              ]
+            `)
+        })
+
+        it('bug: index 之前解析文章', () => {
+          expect(setDataFormat(cwd, ['web/js.md', 'web/index.md'], {}))
+            .toMatchInlineSnapshot(`
+              [
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "collapsed": true,
+                      "h1": "web",
+                      "isFile": true,
+                      "link": "web/index.md",
+                      "name": "index",
+                      "text": "Web Title",
+                      "title": "Web Title",
+                    },
+                    {
+                      "children": [],
+                      "h1": "js",
+                      "isFile": true,
+                      "link": "web/js.md",
+                      "name": "js",
+                      "text": "js",
+                    },
+                  ],
+                  "collapsed": true,
+                  "group": undefined,
+                  "isFile": false,
+                  "link": "web",
+                  "name": "web",
+                  "text": "web",
+                },
+              ]
+            `)
+        })
+      })
+
+      it.todo('下级分组可折叠', () => {
+        expect(setDataFormat(cwd, ['web/index.md', 'web/css/index.md', 'web/css/background.md'], {}))
+          .toMatchInlineSnapshot()
+      })
     })
   })
 })
@@ -438,14 +477,11 @@ describe('生成侧边栏', () => {
           ],
           "/web/": [
             {
+              "collapsed": true,
               "items": [
                 {
                   "link": "web/index.md",
                   "text": "Web Title",
-                },
-                {
-                  "link": "web/js.md",
-                  "text": "js",
                 },
                 {
                   "items": [
@@ -455,6 +491,10 @@ describe('生成侧边栏', () => {
                     },
                   ],
                   "text": "CSS",
+                },
+                {
+                  "link": "web/js.md",
+                  "text": "js",
                 },
               ],
               "text": "WEB",
@@ -487,21 +527,21 @@ describe('生成侧边栏', () => {
               {
                 "items": [
                   {
+                    "collapsed": true,
+                    "items": [
+                      {
+                        "link": "web/vue/index.md",
+                        "text": "index",
+                      },
+                    ],
+                    "text": "vue",
+                  },
+                  {
                     "link": "web/js.md",
                     "text": "js",
                   },
                 ],
                 "text": "web",
-              },
-              {
-                "collapsed": true,
-                "items": [
-                  {
-                    "link": "web/vue/index.md",
-                    "text": "index",
-                  },
-                ],
-                "text": "vue",
               },
             ],
           }
@@ -509,15 +549,16 @@ describe('生成侧边栏', () => {
     })
 
     it('可折叠侧边栏组', () => {
-      expect(generateSidebar(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md', 'web/css/background.md'], {})))
+      expect(generateSidebar(setDataFormat(cwd, ['web/index.md', 'web/vue/index.md', 'web/css/background.md'], {})))
         .toMatchInlineSnapshot(`
           {
             "/web/": [
               {
+                "collapsed": true,
                 "items": [
                   {
-                    "link": "web/js.md",
-                    "text": "js",
+                    "link": "web/index.md",
+                    "text": "Web Title",
                   },
                   {
                     "items": [

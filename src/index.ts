@@ -7,7 +7,7 @@ import type { DefaultTheme } from 'vitepress'
 import type { ArticleOptions, Item, Options, UserConfig } from './types'
 
 import { log } from './log'
-import { getArticleData, useTextFormat } from './utils'
+import { getArticleData, useSortIndex, useTextFormat } from './utils'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -109,7 +109,7 @@ export function setItem(
   let groupConfig = {}
   if (!isFile) {
     // 获取分组名下 index 文件中的配置
-    const { group, collapsed } = children.find(item => item.text === 'index') || {}
+    const { group, collapsed } = children.find(item => item.name === 'index') || {}
 
     groupConfig = {
       group,
@@ -147,7 +147,9 @@ export function setDataFormat(
 ): Item[] {
   let root: Item[] = []
 
-  paths.forEach((path) => {
+  const list = useSortIndex(paths)
+
+  list.forEach((path) => {
     const list = path.split(sep)
     const obj = setItem(cwd, list, options)!
     root = deep(root, obj, root)

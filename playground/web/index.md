@@ -1,5 +1,6 @@
 ---
 title: Web Title
+collapsed: true
 ---
 
 # web
