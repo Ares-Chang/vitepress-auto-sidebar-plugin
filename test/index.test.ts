@@ -321,6 +321,7 @@ describe('处理文件数据', () => {
               "children": [
                 {
                   "children": [],
+                  "collapsed": true,
                   "group": true,
                   "h1": "Vue",
                   "isFile": true,
@@ -337,6 +338,69 @@ describe('处理文件数据', () => {
                   "text": "v-if",
                 },
               ],
+              "collapsed": true,
+              "group": true,
+              "isFile": false,
+              "link": "web/vue",
+              "name": "vue",
+              "text": "vue",
+            },
+          ]
+        `)
+    })
+
+    it('可折叠侧边栏组', () => {
+      expect(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md', 'web/css/background.md'], {}))
+        .toMatchInlineSnapshot(`
+          [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "h1": "js",
+                  "isFile": true,
+                  "link": "web/js.md",
+                  "name": "js",
+                  "text": "js",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "h1": "background",
+                      "isFile": true,
+                      "link": "web/css/background.md",
+                      "name": "background",
+                      "text": "background",
+                    },
+                  ],
+                  "group": undefined,
+                  "isFile": false,
+                  "link": "web/css",
+                  "name": "css",
+                  "text": "css",
+                },
+              ],
+              "group": undefined,
+              "isFile": false,
+              "link": "web",
+              "name": "web",
+              "text": "web",
+            },
+            {
+              "children": [
+                {
+                  "children": [],
+                  "collapsed": true,
+                  "group": true,
+                  "h1": "Vue",
+                  "isFile": true,
+                  "link": "web/vue/index.md",
+                  "name": "index",
+                  "text": "index",
+                },
+              ],
+              "collapsed": true,
               "group": true,
               "isFile": false,
               "link": "web/vue",
@@ -430,6 +494,45 @@ describe('生成侧边栏', () => {
                 "text": "web",
               },
               {
+                "collapsed": true,
+                "items": [
+                  {
+                    "link": "web/vue/index.md",
+                    "text": "index",
+                  },
+                ],
+                "text": "vue",
+              },
+            ],
+          }
+        `)
+    })
+
+    it('可折叠侧边栏组', () => {
+      expect(generateSidebar(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md', 'web/css/background.md'], {})))
+        .toMatchInlineSnapshot(`
+          {
+            "/web/": [
+              {
+                "items": [
+                  {
+                    "link": "web/js.md",
+                    "text": "js",
+                  },
+                  {
+                    "items": [
+                      {
+                        "link": "web/css/background.md",
+                        "text": "background",
+                      },
+                    ],
+                    "text": "css",
+                  },
+                ],
+                "text": "web",
+              },
+              {
+                "collapsed": true,
                 "items": [
                   {
                     "link": "web/vue/index.md",

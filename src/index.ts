@@ -108,10 +108,13 @@ export function setItem(
 
   let groupConfig = {}
   if (!isFile) {
-    const { group } = children.find(item => item.text === 'index') || {}
+    // 获取分组名下 index 文件中的配置
+    const { group, collapsed } = children.find(item => item.text === 'index') || {}
 
     groupConfig = {
       group,
+      // 设置折叠分组配置，默认不开启，单独设置后开启
+      ...(collapsed ?? false ? { collapsed } : {}),
     }
   }
 
@@ -176,11 +179,12 @@ export function setDataFormat(
  * 生成侧边栏
  */
 export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
-  const root = list.reduce((acc, { text, link, children, group }) => {
+  const root = list.reduce((acc, { text, link, children, group, collapsed }) => {
     const items = deep(children).filter(Boolean) as DefaultTheme.SidebarItem[]
     const obj = {
       text,
       items,
+      ...(collapsed ?? false ? { collapsed } : {}),
     }
 
     if (group) {
@@ -196,7 +200,7 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
 
   function deep(list: Item[]): (DefaultTheme.SidebarItem | null)[] {
     return list.map((
-      { text, link, isFile, children, hide },
+      { text, link, isFile, children, hide, collapsed },
     ): DefaultTheme.SidebarItem | null => {
       if (hide)
         return null
@@ -211,6 +215,7 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
         return {
           text,
           items: deep(children).filter(Boolean) as DefaultTheme.SidebarItem[],
+          ...(collapsed ?? false ? { collapsed } : {}),
         }
       }
     })

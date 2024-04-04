@@ -96,4 +96,9 @@ export interface ArticleOptions {
    * 是否为分组
    */
   group?: boolean
+  /**
+   * 是否添加可折叠，默认不显示
+   * 默认情况下折叠为打开状态，如果希望加载时关闭，将 collapsed 设置为 true
+   */
+  collapsed?: boolean
 }
