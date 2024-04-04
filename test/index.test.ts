@@ -28,6 +28,7 @@ describe('处理文件数据', () => {
                   "text": "background",
                 },
               ],
+              "collapsed": undefined,
               "group": undefined,
               "isFile": false,
               "link": "web/css",
@@ -35,6 +36,7 @@ describe('处理文件数据', () => {
               "text": "css",
             },
           ],
+          "collapsed": undefined,
           "group": undefined,
           "isFile": false,
           "link": "web",
@@ -52,7 +54,7 @@ describe('处理文件数据', () => {
             "children": [
               {
                 "children": [],
-                "collapsed": true,
+                "collapsed": false,
                 "h1": "web",
                 "isFile": true,
                 "link": "web/index.md",
@@ -80,6 +82,7 @@ describe('处理文件数据', () => {
                     "text": "background",
                   },
                 ],
+                "collapsed": undefined,
                 "group": undefined,
                 "isFile": false,
                 "link": "web/css",
@@ -95,7 +98,7 @@ describe('处理文件数据', () => {
                 "text": "js",
               },
             ],
-            "collapsed": true,
+            "collapsed": false,
             "group": undefined,
             "isFile": false,
             "link": "web",
@@ -121,6 +124,7 @@ describe('处理文件数据', () => {
                 "text": "wsl",
               },
             ],
+            "collapsed": undefined,
             "group": undefined,
             "isFile": false,
             "link": "linux",
@@ -142,7 +146,7 @@ describe('处理文件数据', () => {
               "children": [
                 {
                   "children": [],
-                  "collapsed": true,
+                  "collapsed": false,
                   "h1": "web",
                   "isFile": true,
                   "link": "web/index.md",
@@ -159,7 +163,7 @@ describe('处理文件数据', () => {
                   "text": "js",
                 },
               ],
-              "collapsed": true,
+              "collapsed": false,
               "group": undefined,
               "isFile": false,
               "link": "web",
@@ -178,7 +182,7 @@ describe('处理文件数据', () => {
               "children": [
                 {
                   "children": [],
-                  "collapsed": true,
+                  "collapsed": false,
                   "h1": "web",
                   "isFile": true,
                   "link": "web/index.md",
@@ -195,7 +199,7 @@ describe('处理文件数据', () => {
                   "text": "js",
                 },
               ],
-              "collapsed": true,
+              "collapsed": false,
               "group": undefined,
               "isFile": false,
               "link": "web",
@@ -224,6 +228,7 @@ describe('处理文件数据', () => {
                       "text": "index",
                     },
                   ],
+                  "collapsed": undefined,
                   "group": undefined,
                   "isFile": false,
                   "link": "web/css",
@@ -231,6 +236,7 @@ describe('处理文件数据', () => {
                   "text": "🎉CSS World🎉",
                 },
               ],
+              "collapsed": undefined,
               "group": undefined,
               "isFile": false,
               "link": "web",
@@ -257,7 +263,7 @@ describe('处理文件数据', () => {
                 },
                 {
                   "children": [],
-                  "collapsed": true,
+                  "collapsed": false,
                   "h1": "web",
                   "isFile": true,
                   "link": "web/index.md",
@@ -266,7 +272,7 @@ describe('处理文件数据', () => {
                   "title": "Web Title",
                 },
               ],
-              "collapsed": true,
+              "collapsed": false,
               "group": undefined,
               "isFile": false,
               "link": "web",
@@ -294,6 +300,7 @@ describe('处理文件数据', () => {
                 "text": "hide",
               },
             ],
+            "collapsed": undefined,
             "group": undefined,
             "isFile": false,
             "link": "web",
@@ -347,6 +354,7 @@ describe('处理文件数据', () => {
                   "text": "js",
                 },
               ],
+              "collapsed": undefined,
               "group": undefined,
               "isFile": false,
               "link": "web",
@@ -367,7 +375,7 @@ describe('处理文件数据', () => {
                   "children": [
                     {
                       "children": [],
-                      "collapsed": true,
+                      "collapsed": false,
                       "h1": "web",
                       "isFile": true,
                       "link": "web/index.md",
@@ -376,7 +384,7 @@ describe('处理文件数据', () => {
                       "title": "Web Title",
                     },
                   ],
-                  "collapsed": true,
+                  "collapsed": false,
                   "group": undefined,
                   "isFile": false,
                   "link": "web",
@@ -407,6 +415,34 @@ describe('处理文件数据', () => {
             `)
         })
 
+        it('collapsed 设置为 false', () => {
+          expect(setDataFormat(cwd, ['web/index.md'], {}))
+            .toMatchInlineSnapshot(`
+              [
+                {
+                  "children": [
+                    {
+                      "children": [],
+                      "collapsed": false,
+                      "h1": "web",
+                      "isFile": true,
+                      "link": "web/index.md",
+                      "name": "index",
+                      "text": "Web Title",
+                      "title": "Web Title",
+                    },
+                  ],
+                  "collapsed": false,
+                  "group": undefined,
+                  "isFile": false,
+                  "link": "web",
+                  "name": "web",
+                  "text": "web",
+                },
+              ]
+            `)
+        })
+
         it('bug: index 之前解析文章', () => {
           expect(setDataFormat(cwd, ['web/js.md', 'web/index.md'], {}))
             .toMatchInlineSnapshot(`
@@ -415,7 +451,7 @@ describe('处理文件数据', () => {
                   "children": [
                     {
                       "children": [],
-                      "collapsed": true,
+                      "collapsed": false,
                       "h1": "web",
                       "isFile": true,
                       "link": "web/index.md",
@@ -432,7 +468,7 @@ describe('处理文件数据', () => {
                       "text": "js",
                     },
                   ],
-                  "collapsed": true,
+                  "collapsed": false,
                   "group": undefined,
                   "isFile": false,
                   "link": "web",
@@ -462,6 +498,7 @@ describe('生成侧边栏', () => {
         {
           "/linux/": [
             {
+              "collapsed": undefined,
               "items": [
                 {
                   "link": "linux/index.md",
@@ -477,13 +514,14 @@ describe('生成侧边栏', () => {
           ],
           "/web/": [
             {
-              "collapsed": true,
+              "collapsed": false,
               "items": [
                 {
                   "link": "web/index.md",
                   "text": "Web Title",
                 },
                 {
+                  "collapsed": undefined,
                   "items": [
                     {
                       "link": "web/css/background.md",
@@ -511,6 +549,7 @@ describe('生成侧边栏', () => {
           {
             "/web/": [
               {
+                "collapsed": undefined,
                 "items": [],
                 "text": "web",
               },
@@ -525,6 +564,7 @@ describe('生成侧边栏', () => {
           {
             "/web/": [
               {
+                "collapsed": undefined,
                 "items": [
                   {
                     "collapsed": true,
@@ -554,13 +594,14 @@ describe('生成侧边栏', () => {
           {
             "/web/": [
               {
-                "collapsed": true,
+                "collapsed": false,
                 "items": [
                   {
                     "link": "web/index.md",
                     "text": "Web Title",
                   },
                   {
+                    "collapsed": undefined,
                     "items": [
                       {
                         "link": "web/css/background.md",

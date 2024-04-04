@@ -114,7 +114,7 @@ export function setItem(
     groupConfig = {
       group,
       // 设置折叠分组配置，默认不开启，单独设置后开启
-      ...(collapsed ?? false ? { collapsed } : {}),
+      collapsed,
     }
   }
 
@@ -186,7 +186,7 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
     const obj = {
       text,
       items,
-      ...(collapsed ?? false ? { collapsed } : {}),
+      collapsed,
     }
 
     if (group) {
@@ -216,8 +216,8 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
       else {
         return {
           text,
+          collapsed,
           items: deep(children).filter(Boolean) as DefaultTheme.SidebarItem[],
-          ...(collapsed ?? false ? { collapsed } : {}),
         }
       }
     })

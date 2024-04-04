@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { resolve } from 'pathe'
-import { getArticleData, getArticleTitle, useTextFormat } from '../src/utils'
+import { getArticleData, getArticleTitle, useSortIndex, useTextFormat } from '../src/utils'
 
 const cwd = './playground'
 
@@ -85,5 +85,13 @@ describe('格式化标题', () => {
 
   it('自定义函数', () => {
     expect(useTextFormat('WebA', text => text.toUpperCase())).toBe('WEBA')
+  })
+})
+
+// TODO: 文件路由排序
+describe.todo('文件路由排序', () => {
+  it('单层排序', () => {
+    expect(useSortIndex(['web/js.md', 'web/index.md']))
+      .toBe([])
   })
 })

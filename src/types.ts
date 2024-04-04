@@ -44,7 +44,7 @@ export interface Options {
      * 例:
      * { "web/js/": "🎉JavaScript🎉" }
      *
-     * default: {}
+     * @default: {}
      */
     map?: Record<string, string>
   }
@@ -99,6 +99,8 @@ export interface ArticleOptions {
   /**
    * 是否添加可折叠，默认不显示
    * 默认情况下折叠为打开状态，如果希望加载时关闭，将 collapsed 设置为 true
+   *
+   * @default undefined
    */
   collapsed?: boolean
 }
