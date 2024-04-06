@@ -88,10 +88,14 @@ describe('格式化标题', () => {
   })
 })
 
-// TODO: 文件路由排序
-describe.todo('文件路由排序', () => {
+describe('文件路由排序', () => {
   it('单层排序', () => {
     expect(useSortIndex(['web/js.md', 'web/index.md']))
-      .toBe([])
+      .toMatchObject(['web/index.md', 'web/js.md'])
+  })
+
+  it('多层排序', () => {
+    expect(useSortIndex(['web/js.md', 'web/index.md', 'web/css/background.md', 'web/css/index.md', 'web/css/less/index.md']))
+      .toMatchObject(['web/index.md', 'web/css/index.md', 'web/css/less/index.md', 'web/js.md', 'web/css/background.md'])
   })
 })
