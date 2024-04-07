@@ -7,7 +7,7 @@ import type { DefaultTheme } from 'vitepress'
 import type { ArticleOptions, Item, Options, UserConfig } from './types'
 
 import { log } from './log'
-import { getArticleData, useSortIndex, useTextFormat } from './utils'
+import { getArticleData, useSortIndexName, useTextFormat } from './utils'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -145,7 +145,7 @@ export function setDataFormat(
 ): Item[] {
   let root: Item[] = []
 
-  const list = useSortIndex(paths)
+  const list = useSortIndexName(paths)
 
   list.forEach((path) => {
     const list = path.split(sep)

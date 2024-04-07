@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs'
+import { basename } from 'pathe'
 import matter from 'gray-matter'
 import type { ArticleOptions, TitleMode } from './types'
 
@@ -26,6 +27,24 @@ export function getArticleData(path: string): ArticleOptions {
 export function getArticleTitle(content: string) {
   const match = content.match(/^#\s*(.+)/m)
   return match?.[1].trim()
+}
+
+/**
+ * 提取文件名中的数字下标
+ * @param path 文件绝对路径
+ * @returns 下标
+ */
+export function getFileIndex(path: string) {
+  const name = basename(path)
+
+  // 使用正则表达式匹配文件名中的数字前缀
+  const match = name.match(/^(\d+)\./)
+
+  let num
+  if (match)
+    num = Number(match[1])
+
+  return num
 }
 
 /**
@@ -61,11 +80,12 @@ export function useTextFormat(text: string, mode: TitleMode) {
 }
 
 /**
- * 排序, 优先级：index.md > 其他
+ * 文件路由排序, 提取 index.md 到第一位
+ * 优先级：index.md > 其他
  * @param list 路由列表
  * @returns 排序后的路由
  */
-export function useSortIndex(list: string[]) {
+export function useSortIndexName(list: string[]) {
   return list.sort((a, b) => {
     if (a.includes('index.md') && !b.includes('index.md'))
       return -1

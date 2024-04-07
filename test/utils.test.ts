@@ -1,12 +1,18 @@
 import { describe, expect, it } from 'vitest'
 import { resolve } from 'pathe'
-import { getArticleData, getArticleTitle, useSortIndex, useTextFormat } from '../src/utils'
+import {
+  getArticleData,
+  getArticleTitle,
+  getFileIndex,
+  useSortIndexName,
+  useTextFormat,
+} from '../src/utils'
 
 const cwd = './playground'
 
 describe('处理文件数据', () => {
-  it('获取文件数据', async () => {
-    expect(await getArticleData(resolve(cwd, 'web/index.md')))
+  it('获取文件数据', () => {
+    expect(getArticleData(resolve(cwd, 'web/index.md')))
       .toMatchInlineSnapshot(`
         {
           "collapsed": false,
@@ -19,6 +25,24 @@ describe('处理文件数据', () => {
   it('提取 h1 标题', () => {
     expect(getArticleTitle(`# web\r\n## h2\r\nhahahahaha\r\n### h3\r\n哈哈哈哈哈`))
       .toBe(`web`)
+  })
+
+  describe('提取文件名数字排序下标', () => {
+    it('存在下标', () => {
+      expect(getFileIndex('/web/1.index.md')).toBe(1)
+    })
+
+    it('不存在下标', () => {
+      expect(getFileIndex('/web/index.md')).toBe(undefined)
+    })
+
+    it('数字下标数为 100', () => {
+      expect(getFileIndex('/web/100.index.md')).toBe(100)
+    })
+
+    it('多个下标', () => {
+      expect(getFileIndex('/web/1.2.3.index.md')).toBe(1)
+    })
   })
 })
 
@@ -88,14 +112,26 @@ describe('格式化标题', () => {
   })
 })
 
-describe('文件路由排序', () => {
+describe('提取 index.md 文件至第一位排序', () => {
   it('单层排序', () => {
-    expect(useSortIndex(['web/js.md', 'web/index.md']))
+    expect(useSortIndexName(['web/js.md', 'web/index.md']))
       .toMatchObject(['web/index.md', 'web/js.md'])
   })
 
   it('多层排序', () => {
-    expect(useSortIndex(['web/js.md', 'web/index.md', 'web/css/background.md', 'web/css/index.md', 'web/css/less/index.md']))
-      .toMatchObject(['web/index.md', 'web/css/index.md', 'web/css/less/index.md', 'web/js.md', 'web/css/background.md'])
+    expect(useSortIndexName([
+      'web/js.md',
+      'web/index.md',
+      'web/css/background.md',
+      'web/css/index.md',
+      'web/css/less/index.md',
+    ]))
+      .toMatchObject([
+        'web/index.md',
+        'web/css/index.md',
+        'web/css/less/index.md',
+        'web/js.md',
+        'web/css/background.md',
+      ])
   })
 })
