@@ -1,7 +1,7 @@
 {
   "name": "vitepress-auto-sidebar-plugin",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "packageManager": "pnpm@8.15.3",
   "description": "Automatically generates the sidebar configuration based on the file structure",
   "author": {
