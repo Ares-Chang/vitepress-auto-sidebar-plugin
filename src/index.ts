@@ -7,7 +7,7 @@ import type { DefaultTheme } from 'vitepress'
 import type { ArticleOptions, Item, Options, UserConfig } from './types'
 
 import { log } from './log'
-import { getArticleData, useSortIndexName, useTextFormat } from './utils'
+import { getArticleData, useIndexSort, useSortIndexName, useTextFormat } from './utils'
 
 export default function autoSidebarPlugin(options: Options): Plugin {
   return {
@@ -167,6 +167,9 @@ export function setDataFormat(
         root.push(obj)
       else list.push(obj)
     }
+
+    // 根据 Index 下标排序数据
+    list = useIndexSort(list)
 
     // 返回排过序的数据
     return list.sort(sort)

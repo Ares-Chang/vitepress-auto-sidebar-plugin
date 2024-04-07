@@ -81,6 +81,13 @@ export interface Item extends ArticleOptions {
 
 export interface ArticleOptions {
   /**
+   * 文件索引, 于文件名称或文内配置中提取，用于排序
+   * 文内配置优先
+   *
+   * 文件名称例: web/1.index.md
+   */
+  index: number | undefined
+  /**
    * 文章是否隐藏
    */
   hide?: boolean

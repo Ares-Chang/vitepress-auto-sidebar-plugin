@@ -22,6 +22,7 @@ describe('处理文件数据', () => {
                 {
                   "children": [],
                   "h1": "background",
+                  "index": undefined,
                   "isFile": true,
                   "link": "web/css/background.md",
                   "name": "background",
@@ -56,6 +57,7 @@ describe('处理文件数据', () => {
                 "children": [],
                 "collapsed": false,
                 "h1": "web",
+                "index": undefined,
                 "isFile": true,
                 "link": "web/index.md",
                 "name": "index",
@@ -68,6 +70,7 @@ describe('处理文件数据', () => {
                     "children": [],
                     "h1": "css",
                     "hide": true,
+                    "index": undefined,
                     "isFile": true,
                     "link": "web/css/index.md",
                     "name": "index",
@@ -76,6 +79,7 @@ describe('处理文件数据', () => {
                   {
                     "children": [],
                     "h1": "background",
+                    "index": undefined,
                     "isFile": true,
                     "link": "web/css/background.md",
                     "name": "background",
@@ -92,6 +96,7 @@ describe('处理文件数据', () => {
               {
                 "children": [],
                 "h1": "js",
+                "index": undefined,
                 "isFile": true,
                 "link": "web/js.md",
                 "name": "js",
@@ -110,6 +115,7 @@ describe('处理文件数据', () => {
               {
                 "children": [],
                 "h1": "Linux",
+                "index": undefined,
                 "isFile": true,
                 "link": "linux/index.md",
                 "name": "index",
@@ -118,6 +124,7 @@ describe('处理文件数据', () => {
               {
                 "children": [],
                 "h1": "WSL",
+                "index": undefined,
                 "isFile": true,
                 "link": "linux/wsl.md",
                 "name": "wsl",
@@ -148,6 +155,7 @@ describe('处理文件数据', () => {
                   "children": [],
                   "collapsed": false,
                   "h1": "web",
+                  "index": undefined,
                   "isFile": true,
                   "link": "web/index.md",
                   "name": "index",
@@ -157,6 +165,7 @@ describe('处理文件数据', () => {
                 {
                   "children": [],
                   "h1": "js",
+                  "index": undefined,
                   "isFile": true,
                   "link": "web/js.md",
                   "name": "js",
@@ -184,6 +193,7 @@ describe('处理文件数据', () => {
                   "children": [],
                   "collapsed": false,
                   "h1": "web",
+                  "index": undefined,
                   "isFile": true,
                   "link": "web/index.md",
                   "name": "index",
@@ -193,6 +203,7 @@ describe('处理文件数据', () => {
                 {
                   "children": [],
                   "h1": "js",
+                  "index": undefined,
                   "isFile": true,
                   "link": "web/js.md",
                   "name": "js",
@@ -222,6 +233,7 @@ describe('处理文件数据', () => {
                       "children": [],
                       "h1": "css",
                       "hide": true,
+                      "index": undefined,
                       "isFile": true,
                       "link": "web/css/index.md",
                       "name": "index",
@@ -256,6 +268,7 @@ describe('处理文件数据', () => {
                 {
                   "children": [],
                   "h1": "js",
+                  "index": undefined,
                   "isFile": true,
                   "link": "web/js.md",
                   "name": "js",
@@ -265,6 +278,7 @@ describe('处理文件数据', () => {
                   "children": [],
                   "collapsed": false,
                   "h1": "web",
+                  "index": undefined,
                   "isFile": true,
                   "link": "web/index.md",
                   "name": "index",
@@ -294,6 +308,7 @@ describe('处理文件数据', () => {
                 "children": [],
                 "h1": "文章被隐藏",
                 "hide": true,
+                "index": undefined,
                 "isFile": true,
                 "link": "web/hide.md",
                 "name": "hide",
@@ -324,6 +339,7 @@ describe('处理文件数据', () => {
                       "collapsed": true,
                       "group": true,
                       "h1": "Vue",
+                      "index": undefined,
                       "isFile": true,
                       "link": "web/vue/index.md",
                       "name": "index",
@@ -332,6 +348,7 @@ describe('处理文件数据', () => {
                     {
                       "children": [],
                       "h1": "v-if",
+                      "index": undefined,
                       "isFile": true,
                       "link": "web/vue/v-if.md",
                       "name": "v-if",
@@ -348,6 +365,7 @@ describe('处理文件数据', () => {
                 {
                   "children": [],
                   "h1": "js",
+                  "index": undefined,
                   "isFile": true,
                   "link": "web/js.md",
                   "name": "js",
@@ -377,6 +395,7 @@ describe('处理文件数据', () => {
                       "children": [],
                       "collapsed": false,
                       "h1": "web",
+                      "index": undefined,
                       "isFile": true,
                       "link": "web/index.md",
                       "name": "index",
@@ -398,6 +417,7 @@ describe('处理文件数据', () => {
                       "collapsed": true,
                       "group": true,
                       "h1": "Vue",
+                      "index": undefined,
                       "isFile": true,
                       "link": "web/vue/index.md",
                       "name": "index",
@@ -425,6 +445,7 @@ describe('处理文件数据', () => {
                       "children": [],
                       "collapsed": false,
                       "h1": "web",
+                      "index": undefined,
                       "isFile": true,
                       "link": "web/index.md",
                       "name": "index",
@@ -453,6 +474,7 @@ describe('处理文件数据', () => {
                       "children": [],
                       "collapsed": false,
                       "h1": "web",
+                      "index": undefined,
                       "isFile": true,
                       "link": "web/index.md",
                       "name": "index",
@@ -462,6 +484,7 @@ describe('处理文件数据', () => {
                     {
                       "children": [],
                       "h1": "js",
+                      "index": undefined,
                       "isFile": true,
                       "link": "web/js.md",
                       "name": "js",
@@ -483,6 +506,164 @@ describe('处理文件数据', () => {
       it.todo('下级分组可折叠', () => {
         expect(setDataFormat(cwd, ['web/index.md', 'web/css/index.md', 'web/css/background.md'], {}))
           .toMatchInlineSnapshot()
+      })
+    })
+
+    describe('文件下标排序', () => {
+      it('文件名下标排序', () => {
+        expect(setDataFormat(cwd, ['web/sort/3.index.md', 'web/sort/1.h.md'], {}))
+          .toMatchInlineSnapshot(`
+            [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "h1": "1",
+                        "index": 1,
+                        "isFile": true,
+                        "link": "web/sort/1.h.md",
+                        "name": "1.h",
+                        "text": "1.h",
+                      },
+                      {
+                        "children": [],
+                        "h1": "3",
+                        "index": 3,
+                        "isFile": true,
+                        "link": "web/sort/3.index.md",
+                        "name": "3.index",
+                        "text": "3.index",
+                      },
+                    ],
+                    "collapsed": undefined,
+                    "group": undefined,
+                    "isFile": false,
+                    "link": "web/sort",
+                    "name": "sort",
+                    "text": "sort",
+                  },
+                ],
+                "collapsed": undefined,
+                "group": undefined,
+                "isFile": false,
+                "link": "web",
+                "name": "web",
+                "text": "web",
+              },
+            ]
+          `)
+      })
+
+      it('文件名 + 文内下标排序', () => {
+        expect(setDataFormat(cwd, ['web/sort/1.h.md', 'web/sort/3.index.md', 'web/sort/interio.md'], {}))
+          .toMatchInlineSnapshot(`
+            [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "h1": "1",
+                        "index": 1,
+                        "isFile": true,
+                        "link": "web/sort/1.h.md",
+                        "name": "1.h",
+                        "text": "1.h",
+                      },
+                      {
+                        "children": [],
+                        "h1": "2",
+                        "index": 2,
+                        "isFile": true,
+                        "link": "web/sort/interio.md",
+                        "name": "interio",
+                        "text": "interio",
+                      },
+                      {
+                        "children": [],
+                        "h1": "3",
+                        "index": 3,
+                        "isFile": true,
+                        "link": "web/sort/3.index.md",
+                        "name": "3.index",
+                        "text": "3.index",
+                      },
+                    ],
+                    "collapsed": undefined,
+                    "group": undefined,
+                    "isFile": false,
+                    "link": "web/sort",
+                    "name": "sort",
+                    "text": "sort",
+                  },
+                ],
+                "collapsed": undefined,
+                "group": undefined,
+                "isFile": false,
+                "link": "web",
+                "name": "web",
+                "text": "web",
+              },
+            ]
+          `)
+      })
+
+      it('文件名 + 文内 + 没有下标排序', () => {
+        expect(setDataFormat(cwd, ['web/sort/normal.md', 'web/sort/interio.md', 'web/sort/1.h.md'], {}))
+          .toMatchInlineSnapshot(`
+            [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "h1": "1",
+                        "index": 1,
+                        "isFile": true,
+                        "link": "web/sort/1.h.md",
+                        "name": "1.h",
+                        "text": "1.h",
+                      },
+                      {
+                        "children": [],
+                        "h1": "2",
+                        "index": 2,
+                        "isFile": true,
+                        "link": "web/sort/interio.md",
+                        "name": "interio",
+                        "text": "interio",
+                      },
+                      {
+                        "children": [],
+                        "h1": "normal",
+                        "index": undefined,
+                        "isFile": true,
+                        "link": "web/sort/normal.md",
+                        "name": "normal",
+                        "text": "normal",
+                      },
+                    ],
+                    "collapsed": undefined,
+                    "group": undefined,
+                    "isFile": false,
+                    "link": "web/sort",
+                    "name": "sort",
+                    "text": "sort",
+                  },
+                ],
+                "collapsed": undefined,
+                "group": undefined,
+                "isFile": false,
+                "link": "web",
+                "name": "web",
+                "text": "web",
+              },
+            ]
+          `)
       })
     })
   })

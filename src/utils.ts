@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { basename } from 'pathe'
 import matter from 'gray-matter'
-import type { ArticleOptions, TitleMode } from './types'
+import type { ArticleOptions, Item, TitleMode } from './types'
 
 /**
  * 获取文件数据
@@ -13,9 +13,14 @@ export function getArticleData(path: string): ArticleOptions {
 
   const { content, data } = matter(file)
 
+  const h1 = getArticleTitle(content) || ''
+  // 设置 index，无值默认 -1
+  const index = data.index || getFileIndex(path)
+
   return {
     ...data,
-    h1: getArticleTitle(content) || '',
+    h1,
+    index,
   }
 }
 
@@ -92,5 +97,23 @@ export function useSortIndexName(list: string[]) {
     if (!a.includes('index.md') && b.includes('index.md'))
       return 1
     return 0
+  })
+}
+
+/**
+ * 根据 index 下标来排序
+ * @param list 要排序的列表
+ * @returns 排序后的列表
+ */
+export function useIndexSort(list: Item[]) {
+  return list.sort((a, b) => {
+    if (a.index === undefined && b.index === undefined)
+      return 0
+    else if (a.index === undefined)
+      return 1
+    else if (b.index === undefined)
+      return -1
+    else
+      return a.index - b.index
   })
 }

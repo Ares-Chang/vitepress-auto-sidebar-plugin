@@ -4,9 +4,11 @@ import {
   getArticleData,
   getArticleTitle,
   getFileIndex,
+  useIndexSort,
   useSortIndexName,
   useTextFormat,
 } from '../src/utils'
+import type { Item } from '../src/types.ts'
 
 const cwd = './playground'
 
@@ -17,6 +19,7 @@ describe('处理文件数据', () => {
         {
           "collapsed": false,
           "h1": "web",
+          "index": undefined,
           "title": "Web Title",
         }
       `)
@@ -27,7 +30,7 @@ describe('处理文件数据', () => {
       .toBe(`web`)
   })
 
-  describe('提取文件名数字排序下标', () => {
+  describe('提取文件名数字下标', () => {
     it('存在下标', () => {
       expect(getFileIndex('/web/1.index.md')).toBe(1)
     })
@@ -133,5 +136,38 @@ describe('提取 index.md 文件至第一位排序', () => {
         'web/js.md',
         'web/css/background.md',
       ])
+  })
+})
+
+describe('根据下标排序', () => {
+  it('乱序', () => {
+    expect(useIndexSort([{ index: 3 }, { index: 2 }, { index: 1 }] as Item[]).map(({ index }) => index))
+      .toMatchObject([1, 2, 3])
+  })
+
+  it('夹杂无下标内容', () => {
+    expect(useIndexSort([
+      { index: 3 },
+      { name: 'u1', index: undefined },
+      { index: 1 },
+      { name: 'u2', index: undefined },
+    ] as Item[])).toMatchInlineSnapshot(`
+      [
+        {
+          "index": 1,
+        },
+        {
+          "index": 3,
+        },
+        {
+          "index": undefined,
+          "name": "u1",
+        },
+        {
+          "index": undefined,
+          "name": "u2",
+        },
+      ]
+    `)
   })
 })
