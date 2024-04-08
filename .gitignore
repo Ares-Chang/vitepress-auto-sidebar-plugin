@@ -10,4 +10,10 @@ logs
 node_modules
 temp
 
+# Play
+playground/.vitepress/dist
 playground/.vitepress/cache
+
+# Docs
+docs/.vitepress/dist
+docs/.vitepress/cache
