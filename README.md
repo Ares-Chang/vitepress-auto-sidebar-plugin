@@ -8,6 +8,44 @@
 
 Automatically generates the sidebar configuration based on the file structure
 
+## ✨ Feature
+
+- 🎨 Easy to use, fully configurable and can be tailored to your needs
+
+- 📑 Multi-level sidebar, collapsible, you can configure it
+
+- ✅ File hiding can be configured
+
+- 🤖 Support Frontmatter configuration
+
+- 😃 Custom sorting, title name mapping can be customized
+
+- 📦 Built-in file name index sorting
+
+- 🦾 TypeScript, of course
+
+## 🚀 Install
+
+```bash
+pnpm add vitepress-auto-sidebar-plugin --save-dev
+```
+
+## ⚡️ Usage
+
+```ts
+// .vitepress/config.ts
+import { defineConfig } from 'vitepress'
+import AutoSidebarPlugin from 'vitepress-auto-sidebar-plugin'
+
+export default defineConfig({
+  vite: {
+    plugins: [
+      AutoSidebarPlugin(),
+    ],
+  },
+})
+```
+
 ## License
 
 [MIT](./LICENSE) License © 2023-PRESENT [Ares Chang](https://github.com/Ares-Chang)
