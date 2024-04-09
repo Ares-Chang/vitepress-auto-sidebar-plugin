@@ -1,3 +1,11 @@
+<p align='center'>
+  <img src='https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin/assets/36911513/1113f4d7-d674-4f41-aefa-1970afc26a8e' alt='Uni Vitesse - Opinionated Vite Starter Template' width='800'/>
+</p>
+
+<p align='center'>
+  <b>简体中文</b> | <a href="https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin/blob/master/README.md">English</a>
+</p>
+
 # vitepress-auto-sidebar-plugin
 
 [![npm version][npm-version-src]][npm-version-href]
@@ -5,10 +13,6 @@
 [![bundle][bundle-src]][bundle-href]
 [![JSDocs][jsdocs-src]][jsdocs-href]
 [![License][license-src]][license-href]
-
-<p>
-  <b>简体中文</b> | <a href="https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin/blob/master/README.md">English</a>
-</p>
 
 根据文件结构自动生成侧边栏配置信息。
 
