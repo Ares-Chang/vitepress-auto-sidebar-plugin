@@ -7,34 +7,34 @@
 [![License][license-src]][license-href]
 
 <p>
-  <a href="https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin/blob/master/README.zh-CN.md">简体中文</a> | <b>English</b>
+  <b>简体中文</b> | <a href="https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin/blob/master/README.md">English</a>
 </p>
 
-Automatically generates the sidebar configuration based on the file structure
+根据文件结构自动生成侧边栏配置信息。
 
-## ✨ Feature
+## ✨ 特性
 
-- 🎨 Easy to use, fully configurable and can be tailored to your needs
+- 🎨 易于使用，完全可配置，可以根据自己的需求量身定制
 
-- 📑 Multi-level sidebar, collapsible, you can configure it
+- 📑 多级侧边栏，可折叠，任你配置
 
-- ✅ File hiding can be configured
+- ✅ 文件隐藏可配置
 
-- 🤖 Support Frontmatter configuration
+- 🤖 支持文内 Frontmatter 配置
 
-- 😃 Custom sorting, title name mapping can be customized
+- 😃 自定义排序，Title 名称自定义映射
 
-- 📦 Built-in file name index sorting
+- 📦 内置文件名称下标排序
 
-- 🦾 TypeScript, of course
+- 🦾 TypeScript 编写，强有力的保障
 
-## 🚀 Install
+## 🚀 安装
 
 ```bash
 pnpm add vitepress-auto-sidebar-plugin --save-dev
 ```
 
-## ⚡️ Usage
+## ⚡️ 配置
 
 ```ts
 // .vitepress/config.ts
