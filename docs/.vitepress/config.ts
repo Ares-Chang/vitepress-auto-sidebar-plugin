@@ -6,7 +6,7 @@ export default defineConfig({
   description: '强大的自动侧栏生成器',
   themeConfig: {
     nav: [
-      { text: '介绍', link: '/' },
+      { text: '介绍', link: '/guide/start' },
       { text: 'Api', link: '/api' },
     ],
 
@@ -18,10 +18,8 @@ export default defineConfig({
   vite: {
     plugins: [
       AutoSidebarPlugin({
-        useH1Title: false,
-        title: {
-          mode: 'uppercase',
-        },
+        useH1Title: true,
+        srcDir: './docs',
       }),
     ],
   },
