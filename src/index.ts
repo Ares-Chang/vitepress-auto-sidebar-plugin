@@ -9,7 +9,7 @@ import type { ArticleOptions, Item, Options, UserConfig } from './types'
 import { log } from './log'
 import { getArticleData, useIndexSort, useSortIndexName, useTextFormat } from './utils'
 
-export default function autoSidebarPlugin(options: Options): Plugin {
+export default function autoSidebarPlugin(options: Options = {}): Plugin {
   return {
     name: 'vitepress-auto-sidebar-plugin',
     config: async (config) => {
