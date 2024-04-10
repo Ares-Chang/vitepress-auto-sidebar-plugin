@@ -86,4 +86,4 @@ bun run dev
 
 :::
 
-其它配置项可以参考 [插件配置](./config)。
+其它配置项可以参考 [插件配置](./config/index.md)。
