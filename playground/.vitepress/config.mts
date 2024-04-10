@@ -30,6 +30,7 @@ export default defineConfig({
   vite: {
     plugins: [
       AutoSidebarPlugin({
+        srcDir: './playground',
         useH1Title: false,
         title: {
           mode: 'uppercase',
