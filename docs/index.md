@@ -8,10 +8,10 @@ hero:
   actions:
     - theme: brand
       text: 开始
-      link: /guide/start
+      link: /guide/index
     - theme: alt
       text: API
-      link: /api
+      link: /guide/config/index
     - theme: alt
       text: GitHub
       link: https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin

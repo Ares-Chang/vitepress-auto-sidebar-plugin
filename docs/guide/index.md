@@ -1,3 +1,7 @@
+---
+collapsed: false
+---
+
 # 开始
 
 VitePress Auto Sidebar Plugin 是一个 VitePress 自动生成侧边栏的插件，可自动读取目录并生成配置。
