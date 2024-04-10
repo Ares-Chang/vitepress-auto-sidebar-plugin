@@ -10,6 +10,10 @@ import { log } from './log'
 import { getArticleData, useIndexSort, useSortIndexName, useTextFormat } from './utils'
 
 export default function autoSidebarPlugin(options: Options = {}): Plugin {
+  const defaultOptions: Options = {
+    useH1Title: true,
+  }
+
   return {
     name: 'vitepress-auto-sidebar-plugin',
     config: async (config) => {
@@ -34,7 +38,7 @@ export default function autoSidebarPlugin(options: Options = {}): Plugin {
         })
       ).map(path => normalize(path))
 
-      const list = setDataFormat(cwd, paths, options)
+      const list = setDataFormat(cwd, paths, { ...defaultOptions, ...options })
       const sidebar = generateSidebar(list);
       (config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 

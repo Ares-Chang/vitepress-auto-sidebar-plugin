@@ -26,9 +26,9 @@ export interface Options {
    */
   ignoreList?: string[]
   /**
-   * 是否使用一级标题代替 title, (级别低于 title)
+   * 是否使用一级标题代替文件名称, (级别低于 title)
    *
-   * default: false
+   * default: true
    */
   useH1Title?: boolean
   title?: {
