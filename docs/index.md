@@ -17,10 +17,10 @@ hero:
       link: https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 全自动可配置
+    details: 读取目录并生成相应配置，支持同级多个侧边栏、Frontmatter 配置
+  - title: 内置排序
+    details: 默认开启文件名称下标排序，同时支持自定义排序
+  - title: 安全可靠
+    details: Typescript + Vitest 开发测试，强有力的保障
 ---
