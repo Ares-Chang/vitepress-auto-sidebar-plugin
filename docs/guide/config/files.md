@@ -2,7 +2,62 @@
 outline: deep
 ---
 
-# 文件内配置
+# 文件配置
+
+## 文件名配置
+
+插件默认开启文件名下标提取排序功能，可以按 `[index].` 开头的文件进行排序。
+
+::: code-group
+
+```sh [目录结构]
+├── guide
+│   ├── config
+│   │   ├── 1.types.md
+│   │   ├── 2.files.md
+│   │   └── index.md
+│   └── index.md
+└── index.md
+```
+
+```json [输出路由]
+{
+  "/guide/": [
+    {
+      "text": "Guide",
+      "items": [
+        {
+          "text": "开始",
+          "link": "guide/index.md"
+        }
+      ],
+      "collapsed": false
+    },
+    {
+      "text": "Config",
+      "items": [
+        {
+          "text": "TS 类型",
+          "link": "guide/config/1.types.md"
+        },
+        {
+          "text": "文件配置",
+          "link": "guide/config/2.files.md"
+        },
+        {
+          "text": "插件可选项",
+          "link": "guide/config/index.md"
+        }
+      ],
+      "collapsed": false
+    }
+  ]
+}
+```
+
+:::
+
+## 文件配置
 
 指定于文章内部 frontmatter 配置，同 [vitepress frontmatter 配置](https://vitepress.dev/zh/reference/frontmatter-config#outline)。
 
@@ -12,8 +67,6 @@ title: Web Title
 collapsed: false
 ---
 ```
-
-## 文件配置
 
 ### title
 
@@ -60,7 +113,7 @@ hide: true
 ├── guide
 │   ├── config
 │   │   ├── index.md
-│   │   ├── inside.md
+│   │   ├── files.md
 │   │   └── types.md
 │   └── index.md
 └── index.md
@@ -84,7 +137,7 @@ group: true
 ├── guide
 │   ├── config
 │   │   ├── index.md
-│   │   ├── inside.md
+│   │   ├── files.md
 │   │   └── types.md
 │   └── index.md
 └── index.md
@@ -111,8 +164,8 @@ group: true
           "link": "guide/config/index.md"
         },
         {
-          "text": "文件内配置",
-          "link": "guide/config/inside.md"
+          "text": "文件配置",
+          "link": "guide/config/files.md"
         },
         {
           "text": "TS 类型",
