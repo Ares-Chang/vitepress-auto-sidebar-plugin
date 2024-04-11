@@ -6,7 +6,13 @@ export interface UserConfig {
 
 export interface Options {
   /**
-   * glob 匹配表达式
+   * 页面的目录, 相对于项目根目录
+   *
+   * default: vitepress.srcDir || ./
+   */
+  srcDir?: string
+  /**
+   * fast-glob 匹配表达式 {@link https://github.com/mrmlnc/fast-glob}
    *
    * 会匹配 [srcDir] 目录下, 除 [srcExclude] 外满足表达式的 md 文件
    *
@@ -14,47 +20,45 @@ export interface Options {
    */
   pattern?: string | string[]
   /**
-   * 页面的目录, 相对于项目根目录
-   *
-   * default: vitepress.srcDir || ./
-   */
-  srcDir?: string
-  /**
    * 排除扫描的文件
    *
    * default: vitepress.srcExclude || []
    */
   ignoreList?: string[]
   /**
-   * 是否使用一级标题代替文件名称, (级别低于 title)
+   * 是否使用文内 h1 作为标题(级别低于文内 title)
    *
    * default: true
    */
   useH1Title?: boolean
-  title?: {
-    /**
-     * 标题模式
-     *
-     * default: 'default'
-     */
-    mode?: TitleMode
-    /**
-     * 标题映射
-     *
-     * 例:
-     * { "web/js/": "🎉JavaScript🎉" }
-     *
-     * @default: {}
-     */
-    map?: Record<string, string>
-  }
+  /**
+   * 文件夹标题设置
+   */
+  title?: TitleOptions
   /**
    * 侧边栏排序
    */
   sort?: (a: Item, b: Item) => number
 }
 
+export interface TitleOptions {
+  /**
+   * 标题模式
+   *
+   * default: 'default'
+   */
+  mode?: TitleMode
+  /**
+   * 标题映射
+   *
+   * 例: { "web/js/": "🎉JavaScript🎉" }
+   */
+  map?: Record<string, string>
+}
+
+// #region TitleMode
 export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase' | ((text: string) => string)
+// #endregion TitleMode
 
 export interface Item extends ArticleOptions {
   /**
@@ -104,8 +108,8 @@ export interface ArticleOptions {
    */
   group?: boolean
   /**
-   * 是否添加可折叠，默认不显示
-   * 默认情况下折叠为打开状态，如果希望加载时关闭，将 collapsed 设置为 true
+   * 是否添加可折叠按钮，默认不显示
+   * false 情况下折叠为打开状态，如果希望加载时关闭，将 collapsed 设置为 true
    *
    * @default undefined
    */
