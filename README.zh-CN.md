@@ -3,7 +3,7 @@
 </p>
 
 <p align='center'>
-  <b>简体中文</b> | <a href="https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin/blob/master/README.md">English</a>
+  <a href="https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin/blob/master/README.md">English</a> | <b>简体中文</b>
 </p>
 
 # vitepress-auto-sidebar-plugin
@@ -53,6 +53,10 @@ export default defineConfig({
   },
 })
 ```
+
+## 🌟 更多配置
+
+更多配置可参考 [vitepress-auto-sidebar-plugin](https://vitepress-auto-sidebar-plugin.netlify.app/) 文档
 
 ## License
 
