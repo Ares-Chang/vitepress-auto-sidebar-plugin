@@ -30,3 +30,25 @@ features:
     title: 安全可靠
     details: Typescript + Vitest 开发测试，强有力的保障
 ---
+
+<style>
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(220deg, #bd34fe 20%, #41d1ff);
+
+  --vp-home-hero-image-background-image: linear-gradient(-90deg, #bd34fe 50%, #47caff 50%);
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+}
+</style>
