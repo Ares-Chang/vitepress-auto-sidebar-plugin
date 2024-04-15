@@ -18,6 +18,7 @@ describe('处理文件数据', () => {
       .toMatchInlineSnapshot(`
         {
           "collapsed": false,
+          "groupTitle": "Hello Web🫡",
           "h1": "web",
           "index": undefined,
           "title": "Web Title",

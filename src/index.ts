@@ -111,7 +111,11 @@ export function setItem(
   let groupConfig = {}
   if (!isFile) {
     // 获取分组名下 index 文件中的配置
-    const { group, collapsed } = children.find(item => item.name === 'index') || {}
+    const { group, groupTitle, collapsed } = children.find(item => item.name === 'index') || {}
+
+    // 设置分组名
+    if (groupTitle)
+      text = groupTitle
 
     groupConfig = {
       group,
@@ -159,7 +163,7 @@ export function setDataFormat(
 
   // 递归处理每一项
   function deep(list: Item[], obj: Item, root: Item[]) {
-    const node = [...list, ...root].find(node => node.text === obj.text)
+    const node = [...list, ...root].find(node => node.name === obj.name)
     if (node) {
       obj.children.forEach((child) => {
         node.children = deep(node.children, child, root)

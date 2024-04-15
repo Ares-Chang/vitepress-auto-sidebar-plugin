@@ -108,6 +108,10 @@ export interface ArticleOptions {
    */
   group?: boolean
   /**
+   * 分组标题
+   */
+  groupTitle: string
+  /**
    * 是否添加可折叠按钮，默认不显示
    * false 情况下折叠为打开状态，如果希望加载时关闭，将 collapsed 设置为 true
    *

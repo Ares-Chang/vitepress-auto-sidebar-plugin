@@ -56,6 +56,7 @@ describe('处理文件数据', () => {
               {
                 "children": [],
                 "collapsed": false,
+                "groupTitle": "Hello Web🫡",
                 "h1": "web",
                 "index": undefined,
                 "isFile": true,
@@ -108,7 +109,7 @@ describe('处理文件数据', () => {
             "isFile": false,
             "link": "web",
             "name": "web",
-            "text": "web",
+            "text": "Hello Web🫡",
           },
           {
             "children": [
@@ -154,6 +155,7 @@ describe('处理文件数据', () => {
                 {
                   "children": [],
                   "collapsed": false,
+                  "groupTitle": "Hello Web🫡",
                   "h1": "web",
                   "index": undefined,
                   "isFile": true,
@@ -177,53 +179,55 @@ describe('处理文件数据', () => {
               "isFile": false,
               "link": "web",
               "name": "web",
-              "text": "web",
+              "text": "Hello Web🫡",
             },
           ]
         `)
     })
 
-    it('设置 Title Mode', () => {
-      expect(setDataFormat(cwd, list, { title: { mode: 'titlecase' } }))
-        .toMatchInlineSnapshot(`
-          [
-            {
-              "children": [
-                {
-                  "children": [],
-                  "collapsed": false,
-                  "h1": "web",
-                  "index": undefined,
-                  "isFile": true,
-                  "link": "web/index.md",
-                  "name": "index",
-                  "text": "Web Title",
-                  "title": "Web Title",
-                },
-                {
-                  "children": [],
-                  "h1": "js",
-                  "index": undefined,
-                  "isFile": true,
-                  "link": "web/js.md",
-                  "name": "js",
-                  "text": "js",
-                },
-              ],
-              "collapsed": false,
-              "group": undefined,
-              "isFile": false,
-              "link": "web",
-              "name": "web",
-              "text": "Web",
-            },
-          ]
-        `)
-    })
+    describe('设置分组 Title', () => {
+      it('设置 Title Mode', () => {
+        expect(setDataFormat(cwd, list, { title: { mode: 'titlecase' } }))
+          .toMatchInlineSnapshot(`
+            [
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "collapsed": false,
+                    "groupTitle": "Hello Web🫡",
+                    "h1": "web",
+                    "index": undefined,
+                    "isFile": true,
+                    "link": "web/index.md",
+                    "name": "index",
+                    "text": "Web Title",
+                    "title": "Web Title",
+                  },
+                  {
+                    "children": [],
+                    "h1": "js",
+                    "index": undefined,
+                    "isFile": true,
+                    "link": "web/js.md",
+                    "name": "js",
+                    "text": "js",
+                  },
+                ],
+                "collapsed": false,
+                "group": undefined,
+                "isFile": false,
+                "link": "web",
+                "name": "web",
+                "text": "Hello Web🫡",
+              },
+            ]
+          `)
+      })
 
-    it('设置 Title Map', () => {
-      expect(setDataFormat(cwd, ['web/css/index.md'], { title: { map: { 'web/css/': '🎉CSS World🎉' } } }))
-        .toMatchInlineSnapshot(`
+      it('设置 Title Map', () => {
+        expect(setDataFormat(cwd, ['web/css/index.md'], { title: { map: { 'web/css/': '🎉CSS World🎉' } } }))
+          .toMatchInlineSnapshot(`
           [
             {
               "children": [
@@ -257,6 +261,7 @@ describe('处理文件数据', () => {
             },
           ]
         `)
+      })
     })
 
     it('设置排序', () => {
@@ -277,6 +282,7 @@ describe('处理文件数据', () => {
                 {
                   "children": [],
                   "collapsed": false,
+                  "groupTitle": "Hello Web🫡",
                   "h1": "web",
                   "index": undefined,
                   "isFile": true,
@@ -291,7 +297,7 @@ describe('处理文件数据', () => {
               "isFile": false,
               "link": "web",
               "name": "web",
-              "text": "web",
+              "text": "Hello Web🫡",
             },
           ]
         `)
@@ -383,6 +389,65 @@ describe('处理文件数据', () => {
         `)
     })
 
+    it('文章分组标题', () => {
+      expect(setDataFormat(cwd, ['web/index.md', 'web/css/less/index.md'], {})).toMatchInlineSnapshot(`
+        [
+          {
+            "children": [
+              {
+                "children": [],
+                "collapsed": false,
+                "groupTitle": "Hello Web🫡",
+                "h1": "web",
+                "index": undefined,
+                "isFile": true,
+                "link": "web/index.md",
+                "name": "index",
+                "text": "Web Title",
+                "title": "Web Title",
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "groupTitle": "🤖 这是神奇的 Less",
+                        "h1": "Less",
+                        "index": undefined,
+                        "isFile": true,
+                        "link": "web/css/less/index.md",
+                        "name": "index",
+                        "text": "index",
+                      },
+                    ],
+                    "collapsed": undefined,
+                    "group": undefined,
+                    "isFile": false,
+                    "link": "web/css/less",
+                    "name": "less",
+                    "text": "🤖 这是神奇的 Less",
+                  },
+                ],
+                "collapsed": undefined,
+                "group": undefined,
+                "isFile": false,
+                "link": "web/css",
+                "name": "css",
+                "text": "css",
+              },
+            ],
+            "collapsed": false,
+            "group": undefined,
+            "isFile": false,
+            "link": "web",
+            "name": "web",
+            "text": "Hello Web🫡",
+          },
+        ]
+      `)
+    })
+
     describe('可折叠侧边栏组', () => {
       describe('一级分组可折叠', () => {
         it('一级分组可折叠', () => {
@@ -394,6 +459,7 @@ describe('处理文件数据', () => {
                     {
                       "children": [],
                       "collapsed": false,
+                      "groupTitle": "Hello Web🫡",
                       "h1": "web",
                       "index": undefined,
                       "isFile": true,
@@ -408,7 +474,7 @@ describe('处理文件数据', () => {
                   "isFile": false,
                   "link": "web",
                   "name": "web",
-                  "text": "web",
+                  "text": "Hello Web🫡",
                 },
                 {
                   "children": [
@@ -444,6 +510,7 @@ describe('处理文件数据', () => {
                     {
                       "children": [],
                       "collapsed": false,
+                      "groupTitle": "Hello Web🫡",
                       "h1": "web",
                       "index": undefined,
                       "isFile": true,
@@ -458,7 +525,7 @@ describe('处理文件数据', () => {
                   "isFile": false,
                   "link": "web",
                   "name": "web",
-                  "text": "web",
+                  "text": "Hello Web🫡",
                 },
               ]
             `)
@@ -473,6 +540,7 @@ describe('处理文件数据', () => {
                     {
                       "children": [],
                       "collapsed": false,
+                      "groupTitle": "Hello Web🫡",
                       "h1": "web",
                       "index": undefined,
                       "isFile": true,
@@ -496,7 +564,7 @@ describe('处理文件数据', () => {
                   "isFile": false,
                   "link": "web",
                   "name": "web",
-                  "text": "web",
+                  "text": "Hello Web🫡",
                 },
               ]
             `)
@@ -716,7 +784,7 @@ describe('生成侧边栏', () => {
                   "text": "js",
                 },
               ],
-              "text": "WEB",
+              "text": "Hello Web🫡",
             },
           ],
         }
@@ -792,7 +860,7 @@ describe('生成侧边栏', () => {
                     "text": "css",
                   },
                 ],
-                "text": "web",
+                "text": "Hello Web🫡",
               },
               {
                 "collapsed": true,
