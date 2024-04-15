@@ -15,10 +15,10 @@ export function getArticleData(path: string): ArticleOptions {
 
   const h1 = getArticleTitle(content) || ''
   // 设置 index，无值默认 -1
-  const index = data.index || getFileIndex(path)
+  const index: number | undefined = data.index || getFileIndex(path)
 
   return {
-    ...data,
+    ...data as Omit<ArticleOptions, 'h1' | 'index'>,
     h1,
     index,
   }
