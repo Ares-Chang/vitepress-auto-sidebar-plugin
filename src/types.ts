@@ -90,7 +90,7 @@ export interface ArticleOptions {
    *
    * 文件名称例: web/1.index.md
    */
-  index: number | undefined
+  index?: number
   /**
    * 文章是否隐藏
    */
@@ -110,7 +110,11 @@ export interface ArticleOptions {
   /**
    * 分组标题
    */
-  groupTitle: string
+  groupTitle?: string
+  /**
+   * 分组索引
+   */
+  groupIndex?: number
   /**
    * 是否添加可折叠按钮，默认不显示
    * false 情况下折叠为打开状态，如果希望加载时关闭，将 collapsed 设置为 true

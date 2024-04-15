@@ -31,6 +31,7 @@ describe('处理文件数据', () => {
               ],
               "collapsed": undefined,
               "group": undefined,
+              "index": undefined,
               "isFile": false,
               "link": "web/css",
               "name": "css",
@@ -39,6 +40,7 @@ describe('处理文件数据', () => {
           ],
           "collapsed": undefined,
           "group": undefined,
+          "index": undefined,
           "isFile": false,
           "link": "web",
           "name": "web",
@@ -89,6 +91,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "index": undefined,
                 "isFile": false,
                 "link": "web/css",
                 "name": "css",
@@ -106,6 +109,7 @@ describe('处理文件数据', () => {
             ],
             "collapsed": false,
             "group": undefined,
+            "index": undefined,
             "isFile": false,
             "link": "web",
             "name": "web",
@@ -134,6 +138,7 @@ describe('处理文件数据', () => {
             ],
             "collapsed": undefined,
             "group": undefined,
+            "index": undefined,
             "isFile": false,
             "link": "linux",
             "name": "linux",
@@ -176,6 +181,7 @@ describe('处理文件数据', () => {
               ],
               "collapsed": false,
               "group": undefined,
+              "index": undefined,
               "isFile": false,
               "link": "web",
               "name": "web",
@@ -216,6 +222,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": false,
                 "group": undefined,
+                "index": undefined,
                 "isFile": false,
                 "link": "web",
                 "name": "web",
@@ -228,39 +235,41 @@ describe('处理文件数据', () => {
       it('设置 Title Map', () => {
         expect(setDataFormat(cwd, ['web/css/index.md'], { title: { map: { 'web/css/': '🎉CSS World🎉' } } }))
           .toMatchInlineSnapshot(`
-          [
-            {
-              "children": [
-                {
-                  "children": [
-                    {
-                      "children": [],
-                      "h1": "css",
-                      "hide": true,
-                      "index": undefined,
-                      "isFile": true,
-                      "link": "web/css/index.md",
-                      "name": "index",
-                      "text": "index",
-                    },
-                  ],
-                  "collapsed": undefined,
-                  "group": undefined,
-                  "isFile": false,
-                  "link": "web/css",
-                  "name": "css",
-                  "text": "🎉CSS World🎉",
-                },
-              ],
-              "collapsed": undefined,
-              "group": undefined,
-              "isFile": false,
-              "link": "web",
-              "name": "web",
-              "text": "web",
-            },
-          ]
-        `)
+            [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "h1": "css",
+                        "hide": true,
+                        "index": undefined,
+                        "isFile": true,
+                        "link": "web/css/index.md",
+                        "name": "index",
+                        "text": "index",
+                      },
+                    ],
+                    "collapsed": undefined,
+                    "group": undefined,
+                    "index": undefined,
+                    "isFile": false,
+                    "link": "web/css",
+                    "name": "css",
+                    "text": "🎉CSS World🎉",
+                  },
+                ],
+                "collapsed": undefined,
+                "group": undefined,
+                "index": undefined,
+                "isFile": false,
+                "link": "web",
+                "name": "web",
+                "text": "web",
+              },
+            ]
+          `)
       })
     })
 
@@ -294,6 +303,7 @@ describe('处理文件数据', () => {
               ],
               "collapsed": false,
               "group": undefined,
+              "index": undefined,
               "isFile": false,
               "link": "web",
               "name": "web",
@@ -323,6 +333,7 @@ describe('处理文件数据', () => {
             ],
             "collapsed": undefined,
             "group": undefined,
+            "index": undefined,
             "isFile": false,
             "link": "web",
             "name": "web",
@@ -332,120 +343,197 @@ describe('处理文件数据', () => {
       `)
     })
 
-    it('文章分组', () => {
-      expect(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md', 'web/vue/v-if.md'], {}))
-        .toMatchInlineSnapshot(`
-          [
-            {
-              "children": [
-                {
-                  "children": [
-                    {
-                      "children": [],
-                      "collapsed": true,
-                      "group": true,
-                      "h1": "Vue",
-                      "index": undefined,
-                      "isFile": true,
-                      "link": "web/vue/index.md",
-                      "name": "index",
-                      "text": "index",
-                    },
-                    {
-                      "children": [],
-                      "h1": "v-if",
-                      "index": undefined,
-                      "isFile": true,
-                      "link": "web/vue/v-if.md",
-                      "name": "v-if",
-                      "text": "v-if",
-                    },
-                  ],
-                  "collapsed": true,
-                  "group": true,
-                  "isFile": false,
-                  "link": "web/vue",
-                  "name": "vue",
-                  "text": "vue",
-                },
-                {
-                  "children": [],
-                  "h1": "js",
-                  "index": undefined,
-                  "isFile": true,
-                  "link": "web/js.md",
-                  "name": "js",
-                  "text": "js",
-                },
-              ],
-              "collapsed": undefined,
-              "group": undefined,
-              "isFile": false,
-              "link": "web",
-              "name": "web",
-              "text": "web",
-            },
-          ]
-        `)
-    })
-
-    it('文章分组标题', () => {
-      expect(setDataFormat(cwd, ['web/index.md', 'web/css/less/index.md'], {})).toMatchInlineSnapshot(`
-        [
-          {
-            "children": [
-              {
-                "children": [],
-                "collapsed": false,
-                "groupTitle": "Hello Web🫡",
-                "h1": "web",
-                "index": undefined,
-                "isFile": true,
-                "link": "web/index.md",
-                "name": "index",
-                "text": "Web Title",
-                "title": "Web Title",
-              },
+    describe('文章分组', () => {
+      it('分组提取', () => {
+        expect(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md', 'web/vue/v-if.md'], {}))
+          .toMatchInlineSnapshot(`
+            [
               {
                 "children": [
                   {
                     "children": [
                       {
                         "children": [],
-                        "groupTitle": "🤖 这是神奇的 Less",
-                        "h1": "Less",
+                        "collapsed": true,
+                        "group": true,
+                        "h1": "Vue",
                         "index": undefined,
                         "isFile": true,
-                        "link": "web/css/less/index.md",
+                        "link": "web/vue/index.md",
                         "name": "index",
                         "text": "index",
                       },
+                      {
+                        "children": [],
+                        "h1": "v-if",
+                        "index": undefined,
+                        "isFile": true,
+                        "link": "web/vue/v-if.md",
+                        "name": "v-if",
+                        "text": "v-if",
+                      },
                     ],
-                    "collapsed": undefined,
-                    "group": undefined,
+                    "collapsed": true,
+                    "group": true,
+                    "index": undefined,
                     "isFile": false,
-                    "link": "web/css/less",
-                    "name": "less",
-                    "text": "🤖 这是神奇的 Less",
+                    "link": "web/vue",
+                    "name": "vue",
+                    "text": "vue",
+                  },
+                  {
+                    "children": [],
+                    "h1": "js",
+                    "index": undefined,
+                    "isFile": true,
+                    "link": "web/js.md",
+                    "name": "js",
+                    "text": "js",
                   },
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "index": undefined,
                 "isFile": false,
-                "link": "web/css",
-                "name": "css",
-                "text": "css",
+                "link": "web",
+                "name": "web",
+                "text": "web",
               },
-            ],
-            "collapsed": false,
-            "group": undefined,
-            "isFile": false,
-            "link": "web",
-            "name": "web",
-            "text": "Hello Web🫡",
-          },
-        ]
-      `)
+            ]
+          `)
+      })
+
+      it('分组标题', () => {
+        expect(setDataFormat(cwd, ['web/index.md', 'web/css/less/index.md'], {})).toMatchInlineSnapshot(`
+          [
+            {
+              "children": [
+                {
+                  "children": [],
+                  "collapsed": false,
+                  "groupTitle": "Hello Web🫡",
+                  "h1": "web",
+                  "index": undefined,
+                  "isFile": true,
+                  "link": "web/index.md",
+                  "name": "index",
+                  "text": "Web Title",
+                  "title": "Web Title",
+                },
+                {
+                  "children": [
+                    {
+                      "children": [
+                        {
+                          "children": [],
+                          "groupTitle": "🤖 这是神奇的 Less",
+                          "h1": "Less",
+                          "index": undefined,
+                          "isFile": true,
+                          "link": "web/css/less/index.md",
+                          "name": "index",
+                          "text": "index",
+                        },
+                      ],
+                      "collapsed": undefined,
+                      "group": undefined,
+                      "index": undefined,
+                      "isFile": false,
+                      "link": "web/css/less",
+                      "name": "less",
+                      "text": "🤖 这是神奇的 Less",
+                    },
+                  ],
+                  "collapsed": undefined,
+                  "group": undefined,
+                  "index": undefined,
+                  "isFile": false,
+                  "link": "web/css",
+                  "name": "css",
+                  "text": "css",
+                },
+              ],
+              "collapsed": false,
+              "group": undefined,
+              "index": undefined,
+              "isFile": false,
+              "link": "web",
+              "name": "web",
+              "text": "Hello Web🫡",
+            },
+          ]
+        `)
+      })
+
+      it('分组排序', () => {
+        expect(setDataFormat(cwd, ['web/sort/1.h.md', 'web/sort/3.index.md', 'web/sort/groupIndex/index.md'], {}))
+          .toMatchInlineSnapshot(`
+            [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "h1": "1",
+                        "index": 1,
+                        "isFile": true,
+                        "link": "web/sort/1.h.md",
+                        "name": "1.h",
+                        "text": "1.h",
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [],
+                            "groupIndex": 2,
+                            "groupTitle": "分组排序",
+                            "h1": "分组排序",
+                            "index": undefined,
+                            "isFile": true,
+                            "link": "web/sort/groupIndex/index.md",
+                            "name": "index",
+                            "text": "index",
+                          },
+                        ],
+                        "collapsed": undefined,
+                        "group": undefined,
+                        "index": 2,
+                        "isFile": false,
+                        "link": "web/sort/groupIndex",
+                        "name": "groupIndex",
+                        "text": "分组排序",
+                      },
+                      {
+                        "children": [],
+                        "h1": "3",
+                        "index": 3,
+                        "isFile": true,
+                        "link": "web/sort/3.index.md",
+                        "name": "3.index",
+                        "text": "3.index",
+                      },
+                    ],
+                    "collapsed": undefined,
+                    "group": undefined,
+                    "index": undefined,
+                    "isFile": false,
+                    "link": "web/sort",
+                    "name": "sort",
+                    "text": "sort",
+                  },
+                ],
+                "collapsed": undefined,
+                "group": undefined,
+                "index": undefined,
+                "isFile": false,
+                "link": "web",
+                "name": "web",
+                "text": "web",
+              },
+            ]
+          `)
+      })
     })
 
     describe('可折叠侧边栏组', () => {
@@ -471,6 +559,7 @@ describe('处理文件数据', () => {
                   ],
                   "collapsed": false,
                   "group": undefined,
+                  "index": undefined,
                   "isFile": false,
                   "link": "web",
                   "name": "web",
@@ -492,6 +581,7 @@ describe('处理文件数据', () => {
                   ],
                   "collapsed": true,
                   "group": true,
+                  "index": undefined,
                   "isFile": false,
                   "link": "web/vue",
                   "name": "vue",
@@ -522,6 +612,7 @@ describe('处理文件数据', () => {
                   ],
                   "collapsed": false,
                   "group": undefined,
+                  "index": undefined,
                   "isFile": false,
                   "link": "web",
                   "name": "web",
@@ -561,6 +652,7 @@ describe('处理文件数据', () => {
                   ],
                   "collapsed": false,
                   "group": undefined,
+                  "index": undefined,
                   "isFile": false,
                   "link": "web",
                   "name": "web",
@@ -607,6 +699,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
                     "name": "sort",
@@ -615,6 +708,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "index": undefined,
                 "isFile": false,
                 "link": "web",
                 "name": "web",
@@ -662,6 +756,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
                     "name": "sort",
@@ -670,6 +765,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "index": undefined,
                 "isFile": false,
                 "link": "web",
                 "name": "web",
@@ -717,6 +813,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
                     "name": "sort",
@@ -725,6 +822,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "index": undefined,
                 "isFile": false,
                 "link": "web",
                 "name": "web",

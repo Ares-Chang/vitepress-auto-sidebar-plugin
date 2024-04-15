@@ -14,7 +14,7 @@ export function getArticleData(path: string): ArticleOptions {
   const { content, data } = matter(file)
 
   const h1 = getArticleTitle(content) || ''
-  // 设置 index，无值默认 -1
+  // 设置 index，无值默认 undefined
   const index: number | undefined = data.index || getFileIndex(path)
 
   return {

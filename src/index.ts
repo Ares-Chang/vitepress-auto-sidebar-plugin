@@ -111,7 +111,7 @@ export function setItem(
   let groupConfig = {}
   if (!isFile) {
     // 获取分组名下 index 文件中的配置
-    const { group, groupTitle, collapsed } = children.find(item => item.name === 'index') || {}
+    const { group, groupTitle, groupIndex, collapsed } = children.find(item => item.name === 'index') || {}
 
     // 设置分组名
     if (groupTitle)
@@ -119,8 +119,8 @@ export function setItem(
 
     groupConfig = {
       group,
-      // 设置折叠分组配置，默认不开启，单独设置后开启
-      collapsed,
+      index: groupIndex, // 设置分组索引
+      collapsed, // 设置折叠分组配置，默认不开启，单独设置后开启
     }
   }
 
