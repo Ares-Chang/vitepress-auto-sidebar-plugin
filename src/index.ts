@@ -7,7 +7,7 @@ import type { DefaultTheme } from 'vitepress'
 import type { ArticleOptions, Item, Options, UserConfig } from './types'
 
 import { log } from './log'
-import { getArticleData, getFileIndex, useIndexSort, useSortIndexName, useTextFormat } from './utils'
+import { getArticleData, getPathIndex, useIndexSort, useSortIndexName, useTextFormat } from './utils'
 
 export default function autoSidebarPlugin(options: Options = {}): Plugin {
   const defaultOptions: Options = {
@@ -88,7 +88,7 @@ export function setItem(
   const isFile = !list.length && Boolean(extname(name))
 
   let text = name
-  let index: number | undefined = getFileIndex(link)
+  let index: number | undefined = getPathIndex(link)
   let fileOptions = {} as ArticleOptions
   // 移除文件后缀
   if (isFile) {

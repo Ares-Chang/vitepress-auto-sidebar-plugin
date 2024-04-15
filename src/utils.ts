@@ -15,7 +15,7 @@ export function getArticleData(path: string): ArticleOptions {
 
   const h1 = getArticleTitle(content) || ''
   // 设置 index，无值默认 undefined
-  const index: number | undefined = data.index || getFileIndex(path)
+  const index: number | undefined = data.index || getPathIndex(path)
 
   return {
     ...data as Omit<ArticleOptions, 'h1' | 'index'>,
@@ -35,11 +35,11 @@ export function getArticleTitle(content: string) {
 }
 
 /**
- * 提取文件名中的数字下标
+ * 提取路径中最后一项的数字下标
  * @param path 文件绝对路径
  * @returns 下标
  */
-export function getFileIndex(path: string) {
+export function getPathIndex(path: string) {
   const name = basename(path)
 
   // 使用正则表达式匹配文件名中的数字前缀

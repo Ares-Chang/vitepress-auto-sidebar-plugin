@@ -3,7 +3,7 @@ import { resolve } from 'pathe'
 import {
   getArticleData,
   getArticleTitle,
-  getFileIndex,
+  getPathIndex,
   useIndexSort,
   useSortIndexName,
   useTextFormat,
@@ -33,19 +33,19 @@ describe('处理文件数据', () => {
 
   describe('提取文件名数字下标', () => {
     it('存在下标', () => {
-      expect(getFileIndex('/web/1.index.md')).toBe(1)
+      expect(getPathIndex('/web/1.index.md')).toBe(1)
     })
 
     it('不存在下标', () => {
-      expect(getFileIndex('/web/index.md')).toBe(undefined)
+      expect(getPathIndex('/web/index.md')).toBe(undefined)
     })
 
     it('数字下标数为 100', () => {
-      expect(getFileIndex('/web/100.index.md')).toBe(100)
+      expect(getPathIndex('/web/100.index.md')).toBe(100)
     })
 
     it('多个下标', () => {
-      expect(getFileIndex('/web/1.2.3.index.md')).toBe(1)
+      expect(getPathIndex('/web/1.2.3.index.md')).toBe(1)
     })
   })
 })
