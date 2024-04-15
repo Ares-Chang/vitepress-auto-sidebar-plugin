@@ -682,11 +682,11 @@ describe('生成侧边栏', () => {
               "collapsed": undefined,
               "items": [
                 {
-                  "link": "linux/index.md",
+                  "link": "/linux/index.md",
                   "text": "Linux",
                 },
                 {
-                  "link": "linux/wsl.md",
+                  "link": "/linux/wsl.md",
                   "text": "WSL",
                 },
               ],
@@ -698,21 +698,21 @@ describe('生成侧边栏', () => {
               "collapsed": false,
               "items": [
                 {
-                  "link": "web/index.md",
+                  "link": "/web/index.md",
                   "text": "Web Title",
                 },
                 {
                   "collapsed": undefined,
                   "items": [
                     {
-                      "link": "web/css/background.md",
+                      "link": "/web/css/background.md",
                       "text": "background",
                     },
                   ],
                   "text": "CSS",
                 },
                 {
-                  "link": "web/js.md",
+                  "link": "/web/js.md",
                   "text": "js",
                 },
               ],
@@ -751,14 +751,14 @@ describe('生成侧边栏', () => {
                     "collapsed": true,
                     "items": [
                       {
-                        "link": "web/vue/index.md",
+                        "link": "/web/vue/index.md",
                         "text": "index",
                       },
                     ],
                     "text": "vue",
                   },
                   {
-                    "link": "web/js.md",
+                    "link": "/web/js.md",
                     "text": "js",
                   },
                 ],
@@ -778,14 +778,14 @@ describe('生成侧边栏', () => {
                 "collapsed": false,
                 "items": [
                   {
-                    "link": "web/index.md",
+                    "link": "/web/index.md",
                     "text": "Web Title",
                   },
                   {
                     "collapsed": undefined,
                     "items": [
                       {
-                        "link": "web/css/background.md",
+                        "link": "/web/css/background.md",
                         "text": "background",
                       },
                     ],
@@ -798,7 +798,7 @@ describe('生成侧边栏', () => {
                 "collapsed": true,
                 "items": [
                   {
-                    "link": "web/vue/index.md",
+                    "link": "/web/vue/index.md",
                     "text": "index",
                   },
                 ],

@@ -215,7 +215,7 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
       if (isFile) {
         return {
           text,
-          link,
+          link: `/${link}`,
         }
       }
       else {
