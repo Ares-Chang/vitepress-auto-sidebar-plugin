@@ -180,6 +180,18 @@ group: true
 
 :::
 
+### groupTitle
+
+- 类型: `string`
+
+文件夹分组标题。
+
+```md
+---
+groupTitle: Hello Web 🤖
+---
+```
+
 ### collapsed
 
 - 类型: `boolean`
