@@ -466,7 +466,12 @@ describe('处理文件数据', () => {
       })
 
       it('分组排序', () => {
-        expect(setDataFormat(cwd, ['web/sort/1.h.md', 'web/sort/3.index.md', 'web/sort/groupIndex/index.md'], {}))
+        expect(setDataFormat(cwd, [
+          'web/sort/1.h.md',
+          'web/sort/3.index.md',
+          'web/sort/groupIndex/index.md',
+          'web/sort/2.folderIndex/index.md',
+        ], {}))
           .toMatchInlineSnapshot(`
             [
               {
@@ -503,6 +508,27 @@ describe('处理文件数据', () => {
                         "link": "web/sort/groupIndex",
                         "name": "groupIndex",
                         "text": "分组排序",
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [],
+                            "groupTitle": "2.文件夹下标排序",
+                            "h1": "文件夹下标排序",
+                            "index": undefined,
+                            "isFile": true,
+                            "link": "web/sort/2.folderIndex/index.md",
+                            "name": "index",
+                            "text": "index",
+                          },
+                        ],
+                        "collapsed": undefined,
+                        "group": undefined,
+                        "index": 2,
+                        "isFile": false,
+                        "link": "web/sort/2.folderIndex",
+                        "name": "2.folderIndex",
+                        "text": "2.文件夹下标排序",
                       },
                       {
                         "children": [],

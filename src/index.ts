@@ -7,7 +7,7 @@ import type { DefaultTheme } from 'vitepress'
 import type { ArticleOptions, Item, Options, UserConfig } from './types'
 
 import { log } from './log'
-import { getArticleData, useIndexSort, useSortIndexName, useTextFormat } from './utils'
+import { getArticleData, getFileIndex, useIndexSort, useSortIndexName, useTextFormat } from './utils'
 
 export default function autoSidebarPlugin(options: Options = {}): Plugin {
   const defaultOptions: Options = {
@@ -85,9 +85,10 @@ export function setItem(
   link = join(link, name)
 
   // 判断是否为文件
-  const isFile = Boolean(extname(name))
+  const isFile = !list.length && Boolean(extname(name))
 
   let text = name
+  let index: number | undefined = getFileIndex(link)
   let fileOptions = {} as ArticleOptions
   // 移除文件后缀
   if (isFile) {
@@ -117,14 +118,17 @@ export function setItem(
     if (groupTitle)
       text = groupTitle
 
+    if (groupIndex)
+      index = groupIndex // 设置分组索引
+
     groupConfig = {
       group,
-      index: groupIndex, // 设置分组索引
       collapsed, // 设置折叠分组配置，默认不开启，单独设置后开启
     }
   }
 
   return {
+    index,
     name,
     text,
     link,
