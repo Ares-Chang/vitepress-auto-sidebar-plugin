@@ -103,11 +103,11 @@ describe('格式化标题', () => {
 
   describe('默认', () => {
     it('驼峰', () => {
-      expect(useTextFormat('WebA', 'default')).toBe('WebA')
+      expect(useTextFormat('WebA', false)).toBe('WebA')
     })
 
     it('连字符', () => {
-      expect(useTextFormat('Web-A', 'default')).toBe('Web-A')
+      expect(useTextFormat('Web-A', false)).toBe('Web-A')
     })
   })
 

@@ -45,7 +45,7 @@ export interface TitleOptions {
   /**
    * 标题模式
    *
-   * default: 'default'
+   * default: 'titlecase'
    */
   mode?: TitleMode
   /**
@@ -57,7 +57,7 @@ export interface TitleOptions {
 }
 
 // #region TitleMode
-export type TitleMode = 'default' | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase' | ((text: string) => string)
+export type TitleMode = false | 'lowercase' | 'uppercase' | 'capitalize' | 'kebabcase' | 'titlecase' | ((text: string) => string)
 // #endregion TitleMode
 
 export interface Item extends ArticleOptions {

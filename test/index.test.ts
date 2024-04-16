@@ -35,7 +35,7 @@ describe('处理文件数据', () => {
               "isFile": false,
               "link": "web/css",
               "name": "css",
-              "text": "css",
+              "text": "Css",
             },
           ],
           "collapsed": undefined,
@@ -44,7 +44,7 @@ describe('处理文件数据', () => {
           "isFile": false,
           "link": "web",
           "name": "web",
-          "text": "web",
+          "text": "Web",
         }
       `)
   })
@@ -95,7 +95,7 @@ describe('处理文件数据', () => {
                 "isFile": false,
                 "link": "web/css",
                 "name": "css",
-                "text": "css",
+                "text": "Css",
               },
               {
                 "children": [],
@@ -142,7 +142,7 @@ describe('处理文件数据', () => {
             "isFile": false,
             "link": "linux",
             "name": "linux",
-            "text": "linux",
+            "text": "Linux",
           },
         ]
       `)
@@ -337,7 +337,7 @@ describe('处理文件数据', () => {
             "isFile": false,
             "link": "web",
             "name": "web",
-            "text": "web",
+            "text": "Web",
           },
         ]
       `)
@@ -379,7 +379,7 @@ describe('处理文件数据', () => {
                     "isFile": false,
                     "link": "web/vue",
                     "name": "vue",
-                    "text": "vue",
+                    "text": "Vue",
                   },
                   {
                     "children": [],
@@ -397,7 +397,7 @@ describe('处理文件数据', () => {
                 "isFile": false,
                 "link": "web",
                 "name": "web",
-                "text": "web",
+                "text": "Web",
               },
             ]
           `)
@@ -450,7 +450,7 @@ describe('处理文件数据', () => {
                   "isFile": false,
                   "link": "web/css",
                   "name": "css",
-                  "text": "css",
+                  "text": "Css",
                 },
               ],
               "collapsed": false,
@@ -546,7 +546,7 @@ describe('处理文件数据', () => {
                     "isFile": false,
                     "link": "web/sort",
                     "name": "sort",
-                    "text": "sort",
+                    "text": "Sort",
                   },
                 ],
                 "collapsed": undefined,
@@ -555,7 +555,7 @@ describe('处理文件数据', () => {
                 "isFile": false,
                 "link": "web",
                 "name": "web",
-                "text": "web",
+                "text": "Web",
               },
             ]
           `)
@@ -611,7 +611,7 @@ describe('处理文件数据', () => {
                   "isFile": false,
                   "link": "web/vue",
                   "name": "vue",
-                  "text": "vue",
+                  "text": "Vue",
                 },
               ]
             `)
@@ -729,7 +729,7 @@ describe('处理文件数据', () => {
                     "isFile": false,
                     "link": "web/sort",
                     "name": "sort",
-                    "text": "sort",
+                    "text": "Sort",
                   },
                 ],
                 "collapsed": undefined,
@@ -738,7 +738,7 @@ describe('处理文件数据', () => {
                 "isFile": false,
                 "link": "web",
                 "name": "web",
-                "text": "web",
+                "text": "Web",
               },
             ]
           `)
@@ -786,7 +786,7 @@ describe('处理文件数据', () => {
                     "isFile": false,
                     "link": "web/sort",
                     "name": "sort",
-                    "text": "sort",
+                    "text": "Sort",
                   },
                 ],
                 "collapsed": undefined,
@@ -795,7 +795,7 @@ describe('处理文件数据', () => {
                 "isFile": false,
                 "link": "web",
                 "name": "web",
-                "text": "web",
+                "text": "Web",
               },
             ]
           `)
@@ -843,7 +843,7 @@ describe('处理文件数据', () => {
                     "isFile": false,
                     "link": "web/sort",
                     "name": "sort",
-                    "text": "sort",
+                    "text": "Sort",
                   },
                 ],
                 "collapsed": undefined,
@@ -852,7 +852,7 @@ describe('处理文件数据', () => {
                 "isFile": false,
                 "link": "web",
                 "name": "web",
-                "text": "web",
+                "text": "Web",
               },
             ]
           `)
@@ -924,7 +924,7 @@ describe('生成侧边栏', () => {
               {
                 "collapsed": undefined,
                 "items": [],
-                "text": "web",
+                "text": "Web",
               },
             ],
           }
@@ -947,14 +947,14 @@ describe('生成侧边栏', () => {
                         "text": "index",
                       },
                     ],
-                    "text": "vue",
+                    "text": "Vue",
                   },
                   {
                     "link": "/web/js.md",
                     "text": "js",
                   },
                 ],
-                "text": "web",
+                "text": "Web",
               },
             ],
           }
@@ -981,7 +981,7 @@ describe('生成侧边栏', () => {
                         "text": "background",
                       },
                     ],
-                    "text": "css",
+                    "text": "Css",
                   },
                 ],
                 "text": "Hello Web🫡",
@@ -994,7 +994,7 @@ describe('生成侧边栏', () => {
                     "text": "index",
                   },
                 ],
-                "text": "vue",
+                "text": "Vue",
               },
             ],
           }

@@ -103,8 +103,7 @@ export function setItem(
     // 设置 title 映射
     if (options?.title?.map)
       text = options.title.map[`${link}/`] || text
-    else if (options?.title?.mode)
-      text = useTextFormat(text, options.title.mode) // 设置 title 格式化
+    else text = useTextFormat(text, options?.title?.mode || 'titlecase') // 设置 title 格式化
   }
 
   const children = [setItem(cwd, list, options, link)].filter(Boolean) as Item[]
