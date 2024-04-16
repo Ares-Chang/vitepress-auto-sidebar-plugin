@@ -29,9 +29,6 @@ export default defineConfig({
     plugins: [
       AutoSidebarPlugin({
         srcDir: './docs',
-        title: {
-          mode: 'titlecase',
-        },
       }),
     ],
   },

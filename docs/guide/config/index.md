@@ -48,7 +48,7 @@ outline: deep
 ### mode
 
 - 类型: `TitleMode`
-- 默认值: `'default'`
+- 默认值: `'titlecase'`
 
 自定义文件夹标题模式。
 
@@ -56,9 +56,9 @@ outline: deep
 
 <<< @/../src/types.ts#TitleMode
 
-#### default
+#### false
 
-默认模式，不做修改。
+关闭格式化，不做修改。
 
 ```
 Web-A => Web-A
