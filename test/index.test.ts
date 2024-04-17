@@ -861,6 +861,25 @@ describe('处理文件数据', () => {
   })
 })
 
+describe('生成数据缓存', () => {
+  it('缓存数据', () => {
+    const cache = {}
+    setItem(cwd, 'web/index.md'.split('/'), {}, cache)
+    expect(cache)
+      .toMatchInlineSnapshot(`
+        {
+          "web/index.md": {
+            "collapsed": false,
+            "groupTitle": "Hello Web🫡",
+            "h1": "web",
+            "index": undefined,
+            "title": "Web Title",
+          },
+        }
+      `)
+  })
+})
+
 describe('生成侧边栏', () => {
   it('生成默认配置', () => {
     expect(generateSidebar(setDataFormat(cwd, paths, {

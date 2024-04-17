@@ -87,7 +87,7 @@ export function setItem(
   cwd: string,
   list: string[],
   options: Options,
-  cache: Cache,
+  cache: Cache = {},
   link = '',
 ): Item | undefined {
   if (!list.length)
@@ -171,7 +171,7 @@ export function setDataFormat(
     sort = () => 0,
     ...options
   }: Options,
-  cache: Cache,
+  cache: Cache = {},
 ): Item[] {
   let root: Item[] = []
 
