@@ -2,7 +2,7 @@
   "name": "vitepress-auto-sidebar-plugin",
   "type": "module",
   "version": "0.2.0",
-  "packageManager": "pnpm@8.15.3",
+  "packageManager": "pnpm@9.0.1",
   "description": "Automatically generates the sidebar configuration based on the file structure",
   "author": {
     "name": "Ares Chang",
@@ -64,34 +64,31 @@
     "docs:preview": "vitepress preview docs"
   },
   "peerDependencies": {
-    "vite": "^5.1.4",
-    "vitepress": "1.0.0-rc.45"
+    "vitepress": "^1.1.0"
   },
   "dependencies": {
     "consola": "^3.2.3",
     "fast-glob": "^3.3.2",
     "gray-matter": "^4.0.3",
     "pathe": "^1.1.2",
-    "perfect-debounce": "^1.0.0",
-    "throttle-debounce": "^5.0.0"
+    "perfect-debounce": "^1.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.6.4",
+    "@antfu/eslint-config": "^2.14.0",
     "@antfu/ni": "^0.21.12",
     "@antfu/utils": "^0.7.7",
-    "@types/node": "^20.11.19",
-    "bumpp": "^9.3.0",
-    "eslint": "^8.56.0",
-    "esno": "^4.0.0",
+    "@types/node": "^20.12.7",
+    "bumpp": "^9.4.0",
+    "eslint": "^9.0.0",
+    "esno": "^4.7.0",
     "lint-staged": "^15.2.2",
-    "pnpm": "^8.15.3",
-    "rimraf": "^5.0.5",
-    "simple-git-hooks": "^2.9.0",
-    "typescript": "^5.3.3",
+    "pnpm": "^9.0.1",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "^5.4.5",
     "unbuild": "^2.0.0",
-    "vite": "^5.1.4",
-    "vitepress": "1.0.0-rc.45",
-    "vitest": "^1.3.1"
+    "vite": "^5.2.9",
+    "vitepress": "^1.1.0",
+    "vitest": "^1.5.0"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
