@@ -123,3 +123,5 @@ export interface ArticleOptions {
    */
   collapsed?: boolean
 }
+
+export type Cache = Record<string, ArticleOptions>

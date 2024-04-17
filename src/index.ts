@@ -4,12 +4,14 @@ import { debounce } from 'perfect-debounce'
 
 import type { Plugin, ViteDevServer } from 'vite'
 import type { DefaultTheme } from 'vitepress'
-import type { ArticleOptions, Item, Options, UserConfig } from './types'
+import type { ArticleOptions, Cache, Item, Options, UserConfig } from './types'
 
 import { log } from './log'
 import { getArticleData, getPathIndex, useIndexSort, useSortIndexName, useTextFormat } from './utils'
 
 export default function autoSidebarPlugin(options: Options = {}): Plugin {
+  let cwd = './'
+  const cache: Cache = {}
   const defaultOptions: Options = {
     useH1Title: true,
   }
@@ -21,8 +23,8 @@ export default function autoSidebarPlugin(options: Options = {}): Plugin {
 
       const { vitepress: { userConfig } } = config as UserConfig
 
+      cwd = options.srcDir || userConfig.srcDir || './'
       const pattern = options.pattern || '**.md'
-      const cwd = options.srcDir || userConfig.srcDir || './'
       const ignoreList = options.ignoreList || userConfig.srcExclude || []
 
       // 读取目录下文件，并统一路由格式
@@ -38,7 +40,7 @@ export default function autoSidebarPlugin(options: Options = {}): Plugin {
         })
       ).map(path => normalize(path))
 
-      const list = setDataFormat(cwd, paths, { ...defaultOptions, ...options })
+      const list = setDataFormat(cwd, paths, { ...defaultOptions, ...options }, cache)
       const sidebar = generateSidebar(list);
       (config as UserConfig).vitepress.site.themeConfig.sidebar = sidebar
 
@@ -55,15 +57,26 @@ export default function autoSidebarPlugin(options: Options = {}): Plugin {
        * 排除修改操作，进行服务重启
        * 800ms 防抖处理，防止大量更新频繁触发重启
        */
-      watcher.add('*.md').on('all', debounce(async (type: 'add' | 'addDir' | 'change' | 'unlink' | 'unlinkDir') => {
-        if (type !== 'change') {
-          try {
-            await restart()
-            log.info('Update the sidebar...')
-          }
-          catch {
-            log.error('Failed to update sidebar')
-          }
+      watcher.add('*.md').on('all', debounce(async (type, path) => {
+        if (type === 'change') {
+          // 提取文件相对 link
+          const url = resolve(cwd) + sep
+          const link = path.split(url).pop()!
+
+          const obj = cache[link]
+          const data = getArticleData(path)
+
+          // 对比 obj 和 data，文件如果未发生变化，直接返回
+          if (obj && JSON.stringify(obj) === JSON.stringify(data))
+            return
+        }
+
+        try {
+          await restart()
+          log.info('Update the sidebar...')
+        }
+        catch {
+          log.error('Failed to update sidebar')
         }
       }, 800))
     },
@@ -74,6 +87,7 @@ export function setItem(
   cwd: string,
   list: string[],
   options: Options,
+  cache: Cache,
   link = '',
 ): Item | undefined {
   if (!list.length)
@@ -96,6 +110,9 @@ export function setItem(
 
     fileOptions = getArticleData(resolve(cwd, link))
 
+    // 缓存文件内数据
+    cache[link] = fileOptions
+
     // 设置显示 title , 优先级：配置 title > 文内 h1 > 文件名
     text = fileOptions.title || (options.useH1Title ? fileOptions.h1 : name) || name
   }
@@ -106,7 +123,7 @@ export function setItem(
     else text = useTextFormat(text, options?.title?.mode || 'titlecase') // 设置 title 格式化
   }
 
-  const children = [setItem(cwd, list, options, link)].filter(Boolean) as Item[]
+  const children = [setItem(cwd, list, options, cache, link)].filter(Boolean) as Item[]
 
   let groupConfig = {}
   if (!isFile) {
@@ -144,6 +161,7 @@ export function setItem(
  * @param paths 文件路径
  * @param options 配置
  * @param options.sort 排序方法
+ * @param cache 缓存
  * @returns 侧边栏数据
  */
 export function setDataFormat(
@@ -153,6 +171,7 @@ export function setDataFormat(
     sort = () => 0,
     ...options
   }: Options,
+  cache: Cache,
 ): Item[] {
   let root: Item[] = []
 
@@ -160,7 +179,7 @@ export function setDataFormat(
 
   list.forEach((path) => {
     const list = path.split(sep)
-    const obj = setItem(cwd, list, options)!
+    const obj = setItem(cwd, list, options, cache)!
     root = deep(root, obj, root)
   })
 
