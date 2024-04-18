@@ -212,18 +212,6 @@ export function setDataFormat(
  * 生成侧边栏
  */
 export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
-  /**
-   * 生成预渲染数据，提取所有一级分组路径
-   *
-   * 这里有可能二级分组排序优先于 index.md
-   * 所以需要提前提取出配置信息
-   */
-  const defaultObj = list.filter(({ group }) => group === undefined)
-    .reduce((acc, { link }) => {
-      acc[`/${link}/`] = []
-      return acc
-    }, {} as DefaultTheme.SidebarMulti)
-
   const root = list.reduce((acc, { text, link, children, collapsed }) => {
     const items = deep(children).filter(Boolean) as DefaultTheme.SidebarItem[]
     const obj = {
@@ -232,11 +220,16 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
       collapsed,
     }
 
-    const key = link.split(sep)[0] || link;
-    (acc[`/${key}/`] as DefaultTheme.SidebarItem[]).push(obj)
+    const key = `/${link.split(sep)[0] || link}/`
+
+    // 分组一级目录为空初始化
+    if (!acc[key])
+      acc[key] = [];
+
+    (acc[key] as DefaultTheme.SidebarItem[]).push(obj)
 
     return acc
-  }, defaultObj)
+  }, {} as DefaultTheme.SidebarMulti)
 
   function deep(list: Item[]): (DefaultTheme.SidebarItem | null)[] {
     return list.map((
