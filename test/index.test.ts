@@ -980,6 +980,36 @@ describe('生成侧边栏', () => {
         `)
     })
 
+    it('bug: 顶级分组排序失败', () => {
+      expect(generateSidebar(setDataFormat(cwd, ['web/index.md', 'web/web-3/index.md'], {})))
+        .toMatchInlineSnapshot(`
+          {
+            "/web/": [
+              {
+                "collapsed": undefined,
+                "items": [
+                  {
+                    "link": "/web/web-3/index.md",
+                    "text": "index",
+                  },
+                ],
+                "text": "Web 3",
+              },
+              {
+                "collapsed": false,
+                "items": [
+                  {
+                    "link": "/web/index.md",
+                    "text": "Web Title",
+                  },
+                ],
+                "text": "Hello Web🫡",
+              },
+            ],
+          }
+        `)
+    })
+
     it('可折叠侧边栏组', () => {
       expect(generateSidebar(setDataFormat(cwd, ['web/index.md', 'web/vue/index.md', 'web/css/background.md'], {})))
         .toMatchInlineSnapshot(`
