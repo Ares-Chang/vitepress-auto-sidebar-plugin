@@ -122,6 +122,14 @@ export interface ArticleOptions {
    * @default undefined
    */
   collapsed?: boolean
+  /**
+   * 排序在指定文件前
+   */
+  sortPrev?: string
+  /**
+   * 排序在指定文件后
+   */
+  sortNext?: string
 }
 
 export type Cache = Record<string, ArticleOptions>

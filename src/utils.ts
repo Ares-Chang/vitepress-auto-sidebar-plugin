@@ -117,3 +117,39 @@ export function useIndexSort(list: Item[]) {
       return a.index - b.index
   })
 }
+
+/**
+ * 按 sortPrev 排序，如果 sortPrev 等于 name ，则将数据插入到前面
+ * @param list
+ * @returns 排序后的列表
+ */
+export function useSortPrev(list: Item[]) {
+  list.sort((a, b) => {
+    if (a.sortPrev === b.name)
+      return -1
+    else if (b.sortPrev === a.name)
+      return 1
+    else
+      return 0
+  })
+
+  return list
+}
+
+/**
+ * 按 sortNext 排序，如果 sortNext 等于 name ，则将数据插入到后面
+ * @param list
+ * @returns 排序后的列表
+ */
+export function useSortNext(list: Item[]) {
+  list.sort((a, b) => {
+    if (b.sortNext === a.name)
+      return -1
+    else if (a.sortNext === b.name)
+      return 1
+    else
+      return 0
+  })
+
+  return list
+}

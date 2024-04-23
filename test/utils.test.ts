@@ -6,6 +6,8 @@ import {
   getPathIndex,
   useIndexSort,
   useSortIndexName,
+  useSortNext,
+  useSortPrev,
   useTextFormat,
 } from '../src/utils'
 import type { Item } from '../src/types.ts'
@@ -167,6 +169,64 @@ describe('根据下标排序', () => {
         {
           "index": undefined,
           "name": "u2",
+        },
+      ]
+    `)
+  })
+})
+
+describe('根据 sortPrev | useSortNext 排序', () => {
+  it('useSortPrev', () => {
+    expect(useSortPrev([
+      {
+        name: 'u0',
+      },
+      {
+        name: 'u1',
+        sortPrev: 'u0',
+      },
+      {
+        name: 'u2',
+      },
+    ] as Item[])).toMatchInlineSnapshot(`
+      [
+        {
+          "name": "u1",
+          "sortPrev": "u0",
+        },
+        {
+          "name": "u0",
+        },
+        {
+          "name": "u2",
+        },
+      ]
+    `)
+  })
+
+  it('useSortNext', () => {
+    expect(useSortNext([
+      {
+        name: 'u0',
+      },
+      {
+        name: 'u1',
+        sortNext: 'u2',
+      },
+      {
+        name: 'u2',
+      },
+    ] as Item[])).toMatchInlineSnapshot(`
+      [
+        {
+          "name": "u0",
+        },
+        {
+          "name": "u2",
+        },
+        {
+          "name": "u1",
+          "sortNext": "u2",
         },
       ]
     `)
