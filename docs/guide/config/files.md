@@ -105,6 +105,33 @@ hide: true
 ---
 ```
 
+### sortPrev
+
+- 类型: `string`
+
+输入指定文件名，排序于指定文件之前。
+
+```md
+---
+sortPrev: filesName
+---
+```
+
+### sortNext
+
+- 类型: `string`
+
+输入指定文件名，排序于指定文件之后。
+
+```md
+---
+sortNext: filesName
+---
+```
+
+> [!WARNING] 优先级
+> 如果同时设置了 `sortPrev` 和 `sortNext`，`sortPrev` 优先级高于 `sortNext`
+
 ## 文件夹配置
 
 以下配置可配置于文件夹下 `index.md` 文件内，如果设置会自动读取文件夹配置并生效。
