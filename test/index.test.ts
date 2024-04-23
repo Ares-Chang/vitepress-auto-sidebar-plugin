@@ -975,6 +975,79 @@ describe('处理文件数据', () => {
             ]
           `)
       })
+
+      it.todo('乱序', () => {
+        expect(setDataFormat(cwd, [
+          'web/sort/normal.md',
+          'web/sort/sortPrev.md',
+          'web/sort/1.h.md',
+          'web/sort/sortNext.md',
+        ], {}))
+          .toMatchInlineSnapshot(`
+            [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "h1": "sortPrev",
+                        "index": undefined,
+                        "isFile": true,
+                        "link": "web/sort/sortPrev.md",
+                        "name": "sortPrev",
+                        "sortPrev": "1.h",
+                        "text": "sortPrev",
+                      },
+                      {
+                        "children": [],
+                        "h1": "1",
+                        "index": 1,
+                        "isFile": true,
+                        "link": "web/sort/1.h.md",
+                        "name": "1.h",
+                        "text": "1.h",
+                      },
+                      {
+                        "children": [],
+                        "h1": "sortNext",
+                        "index": undefined,
+                        "isFile": true,
+                        "link": "web/sort/sortNext.md",
+                        "name": "sortNext",
+                        "sortNext": "1.h",
+                        "text": "sortNext",
+                      },
+                      {
+                        "children": [],
+                        "h1": "normal",
+                        "index": undefined,
+                        "isFile": true,
+                        "link": "web/sort/normal.md",
+                        "name": "normal",
+                        "text": "normal",
+                      },
+                    ],
+                    "collapsed": undefined,
+                    "group": undefined,
+                    "index": undefined,
+                    "isFile": false,
+                    "link": "web/sort",
+                    "name": "sort",
+                    "text": "Sort",
+                  },
+                ],
+                "collapsed": undefined,
+                "group": undefined,
+                "index": undefined,
+                "isFile": false,
+                "link": "web",
+                "name": "web",
+                "text": "Web",
+              },
+            ]
+          `)
+      })
     })
   })
 })

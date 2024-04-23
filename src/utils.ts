@@ -119,37 +119,28 @@ export function useIndexSort(list: Item[]) {
 }
 
 /**
- * 按 sortPrev 排序，如果 sortPrev 等于 name ，则将数据插入到前面
+ * 按 sortPrev | sortNext 排序
+ * 如果 sortPrev 等于 name ，则将数据插入到前面
+ * 如果 sortNext 等于 name ，则将数据插入到后面
+ * **sortPrev 优先级高于 sortNext**
+ *
  * @param list
  * @returns 排序后的列表
  */
-export function useSortPrev(list: Item[]) {
-  list.sort((a, b) => {
-    if (a.sortPrev === b.name)
-      return -1
-    else if (b.sortPrev === a.name)
-      return 1
-    else
-      return 0
+export function usePrevNextSort(list: Item[]) {
+  const insertList = list.filter(item => item.sortPrev || item.sortNext)
+  const listWithoutInsert = list.filter(item => !item.sortPrev && !item.sortNext)
+
+  insertList.forEach((item) => {
+    if (item.sortPrev) {
+      const index = listWithoutInsert.findIndex(({ name }) => name === item.sortPrev)
+      listWithoutInsert.splice(index, 0, item)
+    }
+    else if (item.sortNext) {
+      const index = listWithoutInsert.findIndex(({ name }) => name === item.sortNext)
+      listWithoutInsert.splice(index + 1, 0, item)
+    }
   })
 
-  return list
-}
-
-/**
- * 按 sortNext 排序，如果 sortNext 等于 name ，则将数据插入到后面
- * @param list
- * @returns 排序后的列表
- */
-export function useSortNext(list: Item[]) {
-  list.sort((a, b) => {
-    if (b.sortNext === a.name)
-      return -1
-    else if (a.sortNext === b.name)
-      return 1
-    else
-      return 0
-  })
-
-  return list
+  return listWithoutInsert
 }

@@ -5,9 +5,8 @@ import {
   getArticleTitle,
   getPathIndex,
   useIndexSort,
+  usePrevNextSort,
   useSortIndexName,
-  useSortNext,
-  useSortPrev,
   useTextFormat,
 } from '../src/utils'
 import type { Item } from '../src/types.ts'
@@ -176,17 +175,17 @@ describe('根据下标排序', () => {
 })
 
 describe('根据 sortPrev | useSortNext 排序', () => {
-  it('useSortPrev', () => {
-    expect(useSortPrev([
+  it('sortPrev', () => {
+    expect(usePrevNextSort([
       {
         name: 'u0',
       },
       {
-        name: 'u1',
-        sortPrev: 'u0',
+        name: 'u2',
       },
       {
-        name: 'u2',
+        name: 'u1',
+        sortPrev: 'u0',
       },
     ] as Item[])).toMatchInlineSnapshot(`
       [
@@ -204,8 +203,8 @@ describe('根据 sortPrev | useSortNext 排序', () => {
     `)
   })
 
-  it('useSortNext', () => {
-    expect(useSortNext([
+  it('sortNext', () => {
+    expect(usePrevNextSort([
       {
         name: 'u0',
       },

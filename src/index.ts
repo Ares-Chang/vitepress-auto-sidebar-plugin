@@ -7,7 +7,14 @@ import type { DefaultTheme } from 'vitepress'
 import type { ArticleOptions, Cache, Item, Options, UserConfig } from './types'
 
 import { log } from './log'
-import { getArticleData, getPathIndex, useIndexSort, useSortIndexName, useSortNext, useSortPrev, useTextFormat } from './utils'
+import {
+  getArticleData,
+  getPathIndex,
+  useIndexSort,
+  usePrevNextSort,
+  useSortIndexName,
+  useTextFormat,
+} from './utils'
 
 export default function autoSidebarPlugin(options: Options = {}): Plugin {
   let cwd = './'
@@ -198,10 +205,10 @@ export function setDataFormat(
       else list.push(obj)
     }
 
-    // 根据 Index 下标排序数据
+    // 根据 Index 下标排序
     list = useIndexSort(list)
-    list = useSortPrev(list)
-    list = useSortNext(list)
+    // 根据 Prev | Next 插值排序
+    list = usePrevNextSort(list)
 
     // 返回排过序的数据
     return list.sort(sort)
