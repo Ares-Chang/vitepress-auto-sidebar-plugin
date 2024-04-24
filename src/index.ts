@@ -145,7 +145,7 @@ export function setItem(
       index = groupIndex // 设置分组索引
 
     groupConfig = {
-      group,
+      group: groupAlone || group, // 独立分组 group 必须为 true
       groupAlone, // 设置分组是否独立
       collapsed, // 设置折叠分组配置，默认不开启，单独设置后开启
     }

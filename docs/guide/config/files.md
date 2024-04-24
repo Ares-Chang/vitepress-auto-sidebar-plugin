@@ -237,13 +237,14 @@ groupIndex: 1
 
 是否提取为单独分组，可设置多级目录中单独提取至顶层路由。
 
-> 须搭配 [`group`](#group) 一起使用。
+::: info 注意
+设置独立分组为 true 后 [`group`](#group) 字段默认强制设为 true，主动设置 false 不生效。
+:::
 
 ::: code-group
 
 ```md [config/index.md]
 ---
-group: true
 groupAlone: true
 ---
 ```
