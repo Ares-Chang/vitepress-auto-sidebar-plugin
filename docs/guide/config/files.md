@@ -231,6 +231,61 @@ groupIndex: 1
 ---
 ```
 
+### groupAlone
+
+- 类型: `boolean`
+
+是否提取为单独分组，可设置多级目录中单独提取至顶层路由。
+
+> 须搭配 [`group`](#group) 一起使用。
+
+::: code-group
+
+```md [config/index.md]
+---
+group: true
+groupAlone: true
+---
+```
+
+```sh [目录结构]
+guide
+├── config
+│   ├── index.md
+└── index.md
+```
+
+```json [输出路由]
+{
+  "/guide/": [
+    {
+      "text": "Guide",
+      "items": [
+        {
+          "text": "开始",
+          "link": "guide/index.md"
+        }
+      ],
+      "collapsed": false
+    }
+  ],
+  "/guide/config/": [
+    {
+      "text": "Config",
+      "items": [
+        {
+          "text": "插件可选项",
+          "link": "guide/config/index.md"
+        }
+      ],
+      "collapsed": false
+    }
+  ]
+}
+```
+
+:::
+
 ### collapsed
 
 - 类型: `boolean`
