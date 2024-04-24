@@ -135,7 +135,7 @@ export function setItem(
   let groupConfig = {}
   if (!isFile) {
     // 获取分组名下 index 文件中的配置
-    const { group, groupTitle, groupIndex, collapsed } = children.find(item => item.name === 'index') || {}
+    const { group, groupTitle, groupIndex, groupAlone, collapsed } = children.find(item => item.name === 'index') || {}
 
     // 设置分组名
     if (groupTitle)
@@ -146,6 +146,7 @@ export function setItem(
 
     groupConfig = {
       group,
+      groupAlone, // 设置分组是否独立
       collapsed, // 设置折叠分组配置，默认不开启，单独设置后开启
     }
   }
@@ -221,7 +222,7 @@ export function setDataFormat(
  * 生成侧边栏
  */
 export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
-  const root = list.reduce((acc, { text, link, children, collapsed }) => {
+  const root = list.reduce((acc, { text, link, children, collapsed, groupAlone }) => {
     const items = deep(children).filter(Boolean) as DefaultTheme.SidebarItem[]
     const obj = {
       text,
@@ -229,7 +230,7 @@ export function generateSidebar(list: Item[]): DefaultTheme.Sidebar {
       collapsed,
     }
 
-    const key = `/${link.split(sep)[0] || link}/`
+    const key = `/${groupAlone ? link : link.split(sep)[0] || link}/`
 
     // 分组一级目录为空初始化
     if (!acc[key])

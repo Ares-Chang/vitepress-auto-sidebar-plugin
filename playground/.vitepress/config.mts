@@ -9,6 +9,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Web', link: '/web/' },
+      { text: 'Ajax', link: '/web/ajax/' },
       { text: 'Linux', link: '/linux/' },
     ],
 

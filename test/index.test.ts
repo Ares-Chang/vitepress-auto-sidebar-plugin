@@ -31,6 +31,7 @@ describe('处理文件数据', () => {
               ],
               "collapsed": undefined,
               "group": undefined,
+              "groupAlone": undefined,
               "index": undefined,
               "isFile": false,
               "link": "web/css",
@@ -40,6 +41,7 @@ describe('处理文件数据', () => {
           ],
           "collapsed": undefined,
           "group": undefined,
+          "groupAlone": undefined,
           "index": undefined,
           "isFile": false,
           "link": "web",
@@ -91,6 +93,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web/css",
@@ -109,6 +112,7 @@ describe('处理文件数据', () => {
             ],
             "collapsed": false,
             "group": undefined,
+            "groupAlone": undefined,
             "index": undefined,
             "isFile": false,
             "link": "web",
@@ -138,6 +142,7 @@ describe('处理文件数据', () => {
             ],
             "collapsed": undefined,
             "group": undefined,
+            "groupAlone": undefined,
             "index": undefined,
             "isFile": false,
             "link": "linux",
@@ -181,6 +186,7 @@ describe('处理文件数据', () => {
               ],
               "collapsed": false,
               "group": undefined,
+              "groupAlone": undefined,
               "index": undefined,
               "isFile": false,
               "link": "web",
@@ -222,6 +228,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": false,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -253,6 +260,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/css",
@@ -262,6 +270,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -303,6 +312,7 @@ describe('处理文件数据', () => {
               ],
               "collapsed": false,
               "group": undefined,
+              "groupAlone": undefined,
               "index": undefined,
               "isFile": false,
               "link": "web",
@@ -333,6 +343,7 @@ describe('处理文件数据', () => {
             ],
             "collapsed": undefined,
             "group": undefined,
+            "groupAlone": undefined,
             "index": undefined,
             "isFile": false,
             "link": "web",
@@ -375,6 +386,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": true,
                     "group": true,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/vue",
@@ -393,6 +405,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -438,6 +451,7 @@ describe('处理文件数据', () => {
                       ],
                       "collapsed": true,
                       "group": undefined,
+                      "groupAlone": undefined,
                       "index": undefined,
                       "isFile": false,
                       "link": "web/css/less",
@@ -447,6 +461,7 @@ describe('处理文件数据', () => {
                   ],
                   "collapsed": undefined,
                   "group": undefined,
+                  "groupAlone": undefined,
                   "index": undefined,
                   "isFile": false,
                   "link": "web/css",
@@ -456,6 +471,7 @@ describe('处理文件数据', () => {
               ],
               "collapsed": false,
               "group": undefined,
+              "groupAlone": undefined,
               "index": undefined,
               "isFile": false,
               "link": "web",
@@ -504,6 +520,7 @@ describe('处理文件数据', () => {
                         ],
                         "collapsed": undefined,
                         "group": undefined,
+                        "groupAlone": undefined,
                         "index": 2,
                         "isFile": false,
                         "link": "web/sort/groupIndex",
@@ -525,6 +542,7 @@ describe('处理文件数据', () => {
                         ],
                         "collapsed": undefined,
                         "group": undefined,
+                        "groupAlone": undefined,
                         "index": 2,
                         "isFile": false,
                         "link": "web/sort/2.folderIndex",
@@ -543,6 +561,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
@@ -552,6 +571,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -586,6 +606,7 @@ describe('处理文件数据', () => {
                   ],
                   "collapsed": false,
                   "group": undefined,
+                  "groupAlone": undefined,
                   "index": undefined,
                   "isFile": false,
                   "link": "web",
@@ -608,6 +629,7 @@ describe('处理文件数据', () => {
                   ],
                   "collapsed": true,
                   "group": true,
+                  "groupAlone": undefined,
                   "index": undefined,
                   "isFile": false,
                   "link": "web/vue",
@@ -639,6 +661,7 @@ describe('处理文件数据', () => {
                   ],
                   "collapsed": false,
                   "group": undefined,
+                  "groupAlone": undefined,
                   "index": undefined,
                   "isFile": false,
                   "link": "web",
@@ -679,6 +702,7 @@ describe('处理文件数据', () => {
                   ],
                   "collapsed": false,
                   "group": undefined,
+                  "groupAlone": undefined,
                   "index": undefined,
                   "isFile": false,
                   "link": "web",
@@ -726,6 +750,7 @@ describe('处理文件数据', () => {
                         ],
                         "collapsed": true,
                         "group": undefined,
+                        "groupAlone": undefined,
                         "index": undefined,
                         "isFile": false,
                         "link": "web/css/less",
@@ -735,6 +760,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/css",
@@ -744,6 +770,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": false,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -785,6 +812,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
@@ -794,6 +822,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -842,6 +871,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
@@ -851,6 +881,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -899,6 +930,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
@@ -908,6 +940,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -959,6 +992,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
@@ -968,6 +1002,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -1017,6 +1052,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
@@ -1026,6 +1062,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -1090,6 +1127,7 @@ describe('处理文件数据', () => {
                     ],
                     "collapsed": undefined,
                     "group": undefined,
+                    "groupAlone": undefined,
                     "index": undefined,
                     "isFile": false,
                     "link": "web/sort",
@@ -1099,6 +1137,7 @@ describe('处理文件数据', () => {
                 ],
                 "collapsed": undefined,
                 "group": undefined,
+                "groupAlone": undefined,
                 "index": undefined,
                 "isFile": false,
                 "link": "web",
@@ -1201,34 +1240,71 @@ describe('生成侧边栏', () => {
         `)
     })
 
-    it('文章分组', () => {
-      expect(generateSidebar(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md'], {})))
-        .toMatchInlineSnapshot(`
-          {
-            "/web/": [
-              {
-                "collapsed": undefined,
-                "items": [
-                  {
-                    "collapsed": true,
-                    "items": [
-                      {
-                        "link": "/web/vue/index.md",
-                        "text": "index",
-                      },
-                    ],
-                    "text": "Vue",
-                  },
-                  {
-                    "link": "/web/js.md",
-                    "text": "js",
-                  },
-                ],
-                "text": "Web",
-              },
-            ],
-          }
-        `)
+    describe('文章分组', () => {
+      it('深层次分组', () => {
+        expect(generateSidebar(setDataFormat(cwd, ['web/js.md', 'web/vue/index.md'], {})))
+          .toMatchInlineSnapshot(`
+            {
+              "/web/": [
+                {
+                  "collapsed": undefined,
+                  "items": [
+                    {
+                      "collapsed": true,
+                      "items": [
+                        {
+                          "link": "/web/vue/index.md",
+                          "text": "index",
+                        },
+                      ],
+                      "text": "Vue",
+                    },
+                    {
+                      "link": "/web/js.md",
+                      "text": "js",
+                    },
+                  ],
+                  "text": "Web",
+                },
+              ],
+            }
+          `)
+      })
+
+      it('一级分组', () => {
+        expect(generateSidebar(setDataFormat(cwd, [
+          'web/index.md',
+          'web/ajax/index.md',
+        ], {})))
+          .toMatchInlineSnapshot(`
+            {
+              "/web/": [
+                {
+                  "collapsed": false,
+                  "items": [
+                    {
+                      "link": "/web/index.md",
+                      "text": "Web Title",
+                    },
+                  ],
+                  "text": "Hello Web🫡",
+                },
+              ],
+              "/web/ajax/": [
+                {
+                  "collapsed": undefined,
+                  "items": [
+                    {
+                      "link": "/web/ajax/index.md",
+                      "text": "index",
+                    },
+                  ],
+                  "text": "Ajax",
+                },
+              ],
+            }
+          `)
+      })
     })
 
     it('bug: 顶级分组排序失败', () => {
