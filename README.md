@@ -58,6 +58,10 @@ export default defineConfig({
 
 More configuration can be found in the [vitepress-auto-sidebar-plugin](https://vitepress-auto-sidebar-plugin.netlify.app/) documentation
 
+## 😋 Best practices
+
+You can view warehouse best practices at [Ares-Chang/notes](https://github.com/Ares-Chang/notes).
+
 ## License
 
 [MIT](./LICENSE) License © 2023-PRESENT [Ares Chang](https://github.com/Ares-Chang)

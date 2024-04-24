@@ -58,6 +58,10 @@ export default defineConfig({
 
 更多配置可参考 [vitepress-auto-sidebar-plugin](https://vitepress-auto-sidebar-plugin.netlify.app/) 文档
 
+## 😋最佳实践
+
+可访问 [Ares-Chang/notes](https://github.com/Ares-Chang/notes) 查看仓库最佳实践。
+
 ## License
 
 [MIT](./LICENSE) License © 2023-PRESENT [Ares Chang](https://github.com/Ares-Chang)

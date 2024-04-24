@@ -87,3 +87,7 @@ bun run dev
 :::
 
 其它配置项可以参考 [插件配置](./config/index.md)。
+
+## 最佳实践
+
+可访问 [Ares-Chang/notes](https://github.com/Ares-Chang/notes) 查看仓库最佳实践。

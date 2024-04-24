@@ -18,6 +18,9 @@ hero:
     - theme: alt
       text: GitHub
       link: https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin
+    - theme: alt
+      text: 最佳实践
+      link: https://github.com/Ares-Chang/notes
 
 features:
   - icon: 🚀
