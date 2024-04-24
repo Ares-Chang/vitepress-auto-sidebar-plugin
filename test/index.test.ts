@@ -426,6 +426,7 @@ describe('处理文件数据', () => {
                       "children": [
                         {
                           "children": [],
+                          "collapsed": true,
                           "groupTitle": "🤖 这是神奇的 Less",
                           "h1": "Less",
                           "index": undefined,
@@ -435,7 +436,7 @@ describe('处理文件数据', () => {
                           "text": "index",
                         },
                       ],
-                      "collapsed": undefined,
+                      "collapsed": true,
                       "group": undefined,
                       "index": undefined,
                       "isFile": false,
@@ -689,9 +690,68 @@ describe('处理文件数据', () => {
         })
       })
 
-      it.todo('下级分组可折叠', () => {
-        expect(setDataFormat(cwd, ['web/index.md', 'web/css/index.md', 'web/css/background.md'], {}))
-          .toMatchInlineSnapshot()
+      it('下级分组可折叠', () => {
+        expect(setDataFormat(cwd, ['web/index.md', 'web/css/less/index.md'], {}))
+          .toMatchInlineSnapshot(`
+            [
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "collapsed": false,
+                    "groupTitle": "Hello Web🫡",
+                    "h1": "web",
+                    "index": undefined,
+                    "isFile": true,
+                    "link": "web/index.md",
+                    "name": "index",
+                    "text": "Web Title",
+                    "title": "Web Title",
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [
+                          {
+                            "children": [],
+                            "collapsed": true,
+                            "groupTitle": "🤖 这是神奇的 Less",
+                            "h1": "Less",
+                            "index": undefined,
+                            "isFile": true,
+                            "link": "web/css/less/index.md",
+                            "name": "index",
+                            "text": "index",
+                          },
+                        ],
+                        "collapsed": true,
+                        "group": undefined,
+                        "index": undefined,
+                        "isFile": false,
+                        "link": "web/css/less",
+                        "name": "less",
+                        "text": "🤖 这是神奇的 Less",
+                      },
+                    ],
+                    "collapsed": undefined,
+                    "group": undefined,
+                    "index": undefined,
+                    "isFile": false,
+                    "link": "web/css",
+                    "name": "css",
+                    "text": "Css",
+                  },
+                ],
+                "collapsed": false,
+                "group": undefined,
+                "index": undefined,
+                "isFile": false,
+                "link": "web",
+                "name": "web",
+                "text": "Hello Web🫡",
+              },
+            ]
+          `)
       })
     })
 
@@ -976,7 +1036,7 @@ describe('处理文件数据', () => {
           `)
       })
 
-      it.todo('乱序', () => {
+      it('乱序', () => {
         expect(setDataFormat(cwd, [
           'web/sort/normal.md',
           'web/sort/sortPrev.md',
