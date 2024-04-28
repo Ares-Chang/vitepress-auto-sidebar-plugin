@@ -15,10 +15,7 @@ hero:
     - theme: alt
       text: API
       link: /guide/config/index
-    - theme: alt
-      text: GitHub
-      link: https://github.com/Ares-Chang/vitepress-auto-sidebar-plugin
-    - theme: alt
+    - theme: cat best-practice
       text: 最佳实践
       link: https://github.com/Ares-Chang/notes
 
@@ -41,6 +38,8 @@ features:
 
   --vp-home-hero-image-background-image: linear-gradient(-90deg, #bd34fe 50%, #47caff 50%);
   --vp-home-hero-image-filter: blur(44px);
+
+  --best-practice-brand-border: #bd34fe;
 }
 
 @media (min-width: 640px) {
@@ -52,6 +51,41 @@ features:
 @media (min-width: 960px) {
   :root {
     --vp-home-hero-image-filter: blur(68px);
+  }
+}
+
+.best-practice {
+  display: flex !important;
+  justify-content: center;
+  items-align: center;
+  position: relative;
+  padding: 0 28px !important;
+}
+.best-practice::before {
+  content: '🤖';
+  font-size: 20px;
+  margin-right: 4px;
+}
+.best-practice:hover::after {
+  animation: none;
+}
+.best-practice::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--best-practice-brand-border);
+  border-radius: 20px;
+  animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+  z-index: -1;
+}
+@keyframes ping {
+  15%,
+  to {
+    transform: scale(1.25, 2);
+    opacity: 0;
   }
 }
 </style>
